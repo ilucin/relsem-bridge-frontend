@@ -20,7 +20,6 @@ define([
         var oldView = this.currentView;
         var viewEl;
         if (oldView && oldView.cleanup) {
-          //view cleanup custom events
           oldView.cleanup();
         }
         viewEl = view.render();

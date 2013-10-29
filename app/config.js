@@ -12,7 +12,8 @@ require.config({
     //underscore replacment
     underscore: '../assets/js/libs/lodash',
     //backbone
-    backbone: '../assets/js/libs/backbone'
+    backbone: '../assets/js/libs/backbone',
+    bootstrap: '../assets/js/libs/bootstrap'
   },
 
   shim: {
@@ -23,6 +24,10 @@ require.config({
 
     jquery: {
       exports: '$'
+    },
+
+    bootstrap: {
+      deps: ['jquery']
     }
   }
 

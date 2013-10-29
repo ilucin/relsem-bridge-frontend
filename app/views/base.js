@@ -1,10 +1,11 @@
 define([
-  'Backbone',
+  'backbone',
   'app'
 ], function(
   Backbone,
   app
 ) {
+  'use strict';
 
   var BaseView = Backbone.View.extend({
 

@@ -1,7 +1,11 @@
 define([
-  'app'
+  'backbone',
+  'app',
+  'views/main'
 ], function(
-  app
+  Backbone,
+  app,
+  MainView
 ) {
   'use strict';
   var Router = Backbone.Router.extend({
@@ -10,7 +14,8 @@ define([
     },
 
     actionIndex: function() {
-      console.log('Hello World!');
+      var mainView = new MainView();
+      app.switchView(mainView);
     }
 
   });

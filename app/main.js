@@ -1,19 +1,17 @@
 require([
-    'app',
-    'routers/main'
-  ],
+  'app',
+  'router'
+], function(
+  app,
 
-  function(
-    app,
+  Router
+) {
+  'use strict';
 
-    Router
-  ) {
-    'use strict';
+  app.router = new Router();
 
-    app.router = new Router();
-
-    Backbone.history.start({
-      pushState: false,
-      root: app.root
-    });
+  Backbone.history.start({
+    pushState: false,
+    root: app.root
   });
+});

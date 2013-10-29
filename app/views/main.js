@@ -5,8 +5,9 @@ define([
   app,
   BaseView
 ) {
+  'use strict';
 
-  var MainView = BaseView.View.extend({
+  var MainView = BaseView.extend({
     template: app.fetchTemplate('main'),
 
     render: function() {

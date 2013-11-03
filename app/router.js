@@ -3,13 +3,15 @@ define([
   'app',
   'views/home/home',
   'views/home/about',
+  'views/home/tables',
   'views/editor/editor'
 ], function(
   Backbone,
   app,
   HomeView,
-  EditorView,
-  AboutView
+  AboutView,
+  TablesView,
+  EditorView
 ) {
   'use strict';
   var Router = Backbone.Router.extend({
@@ -31,7 +33,8 @@ define([
     },
 
     actionTables: function() {
-      return true;
+      var tablesView = new TablesView();
+      app.switchView(tablesView);
     },
 
     actionEditor: function() {

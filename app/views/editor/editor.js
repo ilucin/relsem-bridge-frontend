@@ -7,8 +7,9 @@ define([
 ) {
   'use strict';
 
-  var MainView = BaseView.extend({
-    template: app.fetchTemplate('main'),
+  var EditorView = BaseView.extend({
+    className: 'editor-view',
+    template: app.fetchTemplate('editor/editor'),
 
     render: function() {
       this.$el.html(this.template());
@@ -17,5 +18,5 @@ define([
 
   });
 
-  return MainView;
+  return EditorView;
 });

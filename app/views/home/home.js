@@ -7,8 +7,9 @@ define([
 ) {
   'use strict';
 
-  var MainView = BaseView.extend({
-    template: app.fetchTemplate('main'),
+  var HomeView = BaseView.extend({
+    className: 'home',
+    template: app.fetchTemplate('home/home'),
 
     render: function() {
       this.$el.html(this.template());
@@ -17,5 +18,5 @@ define([
 
   });
 
-  return MainView;
+  return HomeView;
 });

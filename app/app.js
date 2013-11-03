@@ -23,7 +23,7 @@ define([
         oldView.cleanup();
       }
       viewEl = view.render();
-      $('#main-container').html(viewEl.el);
+      $('#main').html(viewEl.el);
       this.currentView = view;
     },
 

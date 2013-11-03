@@ -7,9 +7,9 @@ define([
 ) {
   'use strict';
 
-  var AboutView = BaseView.extend({
-    className: 'about-view container',
-    template: app.fetchTemplate('home/about'),
+  var RdfAttributeListView = BaseView.extend({
+    className: 'rdf-attribute-list-view',
+    template: app.fetchTemplate('editor/rdf-attribute-list'),
 
     render: function() {
       this.$el.html(this.template());
@@ -18,5 +18,5 @@ define([
 
   });
 
-  return AboutView;
+  return RdfAttributeListView;
 });

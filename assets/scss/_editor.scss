@@ -1,13 +1,69 @@
 .editor-view {
-  .editor-top {
-    height: 300px;
-    .editor-top-col {
+  .editor-rdf-title {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ccc;
+  }
+  .editor-rdf-titles {
+  }
+  .editor-rdf {
+    height: 200px;
+    .editor-rdf-col {
       height: 100%;
+      overflow: auto;
+    }
+    .rdf-attribute-list-view {
+      .rdf-attribute-list-item {
+        padding: 10px;
+        border-bottom: 1px solid #ccc;
+      }
+    }
+    .rdf-entity-list-view {
+      .rdf-entity-list-item {
+        padding: 10px;
+        border-bottom: 1px solid #ccc;
+      }
+    }
+    .rdf-panel-view {
+      border: 1px solid #ccc;
+      background-color: #f1f1f1;
     }
   }
 
-  .editor-bottom {
+  .editor-relational-title {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ccc;
+  }
+  .editor-relational {
     min-height: 150px;
+  }
+}
 
+.table-list-view {
+  .table-list-item {
+    border-bottom: 1px solid #ccc;
+    padding: 10px;
+  }
+}
+
+.table-view {
+  .table-top {
+    margin-bottom: 10px;
+  }
+  .table-bottom {
+
+  }
+  .table-name {
+    .in-table-name {
+      font-weight: bold;
+
+    }
+  }
+  .table-attributes {
+    table {
+      width: 100%;
+    }
+  }
+  .btn-table-save {
+    float: right;
   }
 }

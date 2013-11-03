@@ -7,9 +7,9 @@ define([
 ) {
   'use strict';
 
-  var AboutView = BaseView.extend({
-    className: 'about-view container',
-    template: app.fetchTemplate('home/about'),
+  var TableListView = BaseView.extend({
+    className: 'table-list-view',
+    template: app.fetchTemplate('editor/table-list'),
 
     render: function() {
       this.$el.html(this.template());
@@ -18,5 +18,5 @@ define([
 
   });
 
-  return AboutView;
+  return TableListView;
 });

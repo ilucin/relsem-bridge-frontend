@@ -8,7 +8,7 @@ define([
   'use strict';
 
   var TablesView = BaseView.extend({
-    className: 'tables-view',
+    className: 'tables-view container',
     template: app.fetchTemplate('home/tables'),
 
     render: function() {

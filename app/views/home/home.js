@@ -8,7 +8,7 @@ define([
   'use strict';
 
   var HomeView = BaseView.extend({
-    className: 'home',
+    className: 'home container',
     template: app.fetchTemplate('home/home'),
 
     render: function() {

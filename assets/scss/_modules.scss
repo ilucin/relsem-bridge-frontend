@@ -1,0 +1,12 @@
+.input {
+  input {
+    border-color: transparent;
+    box-shadow: none;
+    &:focus {
+      border-color: auto;
+      font-width: auto;
+      font-size: auto;
+      color: auto;
+    }
+  }
+}

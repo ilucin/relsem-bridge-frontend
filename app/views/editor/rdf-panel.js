@@ -7,9 +7,9 @@ define([
 ) {
   'use strict';
 
-  var AboutView = BaseView.extend({
-    className: 'about-view container',
-    template: app.fetchTemplate('home/about'),
+  var RdfPanelView = BaseView.extend({
+    className: 'rdf-panel-view',
+    template: app.fetchTemplate('editor/rdf-panel'),
 
     render: function() {
       this.$el.html(this.template());
@@ -18,5 +18,5 @@ define([
 
   });
 
-  return AboutView;
+  return RdfPanelView;
 });

@@ -11,9 +11,23 @@ define([
     className: 'table-view',
     template: app.fetchTemplate('editor/table'),
 
+    initialize: function(options) {
+      if (!this.model) {
+        throw 'TableView must have it\'s table model set.';
+      }
+    },
+
+    setListeners: function() {
+      this.listenTo(this.model, 'change', this.refresh, this);
+    },
+
     render: function() {
       this.$el.html(this.template());
       return this;
+    },
+
+    refresh: function() {
+
     }
 
   });

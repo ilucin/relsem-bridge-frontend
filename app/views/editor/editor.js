@@ -1,5 +1,9 @@
 define([
   'app',
+
+  'collections/tables',
+  'models/table',
+
   'views/abstract/base',
   'views/editor/rdf-entity-list',
   'views/editor/rdf-attribute-list',
@@ -8,6 +12,10 @@ define([
   'views/editor/table'
 ], function(
   app,
+
+  TablesCollection,
+  TableModel,
+
   BaseView,
   RdfEntityListView,
   RdfAttributeListView,
@@ -22,10 +30,15 @@ define([
     template: app.fetchTemplate('editor/editor'),
 
     initialize: function() {
+      this.table = new TableModel();
+      this.tables = new TablesCollection();
+
       this.rdfEntityListView = new RdfEntityListView();
       this.rdfAttributeListView = new RdfAttributeListView();
       this.rdfPanelView = new RdfPanelView();
-      this.tableView = new TableView();
+      this.tableView = new TableView({
+        model: this.table
+      });
       this.tableListView = new TableListView();
     },
 

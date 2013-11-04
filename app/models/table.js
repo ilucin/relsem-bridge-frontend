@@ -1,6 +1,6 @@
 define([
-  'Backbone',
-  'collectons/attributes'
+  'backbone',
+  'collections/attributes'
 ], function(
   Backbone,
   AttributesCollection

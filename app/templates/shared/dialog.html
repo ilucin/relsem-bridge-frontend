@@ -1,0 +1,14 @@
+<div class="dialog-mask">
+  <div class="panel panel-default dialog">
+    <div class="panel-heading dialog-heading">
+      <h3 class="panel-title dialog-title"> <%= title %> </h3>
+    </div>
+    <div class="panel-body dialog-body"> <%= message %> </div>
+    <div class="panel-footer dialog-footer">
+      <button type="button" class="btn btn-default btn-left"> <%= left %> </button>
+      <% if (right) { %>
+        <button type="button" class="btn btn-default btn-right"> <%= right %> </button>
+      <% } %>
+    </div>
+  </div>
+</div>

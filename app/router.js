@@ -32,11 +32,6 @@ define([
       app.switchView(homeView);
     },
 
-    actionTables: function() {
-      var tablesView = new TablesView();
-      app.switchView(tablesView);
-    },
-
     actionEditor: function() {
       var editorView = new EditorView();
       app.switchView(editorView);

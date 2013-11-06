@@ -1,33 +1,54 @@
 define([
   'app',
-  'views/abstract/base'
+  'views/abstract/base',
+  'views/editor/table-row'
 ], function(
   app,
-  BaseView
+  BaseView,
+  TableRowView
 ) {
   'use strict';
 
   var TableView = BaseView.extend({
     className: 'table-view',
     template: app.fetchTemplate('editor/table'),
+    events: {
+      'click .btn-add-attribute': 'onBtnAddAttributeClick'
+    },
+    rows: [],
 
     initialize: function(options) {
       if (!this.model) {
         throw 'TableView must have it\'s table model set.';
       }
+      this.table = this.model;
     },
 
     setListeners: function() {
-      this.listenTo(this.model, 'change', this.refresh, this);
+      this.listenTo(this.table, 'change', this.refresh, this);
+      this.listenTo(this.table, 'attributes:add', this.addEmptyRow, this);
     },
 
     render: function() {
       this.$el.html(this.template());
+      this.addEmptyRow();
       return this;
     },
 
     refresh: function() {
 
+    },
+
+    onBtnAddAttributeClick: function() {
+      this.addEmptyRow();
+    },
+
+    addEmptyRow: function() {
+      var attr = this.model.addDummyAttribute();
+      var rowView = new TableRowView({
+        model: attr
+      });
+      this.$('.row-new-attribute').before(rowView.render().$el);
     }
 
   });

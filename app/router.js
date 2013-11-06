@@ -1,6 +1,7 @@
 define([
   'backbone',
   'app',
+  'views/navbar',
   'views/home/home',
   'views/home/about',
   'views/home/tables',
@@ -8,6 +9,7 @@ define([
 ], function(
   Backbone,
   app,
+  NavbarView,
   HomeView,
   AboutView,
   TablesView,
@@ -15,6 +17,12 @@ define([
 ) {
   'use strict';
   var Router = Backbone.Router.extend({
+
+    initialize: function() {
+      this.navbar = new NavbarView();
+      app.user.on('logout', this.onLogout, this);
+    },
+
     routes: {
       '': 'actionIndex',
       'home': 'actionHome',
@@ -40,6 +48,10 @@ define([
     actionAbout: function() {
       var aboutView = new AboutView();
       app.switchView(aboutView);
+    },
+
+    onLogout: function() {
+      Backbone.trigger('navigate', '');
     }
 
   });

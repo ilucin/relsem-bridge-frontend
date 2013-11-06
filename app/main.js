@@ -2,17 +2,20 @@ require([
   'app',
   'router',
   'views/shared/dialog',
-  'models/connection'
+  'models/connection',
+  'models/user'
 ], function(
   app,
 
   Router,
   DialogView,
-  ConnectionModel
+  ConnectionModel,
+  UserModel
 ) {
   'use strict';
 
   app.conn = new ConnectionModel();
+  app.user = new UserModel();
   app.dialog = new DialogView();
   app.router = new Router();
 

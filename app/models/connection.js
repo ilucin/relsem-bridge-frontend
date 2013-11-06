@@ -16,17 +16,17 @@ define([
     },
 
     connect: function(name, endpoint) {
-      console.log('Connecting to: ' + name + ', ' + endpoint);
       this.set({
         name: name,
         endpoint: endpoint,
         isConnected: true
       });
-      this.trigger('change');
+      this.trigger('connect');
     },
 
     disconnect: function() {
       this.set(this.defaults);
+      this.trigger('disconnect');
     }
 
   });

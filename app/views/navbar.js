@@ -9,26 +9,31 @@ define([
 
   var NavbarView = BaseView.extend({
     el: '#navbar',
+    events: {
+      'click .btn-logout': 'onBtnLogoutClick'
+    },
 
     initialize: function() {
       this.setListeners();
     },
 
     setListeners: function() {
-      // this.listenTo(app.conn, 'change', this.onConnectionChange, this);
-      app.conn.on('change', this.onConnectionChange, this);
+      this.listenTo(app.user, 'change', this.onUserChange, this);
     },
 
-    onConnectionChange: function() {
-      console.log('asd');
-      if (app.conn.get('isConnected')) {
-        this.$('.btn-disconnect')
-          .html('Disconnect from \'' + app.conn.get('name') + '\'')
+    onUserChange: function() {
+      if (app.user.has('username')) {
+        this.$('.btn-logout')
+          .html('Logout ' + app.user.get('username'))
           .removeClass('hide');
       } else {
-        this.$('.btn-disconnect')
+        this.$('.btn-logout')
           .addClass('hide');
       }
+    },
+
+    onBtnLogoutClick: function() {
+      app.user.logout();
     }
 
   });

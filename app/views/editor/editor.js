@@ -5,6 +5,7 @@ define([
   'models/table',
 
   'views/abstract/base',
+  'views/editor/connection-form',
   'views/editor/rdf-entity-list',
   'views/editor/rdf-attribute-list',
   'views/editor/rdf-panel',
@@ -17,6 +18,7 @@ define([
   TableModel,
 
   BaseView,
+  ConnectionFormView,
   RdfEntityListView,
   RdfAttributeListView,
   RdfPanelView,
@@ -33,6 +35,7 @@ define([
       this.table = new TableModel();
       this.tables = new TablesCollection();
 
+      this.connectionForm = new ConnectionFormView();
       this.rdfEntityListView = new RdfEntityListView();
       this.rdfAttributeListView = new RdfAttributeListView();
       this.rdfPanelView = new RdfPanelView();
@@ -45,8 +48,9 @@ define([
     render: function() {
       this.$el.html(this.template());
 
+      this.$('.editor-connection-form').html(this.connectionForm.render().$el);
       this.$('.editor-rdf-entity-list-container').html(this.rdfEntityListView.render().$el);
-      this.$('.editor-rdf-attribute-list-container').html(this.rdfAttributeListView.render().$el);
+      // this.$('.editor-rdf-attribute-list-container').html(this.rdfAttributeListView.render().$el);
       this.$('.editor-rdf-panel-container').html(this.rdfPanelView.render().$el);
       this.$('.editor-table-list-container').html(this.tableListView.render().$el);
       this.$('.editor-table-container').html(this.tableView.render().$el);

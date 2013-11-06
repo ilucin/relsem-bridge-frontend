@@ -12,7 +12,7 @@ define([
     template: app.fetchTemplate('home/home'),
 
     events: {
-      'click .btn-connect': 'onBtnConnectClick'
+      'click .btn-login': 'onBtnLoginClick'
     },
 
     render: function() {
@@ -20,10 +20,11 @@ define([
       return this;
     },
 
-    onBtnConnectClick: function() {
-      var name = this.$('.in-login-name').val();
-      var endpoint = this.$('.in-login-endpoint').val();
-      app.conn.connect(name, endpoint);
+    onBtnLoginClick: function() {
+      var username = this.$('.in-login-username').val();
+      var password = this.$('.in-login-password').val();
+      app.user.login(username, password);
+      Backbone.trigger('navigate', 'editor');
     }
 
   });

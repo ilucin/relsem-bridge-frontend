@@ -1,13 +1,13 @@
 define([
-  'backbone',
+  'models/base',
   'collections/attributes'
 ], function(
-  Backbone,
+  BaseModel,
   AttributesCollection
 ) {
   'use strict';
 
-  var TableModel = Backbone.Model.extend({
+  var TableModel = BaseModel.extend({
 
     defaults: {
       'name': ''

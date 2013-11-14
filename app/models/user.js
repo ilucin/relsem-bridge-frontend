@@ -1,13 +1,13 @@
 define([
-  'backbone',
+  'models/base',
   'app'
 ], function(
-  Backbone,
+  BaseModel,
   app
 ) {
   'use strict';
 
-  var UserModel = Backbone.Model.extend({
+  var UserModel = BaseModel.extend({
 
     defaults: {
       'username': '',

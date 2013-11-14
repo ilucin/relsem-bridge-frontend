@@ -1,15 +1,15 @@
 define([
-	'backbone',
-	'models/table'
+ 'collections/base',
+ 'models/table'
 ], function(
-	Backbone,
-	TableModel
+  BaseCollection,
+  TableModel
 ) {
-	'use strict';
+  'use strict';
 
-	var TablesCollection = Backbone.Collection.extend({
-		model: TableModel
-	});
+  var TablesCollection = BaseCollection.extend({
+    model: TableModel
+  });
 
-	return TablesCollection;
+  return TablesCollection;
 });

@@ -5,14 +5,14 @@ define([
 ) {
   'use strict';
 
-  var RdfAttributeModel = BaseModel.extend({
+  var RefResourceModel = BaseModel.extend({
 
     defaults: {
       'name': '',
-      'type': 'string'
+      'url': ''
     }
 
   });
 
-  return RdfAttributeModel;
+  return RefResourceModel;
 });

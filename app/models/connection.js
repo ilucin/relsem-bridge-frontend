@@ -1,13 +1,13 @@
 define([
-  'backbone',
+  'models/base',
   'app'
 ], function(
-  Backbone,
+  BaseModel,
   app
 ) {
   'use strict';
 
-  var ConnectionModel = Backbone.Model.extend({
+  var ConnectionModel = BaseModel.extend({
 
     defaults: {
       'name': '',

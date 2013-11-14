@@ -1,15 +1,15 @@
 define([
-  'backbone',
+  'collections/base',
   'models/attribute'
 ], function(
-  Backbone,
+  BaseCollection,
   AttributeModel
 ) {
   'use strict';
 
-  var AttributesCollection = Backbone.Collection.extend({
+  var AttributesCollection = BaseCollection.extend({
     model: AttributeModel,
-    addDummyAttribute: function() {
+    addEmptyAttribute: function() {
       var attribute = new AttributeModel();
       this.add(attribute);
       return attribute;

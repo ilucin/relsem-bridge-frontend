@@ -1,17 +1,17 @@
 define([
-  'backbone'
+  'models/base'
 ], function(
-  Backbone
+  BaseModel
 ) {
   'use strict';
 
-  var AttributeModel = Backbone.Model.extend({
+  var AttributeModel = BaseModel.extend({
 
     defaults: {
       'name': '',
       'type': 'string',
       'length': 100,
-      'notNull': true,
+      'nullable': false,
       'default': ''
     }
 

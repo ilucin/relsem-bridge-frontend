@@ -1,0 +1,10 @@
+[{
+  "name": "Attribute1",
+  "type": "string"
+}, {
+  "name": "Attribute 2",
+  "type": "int"
+}, {
+  "name": "Attribtue 3",
+  "type": "string"
+}]

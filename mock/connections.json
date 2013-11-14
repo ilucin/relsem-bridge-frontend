@@ -1,0 +1,7 @@
+[{
+  "name": "Dbpedia",
+  "endpoint": "http://dbpedia.org/sparql?"
+}, {
+  "name": "Some other connection",
+  "endpoint": "http://someother.org/sparql?"
+}]

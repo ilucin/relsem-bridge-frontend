@@ -1,0 +1,13 @@
+[{
+  "url": "http://dbpedia.org/ontology/Place",
+  "name": "Place"
+}, {
+  "url": "http://schema.org/Organization",
+  "name": "Organization"
+}, {
+  "url": "http://dbpedia.org/ontology/Person",
+  "name": "Person"
+}, {
+  "url": "http://www.w3.org/2002/07/owl#Thing",
+  "name": "Thing"
+}]

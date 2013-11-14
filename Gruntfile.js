@@ -23,14 +23,12 @@ module.exports = function(grunt) {
         indent: 2,
         latedef: true,
         eqeqeq: true,
-
         undef: true,
         devel: false,
         strict: true,
         trailing: false,
         smarttabs: false,
         quotmark: 'single',
-
         immed: true,
         newcap: true,
         noarg: true,
@@ -41,7 +39,6 @@ module.exports = function(grunt) {
           Backbone: true,
           console: true,
           _: true,
-          I18n: true,
           global: true
         }
       },
@@ -70,7 +67,7 @@ module.exports = function(grunt) {
 
     sass: {
       options: {
-        'debug-info': false,
+        'debug-info': true,
         compass: true
       },
       deploy: {
@@ -128,14 +125,25 @@ module.exports = function(grunt) {
 
     copy: {
       main: {
-        files: [
-          {expand: true, src: ['mock/*'], dest: 'deploy/release/'},
-          {expand: true, src: ['assets/images/*'], dest: 'deploy/release/'},
-          {expand: false, src: ['index.html'], dest: 'deploy/release/index.html'}
-        ]
+        files: [{
+          expand: true,
+          src: ['mock/**/*'],
+          dest: 'deploy/release/'
+        }, {
+          expand: true,
+          src: ['assets/images/*'],
+          dest: 'deploy/release/'
+        }, {
+          expand: true,
+          src: ['assets/fonts/*'],
+          dest: 'deploy/release'
+        }, {
+          expand: false,
+          src: ['index-release.html'],
+          dest: 'deploy/release/index.html'
+        }]
       }
     },
-
 
     uglify: {
       app: {
@@ -160,9 +168,12 @@ module.exports = function(grunt) {
         options: {
           archive: 'deploy/<%= pkg.name %>.zip'
         },
-        files: [
-          {expand: true, cwd: deployFolder, src: ['**'], dest: '.'}
-        ]
+        files: [{
+          expand: true,
+          cwd: deployFolder,
+          src: ['**'],
+          dest: '.'
+        }]
       }
     },
 
@@ -172,7 +183,21 @@ module.exports = function(grunt) {
           hostname: '*'
         }
       }
+    },
+
+    'ftp-deploy': {
+      build: {
+        auth: {
+          host: 'some_host',
+          port: 21,
+          authKey: 'ftp_authentication'
+        },
+        src: 'deploy/release',
+        dest: '/some_destination/' + ((new Date()).getTime()),
+        exclusions: ['deploy/release/**/.DS_Store', 'deploy/release/**/Thumbs.db', 'dist/tmp']
+      }
     }
+
   });
 
   // These plugins provide necessary tasks.
@@ -187,12 +212,16 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-contrib-compress');
   grunt.loadNpmTasks('grunt-exec');
+  grunt.loadNpmTasks('grunt-ftp-deploy');
 
   grunt.registerTask('debug', ['jshint', 'clean', 'jst', 'requirejs']);
   grunt.registerTask('release', ['debug', 'concat', 'uglify', 'sass', 'cssmin', 'copy']);
   grunt.registerTask('zip', ['release', 'compress']);
   grunt.registerTask('deploy', ['release', 'exec']);
   grunt.registerTask('default', ['jshint', 'sass', 'connect', 'watch']);
+  grunt.registerTask('ftpdeploy', ['release', 'ftp-deploy']);
+  grunt.registerTask('ftpdeployonly', ['ftp-deploy']);
 
 };

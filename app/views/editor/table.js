@@ -25,18 +25,22 @@ define([
     },
 
     setListeners: function() {
+      this.setTableListeners();
+    },
+
+    setTableListeners: function() {
       this.listenTo(this.table, 'change', this.refresh, this);
       this.listenTo(this.table, 'attributes:add', this.addEmptyRow, this);
     },
 
     render: function() {
       this.$el.html(this.template());
-      this.addEmptyRow();
+      this.refresh(this.model.toJSON());
       return this;
     },
 
     refresh: function() {
-
+      this.$('.in-table-name').val(this.table.get('name'));
     },
 
     onBtnAddAttributeClick: function() {
@@ -44,11 +48,18 @@ define([
     },
 
     addEmptyRow: function() {
-      var attr = this.model.addDummyAttribute();
+      var attr = this.model.addEmptyAttribute();
       var rowView = new TableRowView({
         model: attr
       });
       this.$('.row-new-attribute').before(rowView.render().$el);
+    },
+
+    setModel: function(table) {
+      this.clearListeners(this.table);
+      this.table = table;
+      this.setTableListeners();
+      this.refresh();
     }
 
   });

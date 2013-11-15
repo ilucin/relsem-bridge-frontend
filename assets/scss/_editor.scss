@@ -53,10 +53,13 @@
   }
 }
 
-.table-list-view {
+.table-list {
   .table-list-item {
     border-bottom: 1px solid #ccc;
     padding: 10px;
+    &:hover {
+      background-color: #f1f1f1;
+    }
     &.selected {
       background-color: #f1f1f1;
     }

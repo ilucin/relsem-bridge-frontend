@@ -1,8 +1,8 @@
-define(function() {
+define(['backbone'], function(Backbone) {
   'use strict';
 
   var List = Backbone.View.extend({
-    className: 'list',
+    className: 'list ',
 
     constructor: function ListView(options) {
       options = options || {};
@@ -117,4 +117,4 @@ define(function() {
   Backbone.ListView = List;
 
   return List;
-})();
+});

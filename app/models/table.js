@@ -46,8 +46,8 @@ define([
       this.get('attributes').remove(attributes, options);
     },
 
-    addDummyAttribute: function() {
-      return this.get('attributes').addDummyAttribute();
+    addEmptyAttribute: function() {
+      return this.get('attributes').addEmptyAttribute();
     }
 
   });

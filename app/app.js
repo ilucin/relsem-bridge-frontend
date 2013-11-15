@@ -3,19 +3,44 @@ define([
   'jquery',
   'underscore',
   'backbone',
+  'helpers',
   // Self initializable plugins
-  'bootstrap'
-], function($, _, Backbone) {
+  'bootstrap',
+], function(
+  $,
+  _,
+  Backbone,
+  helpers
+) {
   'use strict';
 
   var app = {
-    apiRoot: 'mock',
-    serverRoot: '',
+    apiRoot: 'http://localhost:80',
     root: '',
-    collections: {}
+    devMode: true,
+    localMode: true,
+    helpers: helpers
   };
 
   _.extend(app, {
+
+    init: function() {
+      this.initAppMode();
+
+      Backbone.on('navigate', function(route) {
+        this.router.navigate(route, {
+          trigger: true
+        });
+      });
+    },
+
+    start: function() {
+      Backbone.history.start({
+        pushState: false,
+        root: this.root
+      });
+    },
+
     switchView: function(view) {
       var oldView = this.currentView;
       var viewEl;
@@ -39,9 +64,17 @@ define([
         });
       }
       return JST[fullPath];
+    },
+
+    initAppMode: function() {
+      var dev = this.helpers.getUrlParameterByName('devMode');
+      var local = this.helpers.getUrlParameterByName('localMode');
+      this.devMode = dev === 'true';
+      this.localMode = local === 'true';
     }
 
   });
+
   // Localize or create a new JavaScript Template object.
   var JST = window.JST = window.JST || {};
 

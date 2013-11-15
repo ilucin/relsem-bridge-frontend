@@ -2,6 +2,7 @@ define([
   'app',
 
   'collections/tables',
+
   'models/table',
 
   'views/abstract/base',
@@ -15,6 +16,7 @@ define([
   app,
 
   TablesCollection,
+
   TableModel,
 
   BaseView,
@@ -39,10 +41,22 @@ define([
       this.rdfEntityListView = new RdfEntityListView();
       this.rdfAttributeListView = new RdfAttributeListView();
       this.rdfPanelView = new RdfPanelView();
+
       this.tableView = new TableView({
         model: this.table
       });
-      this.tableListView = new TableListView();
+      this.tableListView = new TableListView({
+        collection: this.tables,
+      });
+
+      this.tables.fetch({
+        reset: true
+      });
+    },
+
+    setListeners: function() {
+      BaseView.prototype.setListeners.call(this);
+      this.listenTo(this.tableListView, 'item:select', this.onTableListItemSelect, this);
     },
 
     render: function() {
@@ -55,7 +69,13 @@ define([
       this.$('.editor-table-list-container').html(this.tableListView.render().$el);
       this.$('.editor-table-container').html(this.tableView.render().$el);
 
+      this.setListeners();
       return this;
+    },
+
+    onTableListItemSelect: function(tableListItem, tableModel) {
+      this.table = this.tableModel;
+      this.tableView.setModel(tableModel);
     }
 
   });

@@ -1,19 +1,29 @@
 define([
   'app',
-  'views/abstract/base'
+  'views/abstract/list',
+  'views/editor/table-list-item'
 ], function(
   app,
-  BaseView
+  ListView,
+  TableListItemView
 ) {
   'use strict';
 
-  var TableListView = BaseView.extend({
-    className: 'table-list-view',
-    template: app.fetchTemplate('editor/table-list'),
+  var TableListView = ListView.extend({
+    className: 'list table-list',
 
-    render: function() {
-      this.$el.html(this.template());
-      return this;
+    setupListView: function(options) {
+      ListView.prototype.setupListView.call(this, options);
+      this.itemView = TableListItemView;
+      this.on('item:active', this.onItemActive, this);
+    },
+
+    onItemActive: function(listItem) {
+      if (this.lastSelectedItem) {
+        this.lastSelectedItem.toggleSelected();
+      }
+      this.lastSelectedItem = listItem;
+      listItem.toggleSelected();
     }
 
   });

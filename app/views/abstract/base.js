@@ -11,6 +11,17 @@ define([
 
     render: function() {
       return this;
+    },
+
+    setListeners: function() {},
+
+    clearListeners: function() {
+      this.stopListening();
+    },
+
+    cleanup: function() {
+      this.clearListeners();
+      this.$el.html('');
     }
 
   });

@@ -1,6 +1,7 @@
 define([
   'backbone',
   'app',
+
   'views/navbar',
   'views/home/home',
   'views/home/about',
@@ -9,6 +10,7 @@ define([
 ], function(
   Backbone,
   app,
+
   NavbarView,
   HomeView,
   AboutView,
@@ -16,6 +18,7 @@ define([
   EditorView
 ) {
   'use strict';
+
   var Router = Backbone.Router.extend({
 
     initialize: function() {
@@ -41,7 +44,10 @@ define([
     },
 
     actionEditor: function() {
-      var editorView = new EditorView();
+      console.log('Router.actionEditor');
+      var editorView = new EditorView({
+        connections: app.connections
+      });
       app.switchView(editorView);
     },
 

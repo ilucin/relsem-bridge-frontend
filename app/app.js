@@ -15,17 +15,29 @@ define([
   'use strict';
 
   var app = {
-    apiRoot: 'http://localhost:80',
+    apiRoot: '/service/semantic/',
+    serverIp: 'http://192.168.1.6:8080',
     root: '',
     devMode: true,
     localMode: true,
-    helpers: helpers
+    helpers: helpers,
+    ajaxSetup: {}
   };
 
   _.extend(app, {
 
     init: function() {
       this.initAppMode();
+
+      var server = this.helpers.getUrlParameterByName('server');
+      this.serverIp = server || this.serverIp;
+      this.apiRoot = this.serverIp + this.apiRoot;
+
+      $.ajaxSetup(app.ajaxSetup);
+
+      $(document).ajaxError(app.onAjaxError);
+      $(document).ajaxSend(app.onAjaxSend);
+      $(document).ajaxComplete(app.onAjaxComplete);
 
       Backbone.on('navigate', function(route) {
         this.router.navigate(route, {
@@ -71,6 +83,32 @@ define([
       var local = this.helpers.getUrlParameterByName('localMode');
       this.devMode = dev === 'true';
       this.localMode = local === 'true';
+    },
+
+    onAjaxSend: function(e, xhr, options) {},
+
+    onAjaxComplete: function(e, xhr, options) {},
+
+    onAjaxError: function(e, xhr, settings, error) {
+      var messages = {
+        404: 'Requested resource doesn\'t exist.',
+        0: 'Network action timeout. Please repeat the last action.'
+      };
+      var message = 'Error ' + xhr.status;
+      var clb;
+      settings = settings || {};
+
+      console.log('App.onAjaxError() -> xhr status: ' + xhr.status);
+
+      if (messages.hasOwnProperty(xhr.status)) {
+        message = messages[xhr.status];
+      }
+
+      if (!settings.silent) {
+        app.messageDialog.showErrorMessage('Server error', message, clb);
+      }
+
+      Backbone.trigger('ajax:error', xhr, settings, error);
     }
 
   });

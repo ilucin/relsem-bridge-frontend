@@ -2,6 +2,7 @@ define([
   'app',
 
   'collections/tables',
+  'collections/connections',
 
   'models/table',
 
@@ -9,13 +10,13 @@ define([
   'views/editor/connection-form',
   'views/editor/rdf-entity-list',
   'views/editor/rdf-attribute-list',
-  'views/editor/rdf-panel',
   'views/editor/table-list',
   'views/editor/table'
 ], function(
   app,
 
   TablesCollection,
+  ConnectionsCollection,
 
   TableModel,
 
@@ -23,7 +24,6 @@ define([
   ConnectionFormView,
   RdfEntityListView,
   RdfAttributeListView,
-  RdfPanelView,
   TableListView,
   TableView
 ) {
@@ -33,14 +33,21 @@ define([
     className: 'editor-view container',
     template: app.fetchTemplate('editor/editor'),
 
-    initialize: function() {
+    initialize: function(options) {
+      options = options || {};
+
       this.table = new TableModel();
       this.tables = new TablesCollection();
 
-      this.connectionForm = new ConnectionFormView();
-      this.rdfEntityListView = new RdfEntityListView();
-      this.rdfAttributeListView = new RdfAttributeListView();
-      this.rdfPanelView = new RdfPanelView();
+      this.connectionForm = new ConnectionFormView({
+        connections: options.connections
+      });
+      this.rdfEntityListView = new RdfEntityListView({
+        rdfEntities: options.rdfEntities
+      });
+      this.rdfAttributeListView = new RdfAttributeListView({
+        rdfAttributes: options.rdfAttributes
+      });
 
       this.tableView = new TableView({
         model: this.table
@@ -64,8 +71,7 @@ define([
 
       this.$('.editor-connection-form').html(this.connectionForm.render().$el);
       this.$('.editor-rdf-entity-list-container').html(this.rdfEntityListView.render().$el);
-      // this.$('.editor-rdf-attribute-list-container').html(this.rdfAttributeListView.render().$el);
-      this.$('.editor-rdf-panel-container').html(this.rdfPanelView.render().$el);
+      this.$('.editor-rdf-attribute-list-container').html(this.rdfAttributeListView.render().$el);
       this.$('.editor-table-list-container').html(this.tableListView.render().$el);
       this.$('.editor-table-container').html(this.tableView.render().$el);
 

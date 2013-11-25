@@ -8,25 +8,29 @@ define([
   'use strict';
 
   var ConnectionModel = BaseModel.extend({
-
     defaults: {
       'name': '',
       'endpoint': '',
-      'isConnected': false
+      'connected': false
     },
 
-    connect: function(name, endpoint) {
-      this.set({
-        name: name,
-        endpoint: endpoint,
-        isConnected: true
-      });
-      this.trigger('connect');
+    connect: function() {
+      if (this.get('connected')) {
+        return;
+      }
+      this.trigger('connect:start');
+
+      setTimeout(_.bind(function() {
+        this.set('connected', true);
+        this.trigger('connect:success');
+      }, this), 1500);
     },
 
     disconnect: function() {
-      this.set(this.defaults);
-      this.trigger('disconnect');
+      if (this.get('connected')) {
+        this.set('connected', false);
+        this.trigger('disconnect');
+      }
     }
 
   });

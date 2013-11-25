@@ -1,15 +1,25 @@
-<form class="form-horizontal" role="form">
-  <div class="form-group">
-    <label class="col-sm-1 control-label"> Connection </label>
-    <div class="col-sm-4"> 
-      <input type="text" class="form-control in-connection-name" value="Dbpedia" placeholder="Connection name ..."> 
-    </div>
-    <label class="col-sm-1 control-label"> Endpoint </label>
-    <div class="col-sm-4"> 
-      <input type="text" class="form-control in-connection-endpoint" value="http://dbpedia.org/sparql?" placeholder="SPARQL Endpoint URL ..."> 
-    </div>
-    <div class="col-2">       
-      <button type="button" class="btn btn-default btn-connect"> Connect </button> 
-    </div>
-  </div>
-</form>
+
+<label class="col-xs-12 col-sm-3"> 
+  Select Connection 
+</label>
+
+<div class="col-xs-12 col-sm-6">
+  <select class="connection-select">
+  </select>
+</div>
+
+<!--div class="col-sm-4"> 
+  <input type="text" class="form-control in-connection-name" value="Dbpedia" placeholder="Connection name ..."> 
+</div>
+<label class="col-sm-1 control-label"> Endpoint </label>
+<div class="col-sm-4"> 
+  <input type="text" class="form-control in-connection-endpoint" value="http://dbpedia.org/sparql?" placeholder="SPARQL Endpoint URL ..."> 
+</div-->
+
+<div class="col-xs-12 col-sm-3">       
+  <button type="button" class="btn btn-default btn-connect"> Connect </button> 
+</div>
+
+<div class="col-xs-12 loading-box hide">
+  <img src="assets/images/loader.gif" class="img-loader"/>
+</div>

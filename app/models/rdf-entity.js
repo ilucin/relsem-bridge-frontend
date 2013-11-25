@@ -5,7 +5,7 @@ define([
 ) {
   'use strict';
 
-  var RefResourceModel = BaseModel.extend({
+  var RdfEntityModel = BaseModel.extend({
 
     defaults: {
       'name': '',
@@ -14,5 +14,5 @@ define([
 
   });
 
-  return RefResourceModel;
+  return RdfEntityModel;
 });

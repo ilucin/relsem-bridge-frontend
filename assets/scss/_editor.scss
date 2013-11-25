@@ -1,4 +1,5 @@
 .editor-view {
+
   .editor-title {
     margin-bottom: 20px;
     border-bottom: 1px solid #ccc;
@@ -10,12 +11,7 @@
       height: 100%;
       overflow: auto;
     }
-    .rdf-attribute-list-view {
-      .rdf-attribute-list-item {
-        padding: 10px;
-        border-bottom: 1px solid #ccc;
-      }
-    }
+
     .rdf-entity-list-view {
       .rdf-entity-list-item {
         padding: 10px;
@@ -28,12 +24,12 @@
         }
       }
     }
-    .rdf-panel-view {
+    .rdf-attribute-list-view {
       border: 1px solid #ccc;
       background-color: #f1f1f1;
       height: 100%;
       padding: 5px;
-      .panel-item {
+      .list-item {
         border-radius: 4px;
         background-color: #fff;
         border: 1px solid #ccc;
@@ -41,6 +37,23 @@
         margin: 5px;
         padding: 3px 5px;
       }
+    }
+  }
+
+  .editor-connection-form {
+    .loading-box {
+      >.img-loader {
+        height: 34px;
+      }
+    }
+    .btn-connect {
+      >img {
+        height: 18px;
+        margin-right: 8px;
+      }
+    }
+    .connection-select {
+      width: 100%;
     }
   }
 

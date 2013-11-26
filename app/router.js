@@ -45,9 +45,7 @@ define([
 
     actionEditor: function() {
       console.log('Router.actionEditor');
-      var editorView = new EditorView({
-        connections: app.connections
-      });
+      var editorView = new EditorView();
       app.switchView(editorView);
     },
 

@@ -17,7 +17,7 @@ define([
     },
 
     url: function() {
-      return app.localMode ? 'mock/rdf-entities.json' : (app.apiRoot + 'entities');
+      return app.localMode ? 'mock/entities.json' : (app.apiRoot + 'entities');
     }
 
   });

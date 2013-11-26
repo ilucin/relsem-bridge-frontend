@@ -3,6 +3,8 @@ define([
 
   'collections/tables',
   'collections/connections',
+  'collections/rdf-entities',
+  'collections/rdf-attributes',
 
   'models/table',
 
@@ -17,6 +19,8 @@ define([
 
   TablesCollection,
   ConnectionsCollection,
+  RdfEntitiesCollection,
+  RdfAttributesCollection,
 
   TableModel,
 
@@ -30,7 +34,7 @@ define([
   'use strict';
 
   var EditorView = BaseView.extend({
-    className: 'editor-view container',
+    className: 'editor container',
     template: app.fetchTemplate('editor/editor'),
 
     initialize: function(options) {
@@ -38,22 +42,25 @@ define([
 
       this.table = new TableModel();
       this.tables = new TablesCollection();
+      this.connections = app.connections;
+      this.rdfEntities = new RdfEntitiesCollection();
+      this.rdfAttributes = new RdfAttributesCollection();
 
       this.connectionForm = new ConnectionFormView({
-        connections: options.connections
+        connections: this.connections
       });
       this.rdfEntityListView = new RdfEntityListView({
-        rdfEntities: options.rdfEntities
+        collection: this.rdfEntities
       });
       this.rdfAttributeListView = new RdfAttributeListView({
-        rdfAttributes: options.rdfAttributes
+        collection: this.rdfAttributes
       });
 
       this.tableView = new TableView({
         model: this.table
       });
       this.tableListView = new TableListView({
-        collection: this.tables,
+        collection: this.tables
       });
 
       this.tables.fetch({
@@ -63,7 +70,21 @@ define([
 
     setListeners: function() {
       BaseView.prototype.setListeners.call(this);
+      this.listenTo(app.conn, 'connect:success', this.onConnect, this);
+      this.listenTo(app.conn, 'disconnect', this.onDisconnect, this);
+      this.listenTo(this.rdfEntityListView, 'selected-item:change', this.onRdfEntityListSelectedItemChange, this);
       this.listenTo(this.tableListView, 'item:select', this.onTableListItemSelect, this);
+    },
+
+    onConnect: function() {
+      this.$('.editor-rdf').show('blind');
+      this.rdfEntities.fetch();
+    },
+
+    onDisconnect: function() {
+      this.$('.editor-rdf').hide('blind');
+      this.rdfEntities.reset();
+      this.rdfAttributes.reset();
     },
 
     render: function() {
@@ -75,8 +96,20 @@ define([
       this.$('.editor-table-list-container').html(this.tableListView.render().$el);
       this.$('.editor-table-container').html(this.tableView.render().$el);
 
+      this.$('.editor-rdf').resizable({
+        handles: 's',
+        minHeight: 150,
+        maxHeight: 400
+      });
+
       this.setListeners();
+      app.conn.connect();
       return this;
+    },
+
+    onRdfEntityListSelectedItemChange: function(rdfEntity) {
+      this.rdfAttributes.setRdfEntity(rdfEntity);
+      this.rdfAttributes.fetch();
     },
 
     onTableListItemSelect: function(tableListItem, tableModel) {

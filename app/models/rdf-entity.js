@@ -7,9 +7,9 @@ define([
 
   var RdfEntityModel = BaseModel.extend({
 
-    defaults: {
-      'name': '',
-      'url': ''
+    definition: {
+      'label': 'string',
+      'uri': 'string'
     }
 
   });

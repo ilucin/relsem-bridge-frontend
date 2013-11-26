@@ -10,7 +10,7 @@ define([
   'use strict';
 
   var TableView = BaseView.extend({
-    className: 'table-view',
+    className: 'table',
     template: app.fetchTemplate('editor/table'),
     events: {
       'click .btn-add-attribute': 'onBtnAddAttributeClick'

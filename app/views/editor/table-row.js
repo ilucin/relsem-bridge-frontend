@@ -9,7 +9,7 @@ define([
 
   var TableRowView = BaseView.extend({
     tagName: 'tr',
-    className: 'table-row-view',
+    className: 'table-row',
     template: app.fetchTemplate('editor/table-row'),
 
     initialize: function(options) {

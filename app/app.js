@@ -6,6 +6,7 @@ define([
   'helpers',
   // Self initializable plugins
   'bootstrap',
+  'jqueryui'
 ], function(
   $,
   _,

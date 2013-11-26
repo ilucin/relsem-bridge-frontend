@@ -8,7 +8,7 @@ define([
   'use strict';
 
   var ConnectionFormView = BaseView.extend({
-    className: 'connection-form-view row',
+    className: 'connection-form row',
     template: app.fetchTemplate('editor/connection-form'),
     events: {
       'click .btn-connect': 'onBntConnectClick',
@@ -92,6 +92,7 @@ define([
       console.log('ConnectionFormView.onConnectionSuccess');
       this.hideLoadingBox();
       this.$btnConnect.html('Disconnect');
+      this.$el.addClass('connected');
       this.$selectBox.prop('disabled', true);
     },
 
@@ -103,6 +104,7 @@ define([
     onConnectionDisconnect: function() {
       console.log('ConnectionFormView.onConnectionDisconnect');
       this.$btnConnect.html('Connect');
+      this.$el.removeClass('connected');
       this.$selectBox.prop('disabled', false);
     },
 

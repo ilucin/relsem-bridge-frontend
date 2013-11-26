@@ -13,7 +13,8 @@ require.config({
     underscore: '../assets/js/libs/lodash',
     //backbone
     backbone: '../assets/js/libs/backbone',
-    bootstrap: '../assets/js/libs/bootstrap'
+    bootstrap: '../assets/js/libs/bootstrap',
+    jqueryui: '../assets/js/libs/jquery-ui-1.10.3.custom.min'
   },
 
   shim: {
@@ -24,6 +25,10 @@ require.config({
 
     jquery: {
       exports: '$'
+    },
+
+    jqueryui: {
+      deps: ['jquery']
     },
 
     bootstrap: {

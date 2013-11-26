@@ -1,19 +1,19 @@
 [{
-  "label": "Attribute 1",
+  "label": "Place",
   "uri": "http://dbpedia.org/ontology/Place"
 }, {
-  "label": "Attribute 2",
+  "label": "Organization",
   "uri": "http://schema.org/Organization"
 }, {
-  "label": "Bla bla",
+  "label": "Person",
   "uri": "http://dbpedia.org/ontology/Person"
 }, {
-  "label": "Something",
+  "label": "Thing",
   "uri": "http://www.w3.org/2002/07/owl#Thing"
 }, {
-  "label": "Somenottthing",
+  "label": "President",
   "uri": "http://dbpedia.org/ontology/President"
 }, {
-  "label": "Other",
-  "uri": "http://dbpedia.org/ontology/Other"
+  "label": "Band",
+  "uri": "http://dbpedia.org/ontology/Band"
 }]

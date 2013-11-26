@@ -1,38 +1,45 @@
 define([
   'app',
-  'views/abstract/base'
+  'views/abstract/list',
+  'views/editor/rdf-entity-list-item'
 ], function(
   app,
-  BaseView
+  ListView,
+  RdfEntityListItemView
 ) {
   'use strict';
 
-  var RdfEntityListView = BaseView.extend({
-    className: 'rdf-entity-list-view',
-    template: app.fetchTemplate('editor/rdf-entity-list'),
-    disabled: false,
+  var RdfEntityListView = ListView.extend({
+    className: 'list rdf-entity-list',
+    itemView: RdfEntityListItemView,
 
-    render: function() {
-      this.$el.html(this.template());
-      return this;
+    setupListView: function(options) {
+      ListView.prototype.setupListView.call(this, options);
+      this.setListeners();
     },
 
     setListeners: function() {
-      this.listenTo(app.conn, 'connect:success', this.onConnect, this);
-      this.listenTo(app.conn, 'disconnect', this.onDisconnect, this);
+      this.listenTo(this, 'item:active', this.onItemActive, this);
     },
 
-    onConnect: function() {
-      this.disabled = true;
-      this.$el.html(this.template());
-      this.$el.removeClass('disabled');
+    onItemActive: function(listItem) {
+      if (this.selectedItem === listItem) {
+        return;
+      }
+
+      if (this.selectedItem) {
+        this.selectedItem.toggleSelected();
+      }
+
+      this.selectedItem = listItem;
+      listItem.toggleSelected();
+      this.trigger('selected-item:change', listItem.getModel());
     },
 
-    onDisconnect: function() {
-      this.disabled = true;
-      this.$el.html('');
-      this.$el.addClass('disabled');
+    getSelectedItem: function() {
+      return this.selectedItem;
     }
+
   });
 
   return RdfEntityListView;

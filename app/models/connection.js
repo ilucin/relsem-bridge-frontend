@@ -8,9 +8,11 @@ define([
   'use strict';
 
   var ConnectionModel = BaseModel.extend({
+    definition: {
+      'endpoint': 'string'
+    },
+
     defaults: {
-      'name': '',
-      'endpoint': '',
       'connected': false
     },
 
@@ -20,10 +22,15 @@ define([
       }
       this.trigger('connect:start');
 
-      setTimeout(_.bind(function() {
+      if (app.localMode) {
+        setTimeout(_.bind(function() {
+          this.set('connected', true);
+          this.trigger('connect:success');
+        }, this), 300);
+      } else {
         this.set('connected', true);
         this.trigger('connect:success');
-      }, this), 1500);
+      }
     },
 
     disconnect: function() {

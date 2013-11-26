@@ -14,15 +14,9 @@ define(['backbone'], function(Backbone) {
     },
 
     setupListView: function(options) {
-      _.defaults(options, {
-        //if no itemView is defined - use backbone default 
-        itemView: Backbone.View,
-        //if no collection is defined - setup a empty one
-        collection: new Backbone.Collection()
-      });
       this.items = [];
-      this.itemView = options.itemView;
-      this.collection = options.collection;
+      this.itemView = this.itemView || options.itemView || new Backbone.View();
+      this.collection = this.collection || options.collection || new Backbone.Collection();
     },
 
     setupListeners: function() {
@@ -38,9 +32,9 @@ define(['backbone'], function(Backbone) {
 
     addAll: function() {
       //remove previous items if present
-      this.removeAllItems();
-      //reinit all listeners
-      this.setupListeners();
+      if (this.items.length >= 0) {
+        this.removeAllItems();
+      }
       //add new items
       this.collection.each(function(model) {
         this.addSingleItem(model);
@@ -101,9 +95,12 @@ define(['backbone'], function(Backbone) {
     },
 
     removeAllItems: function() {
-      this.collection.each(function(model) {
-        this.removeSingleItem(model);
+      _.each(this.items, function(item) {
+        this.stopListening(item);
+        this.stopListening(item.model);
+        item.remove();
       }, this);
+      this.item = [];
     },
 
     remove: function() {

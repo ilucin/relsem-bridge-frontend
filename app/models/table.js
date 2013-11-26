@@ -9,17 +9,18 @@ define([
 
   var TableModel = BaseModel.extend({
 
-    defaults: {
-      'name': ''
+    definition: {
+      'id': 'int',
+      'name': 'string'
     },
 
     initialize: function(attributes, options) {
       options = options || {};
       this.set('attributes', new AttributesCollection());
-      this.get('attributes').on('add', this.onAttributesAdd, this);
-      this.get('attributes').on('remove', this.onAttributesRemove, this);
-      this.get('attributes').on('change', this.onAttributesChange, this);
-      this.get('attributes').on('reset', this.onAttributesReset, this);
+      this.listenTo(this.get('attributes'), 'add', this.onAttributesAdd, this);
+      this.listenTo(this.get('attributes'), 'remove', this.onAttributesRemove, this);
+      this.listenTo(this.get('attributes'), 'change', this.onAttributesChange, this);
+      this.listenTo(this.get('attributes'), 'reset', this.onAttributesReset, this);
     },
 
     onAttributesAdd: function() {

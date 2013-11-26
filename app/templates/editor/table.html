@@ -1,11 +1,16 @@
-<div class="table-top">
+<div class="table-top rdf-entity-droppable droppable">
   <div class="input table-name">
     <input type="text" class="form-control in-table-name" value="" placeholder="Table Name"/>
   </div>
+  <div class="drop-mask">
+    <div class="drop-message">
+      Drop RDF entity here
+    </div>
+  </div>
 </div>
-<div class="table-bottom">
+<div class="table-bottom clearfix">
   <div class="table-attributes">
-    <div class="table-responsive">
+    <div class="table-responsive rdf-attribute-droppable droppable">
       <table class="table table-bordered table-hover">
         <tr>
           <th> Attribute Name </th>
@@ -20,6 +25,11 @@
           </td>
         </tr>
       </table>
+      <div class="drop-mask">
+        <div class="drop-message">
+          Drop RDF attribute here
+        </div>
+      </div>
     </div>
   </div>
   <button class="btn btn-primary btn-table-save"> Save Changes </div>

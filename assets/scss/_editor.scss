@@ -1,31 +1,20 @@
 .editor {
-
   .editor-title {
     margin-bottom: 10px;
     border-bottom: 1px solid #ccc;
+    cursor: pointer;
   }
   
   .editor-rdf {
     height: 250px;
     margin-bottom: 20px;
-    // &.collapsed {
-    //   height: 0;
-    //   margin-bottom: 10px;
-    //   .editor-rdf-col {
-    //     display: none;
-    //   }
-    // }
-    .editor-rdf-col {
-    }
+    border-bottom: 1px solid #ccc;
 
     .editor-rdf-entity-list {
       height: 100%;
       overflow: auto;
-      .editor-rdf-entity-list-container {
-      }
+      .editor-rdf-entity-list-container {}
     }
-
-    border-bottom: 1px solid #ccc;
   }
 
   .editor-connection {
@@ -119,7 +108,12 @@
 .table-list {
   .table-list-item {
     border-bottom: 1px solid #ccc;
-    padding: 10px;
+    padding: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    &:first-child {
+      border-top: 1px solid #ccc;
+    }
     &:hover {
       background-color: #f1f1f1;
     }
@@ -129,7 +123,12 @@
   }
 }
 
-.table {
+.relational-table {
+  &.accept-rdf-element-drop {
+    .drop-mask {
+    }
+  }
+
   .table-top {
     margin-bottom: 10px;
   }
@@ -149,5 +148,32 @@
   }
   .btn-table-save {
     float: right;
+  }
+}
+
+.droppable {
+  position: relative;
+  .drop-mask{
+    display: none;
+  }
+  &.accept-drop {
+    .drop-mask{
+      @include display-box;
+    }
+  }
+}
+
+.drop-mask {
+  @include stretch(0,0,0,0);
+  @include display-box;
+  @include box-pack(center);
+  @include box-align(center);
+  @include border-radius(4px);
+  background-color: rgba(0,0,0,0.2);
+  .drop-message {
+    text-transform: uppercase;
+    color: #fff;
+    font-size: 22px;
+    @include text-shadow(0 0 2px #000);
   }
 }

@@ -1,5 +1,7 @@
-@import "vars";
 @import "compass";
+@import "compass/layout/stretching";
+
+@import "vars";
 @import "normalize";
 @import "core";
 @import "modules";

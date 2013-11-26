@@ -10,7 +10,7 @@ define([
   'use strict';
 
   var TableView = BaseView.extend({
-    className: 'table',
+    className: 'relational-table',
     template: app.fetchTemplate('editor/table'),
     events: {
       'click .btn-add-attribute': 'onBtnAddAttributeClick'
@@ -36,6 +36,16 @@ define([
     render: function() {
       this.$el.html(this.template());
       this.refresh(this.model.toJSON());
+      this.$('.rdf-attribute-droppable').droppable({
+        accept: '.rdf-attribute-list-item',
+        activeClass: 'accept-drop'
+      });
+
+      this.$('.rdf-entity-droppable').droppable({
+        accept: '.rdf-entity-list-item',
+        activeClass: 'accept-drop'
+      });
+
       return this;
     },
 

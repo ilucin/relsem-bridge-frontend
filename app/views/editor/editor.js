@@ -78,11 +78,13 @@ define([
 
     onConnect: function() {
       this.$('.editor-rdf').show('blind');
+      this.$('.editor-connection').hide('blind');
       this.rdfEntities.fetch();
     },
 
     onDisconnect: function() {
       this.$('.editor-rdf').hide('blind');
+      this.$('.editor-connection').show('blind');
       this.rdfEntities.reset();
       this.rdfAttributes.reset();
     },
@@ -101,6 +103,16 @@ define([
         minHeight: 150,
         maxHeight: 400
       });
+
+      this.$('.editor-connection-title').on('click', _.bind(function() {
+        this.$('.editor-connection').toggle('blind');
+      }, this));
+      this.$('.editor-rdf-title').on('click', _.bind(function() {
+        this.$('.editor-rdf').toggle('blind');
+      }, this));
+      this.$('.editor-relational-title').on('click', _.bind(function() {
+        this.$('.editor-relational').toggle('blind');
+      }, this));
 
       this.setListeners();
       app.conn.connect();

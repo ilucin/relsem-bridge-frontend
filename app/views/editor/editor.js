@@ -130,10 +130,10 @@ define([
       }, this));
 
       this.setListeners();
-      this.conn.set({
-        endpoint: 'http://dbpedia.org/sparql'
-      });
-      this.conn.connect();
+      // this.conn.set({
+      //   endpoint: 'http://dbpedia.org/sparql'
+      // });
+      // this.conn.connect();
       return this;
     },
 
@@ -148,11 +148,11 @@ define([
     },
 
     onTableError: function(error) {
-
+      (new MessageDialogView()).showMessage('An error occurred', error || 'Your relational table has not been saved');
     },
 
     onTableValidationError: function(error) {
-
+      (new MessageDialogView()).showMessage('Validation error');
     },
 
     onTableSaveSuccess: function() {

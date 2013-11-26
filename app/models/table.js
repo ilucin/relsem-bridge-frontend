@@ -106,7 +106,16 @@ define([
           }
         }
       });
+    },
 
+    loadData: function() {
+      var url = app.apiRoot + 'schema/data/' + this.get('name');
+      $.ajax(url, {
+        context: this,
+        success: function(response) {
+          this.triggger('data:success', response);
+        }
+      });
     }
 
   });

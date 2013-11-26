@@ -12,6 +12,7 @@ define([
   var RdfEntityListView = ListView.extend({
     className: 'list rdf-entity-list',
     itemView: RdfEntityListItemView,
+    $emptyListEl: $('<div>').addClass('empty-list-el').html('There are no rdf entities here.'),
 
     setupListView: function(options) {
       ListView.prototype.setupListView.call(this, options);

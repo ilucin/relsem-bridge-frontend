@@ -16,8 +16,9 @@ define([
   'use strict';
 
   var app = {
-    apiRoot: '/service/semantic/',
-    serverIp: 'http://192.168.1.6:8080',
+    apiRoot: '/service/',
+    serverIp: 'http://54.194.77.228:8080',
+    // serverIp: 'http://54.229.166.21:8080',
     root: '',
     devMode: true,
     localMode: true,

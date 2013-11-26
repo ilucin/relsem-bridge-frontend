@@ -11,7 +11,15 @@ define([
 
   var TablesCollection = BaseCollection.extend({
     model: TableModel,
-    url: app.localMode ? 'mock/tables.json' : app.apiRoot + '/tables'
+
+    url: function() {
+      return app.localMode ? 'mock/tables.json' : (app.apiRoot + 'schema');
+    },
+
+    parse: function(response) {
+      return response.tables;
+    }
+
   });
 
   return TablesCollection;

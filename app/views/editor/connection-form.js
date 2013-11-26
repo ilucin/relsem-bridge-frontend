@@ -18,8 +18,8 @@ define([
     initialize: function(options) {
       options = options || {};
       this.connections = options.connections;
+      this.conn = options.conn;
       console.assert(this.connections, 'ConnectionFormView must have its connections collection set');
-      app.cf = this;
       this.setListeners();
     },
 
@@ -29,11 +29,11 @@ define([
       this.listenTo(this.connections, 'reset', this.onConnectionsReset, this);
       this.listenTo(this.connections, 'add', this.onConnectionsAdd, this);
       this.listenTo(this.connections, 'remove', this.onConnectionsRemove, this);
-      this.listenTo(app.conn, 'change', this.onConnectionChange, this);
-      this.listenTo(app.conn, 'connect:start', this.onConnectionStart, this);
-      this.listenTo(app.conn, 'connect:success', this.onConnectionSuccess, this);
-      this.listenTo(app.conn, 'connect:error', this.onConnectionError, this);
-      this.listenTo(app.conn, 'disconnect', this.onConnectionDisconnect, this);
+      this.listenTo(this.conn, 'change', this.onConnectionChange, this);
+      this.listenTo(this.conn, 'connect:start', this.onConnectionStart, this);
+      this.listenTo(this.conn, 'connect:success', this.onConnectionSuccess, this);
+      this.listenTo(this.conn, 'connect:error', this.onConnectionError, this);
+      this.listenTo(this.conn, 'disconnect', this.onConnectionDisconnect, this);
     },
 
     render: function() {
@@ -62,8 +62,8 @@ define([
       var conn = this.connections.findWhere({
         endpoint: this.$selectBox.val()
       });
-      if (conn && !app.conn.get('connected')) {
-        app.conn.set(conn);
+      if (conn && !this.conn.get('connected')) {
+        this.conn.set(conn);
       }
     },
 
@@ -125,23 +125,29 @@ define([
         this.$selectBox.append($('<option>').attr('value', conn.get('endpoint')).html(conn.get('endpoint')));
       }, this);
 
-      if (app.conn.get('connected') && this.connections.indexOf(app.conn) >= 0) {
-        this.$selectBox.val(app.conn.get('endpoint'));
+      if (this.conn.get('connected') && this.connections.indexOf(this.conn) >= 0) {
+        this.$selectBox.val(this.conn.get('endpoint'));
       }
     },
 
     onBntConnectClick: function() {
-      if (app.conn.get('connected')) {
-        app.conn.disconnect();
+      if (this.conn.get('connected')) {
+        this.conn.disconnect();
       } else {
-        app.conn.connect();
+        var conn = this.connections.findWhere({
+          endpoint: this.$selectBox.val()
+        });
+        if (conn) {
+          this.conn.set(conn.toJSON());
+          this.conn.connect();
+        }
       }
     },
 
     onConnectionChange: function() {
       console.log('ConnectionFormView.onConnectionChange');
-      if (this.connections.indexOf(app.conn) >= 0) {
-        this.$selectBox.val(app.conn.get('endpoint'));
+      if (this.connections.indexOf(this.conn) >= 0) {
+        this.$selectBox.val(this.conn.get('endpoint'));
       }
     }
 

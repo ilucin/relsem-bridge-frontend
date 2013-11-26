@@ -47,46 +47,51 @@
 }
 
 .rdf-entity-list {
-  .rdf-entity-list-item {
-    padding: 6px;
-    border-bottom: 1px solid #ccc;
-    cursor: pointer;
-    &.dragging {
-      @include transform(rotate(30deg));
-    }
-    &:first-child {
-      border-top: 1px solid #ccc;
-    }
+  position: relative;
+}
+.rdf-entity-list-item {
+  padding: 6px;
+  border-bottom: 1px solid #ccc;
+  cursor: pointer;
+  font-weight: bold;
+  &.ui-draggable-dragging {
+    @include transform(rotate(8deg));
+    border: 1px solid #ccc;
+  }
+  &:first-child {
+    border-top: 1px solid #ccc;
+  }
+  .rdf-entity-handle {
+    width: 10px;
+    height: 20px;
+    margin: 0 5px;
+    cursor: move;
+    display: none;
+  }
+  .rdf-entity-label {
+    display: inline-block;
+  }
+  .rdf-entity-uri {
+    display: inline-block;
+    font-size: 10px;
+    color: #55c;
+    text-decoration: underline;
+    cursor: default;
+  }
+  &:hover {
+    background-color: #f1f1f1;
+  }
+  &.selected {
+    background-color: #f1f1f1;
     .rdf-entity-handle {
-      width: 10px;
-      height: 20px;
-      margin: 0 5px;
-      cursor: move;
-      display: none;
-    }
-    .rdf-entity-label {
       display: inline-block;
-    }
-    .rdf-entity-uri {
-      display: inline-block;
-      font-size: 10px;
-      color: #55c;
-      text-decoration: underline;
-      cursor: default;
-    }
-    &:hover {
-      background-color: #f1f1f1;
-    }
-    &.selected {
-      background-color: #f1f1f1;
-      .rdf-entity-handle {
-        display: inline-block;
-      }
     }
   }
 }
 
+
 .rdf-attribute-list {
+  position: relative;
   border: 1px solid #ccc;
   background-color: #f1f1f1;
   padding: 5px;
@@ -99,8 +104,8 @@
     padding: 3px 5px;
     @include box-shadow(0 0 6px 0 #ccc);
     cursor: move;
-    &.dragging {
-      @include transform(rotate(30deg));
+    &.ui-draggable-dragging {
+      @include transform(rotate(8deg));
     }
   }
 }
@@ -134,6 +139,10 @@
   }
   .table-bottom {
 
+  }
+  .table-entity {
+    margin-bottom: 5px;
+    font-weight: bold;
   }
   .table-name {
     .in-table-name {

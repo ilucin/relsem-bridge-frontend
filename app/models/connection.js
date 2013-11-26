@@ -22,15 +22,15 @@ define([
       }
       this.trigger('connect:start');
 
-      if (app.localMode) {
-        setTimeout(_.bind(function() {
-          this.set('connected', true);
-          this.trigger('connect:success');
-        }, this), 300);
-      } else {
+      if (this.get('endpoint').length === 0) {
+        this.trigger('connect:error');
+        return;
+      }
+
+      setTimeout(_.bind(function() {
         this.set('connected', true);
         this.trigger('connect:success');
-      }
+      }, this), 200);
     },
 
     disconnect: function() {

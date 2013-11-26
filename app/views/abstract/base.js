@@ -17,6 +17,7 @@ define([
 
     clearListeners: function() {
       this.stopListening();
+      this.off();
     },
 
     cleanup: function() {

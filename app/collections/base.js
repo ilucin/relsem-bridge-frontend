@@ -8,13 +8,12 @@ define([
   var BaseCollection = Backbone.Collection.extend({
 
     fetch: function(options) {
-      this.trigger('fetch:start');
       options = options || {};
-
       _.extend(options, {
         complete: this.onFetchComplete.bind(this)
       });
 
+      this.trigger('fetch:start', options);
       Backbone.Collection.prototype.fetch.call(this, options);
     },
 

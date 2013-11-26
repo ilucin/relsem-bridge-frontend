@@ -22,9 +22,7 @@ require([
 
   window.app = app;
 
-  app.conn = new ConnectionModel();
   app.user = new UserModel();
-  app.connections = new ConnectionsCollection();
   app.messageDialog = new MessageDialogView();
   app.router = new Router();
 

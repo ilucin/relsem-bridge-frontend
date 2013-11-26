@@ -11,6 +11,7 @@ define([
 
   var TableListView = ListView.extend({
     className: 'list table-list',
+    $emptyListEl: $('<div>').addClass('empty-list-el').html('You don\'t have any relational tables.'),
 
     setupListView: function(options) {
       ListView.prototype.setupListView.call(this, options);

@@ -6,9 +6,12 @@ define([
   'collections/rdf-entities',
   'collections/rdf-attributes',
 
+  'models/connection',
   'models/table',
 
   'views/abstract/base',
+  'views/shared/message-dialog',
+
   'views/editor/connection-form',
   'views/editor/rdf-entity-list',
   'views/editor/rdf-attribute-list',
@@ -22,9 +25,12 @@ define([
   RdfEntitiesCollection,
   RdfAttributesCollection,
 
+  ConnectionModel,
   TableModel,
 
   BaseView,
+  MessageDialogView,
+
   ConnectionFormView,
   RdfEntityListView,
   RdfAttributeListView,
@@ -40,14 +46,16 @@ define([
     initialize: function(options) {
       options = options || {};
 
+      this.conn = new ConnectionModel();
       this.table = new TableModel();
       this.tables = new TablesCollection();
-      this.connections = app.connections;
+      this.connections = new ConnectionsCollection();
       this.rdfEntities = new RdfEntitiesCollection();
       this.rdfAttributes = new RdfAttributesCollection();
 
       this.connectionForm = new ConnectionFormView({
-        connections: this.connections
+        connections: this.connections,
+        conn: this.conn
       });
       this.rdfEntityListView = new RdfEntityListView({
         collection: this.rdfEntities
@@ -57,7 +65,9 @@ define([
       });
 
       this.tableView = new TableView({
-        model: this.table
+        model: this.table,
+        rdfAttributes: this.rdfAttributes,
+        rdfEntities: this.rdfEntities
       });
       this.tableListView = new TableListView({
         collection: this.tables
@@ -70,15 +80,20 @@ define([
 
     setListeners: function() {
       BaseView.prototype.setListeners.call(this);
-      this.listenTo(app.conn, 'connect:success', this.onConnect, this);
-      this.listenTo(app.conn, 'disconnect', this.onDisconnect, this);
+      this.listenTo(this.conn, 'connect:success', this.onConnect, this);
+      this.listenTo(this.conn, 'disconnect', this.onDisconnect, this);
       this.listenTo(this.rdfEntityListView, 'selected-item:change', this.onRdfEntityListSelectedItemChange, this);
       this.listenTo(this.tableListView, 'item:select', this.onTableListItemSelect, this);
+      this.listenTo(this.table, 'save:success', this.onTableSaveSuccess, this);
+      this.listenTo(this.table, 'save:error', this.onTableError, this);
+      this.listenTo(this.table, 'save:validationError', this.onTableValidationError, this);
     },
 
     onConnect: function() {
       this.$('.editor-rdf').show('blind');
       this.$('.editor-connection').hide('blind');
+      this.rdfEntities.setEndpoint(this.conn.get('endpoint'));
+      this.rdfAttributes.setEndpoint(this.conn.get('endpoint'));
       this.rdfEntities.fetch();
     },
 
@@ -100,8 +115,8 @@ define([
 
       this.$('.editor-rdf').resizable({
         handles: 's',
-        minHeight: 150,
-        maxHeight: 400
+        minHeight: 100,
+        maxHeight: 500
       });
 
       this.$('.editor-connection-title').on('click', _.bind(function() {
@@ -115,7 +130,10 @@ define([
       }, this));
 
       this.setListeners();
-      app.conn.connect();
+      this.conn.set({
+        endpoint: 'http://dbpedia.org/sparql'
+      });
+      this.conn.connect();
       return this;
     },
 
@@ -127,6 +145,18 @@ define([
     onTableListItemSelect: function(tableListItem, tableModel) {
       this.table = this.tableModel;
       this.tableView.setModel(tableModel);
+    },
+
+    onTableError: function(error) {
+
+    },
+
+    onTableValidationError: function(error) {
+
+    },
+
+    onTableSaveSuccess: function() {
+      (new MessageDialogView()).showSuccessMessage('Your relational table has been saved');
     }
 
   });

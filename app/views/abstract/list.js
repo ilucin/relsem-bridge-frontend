@@ -17,17 +17,32 @@ define(['backbone'], function(Backbone) {
       this.items = [];
       this.itemView = this.itemView || options.itemView || new Backbone.View();
       this.collection = this.collection || options.collection || new Backbone.Collection();
+      this.$emptyListEl = this.$emptyListEl || options.$emptyListEl || $('<div>').addClass('empty-list-el').html('There are no items here.');
     },
 
     setupListeners: function() {
       this.listenTo(this.collection, 'add', this.addSingleItem, this);
       this.listenTo(this.collection, 'reset', this.addAll, this);
       this.listenTo(this.collection, 'remove', this.removeSingleItem, this);
+      this.listenTo(this.collection, 'fetch:start', this.onFetchStart, this);
+      this.listenTo(this.collection, 'fetch:complete', this.onFetchComplete, this);
     },
 
     render: function() {
+      this.$el.append(this.$emptyListEl.addClass('hide'));
       this.addAll();
       return this;
+    },
+
+    onFetchComplete: function() {
+      this.$('.load-mask').remove();
+    },
+
+    onFetchStart: function(options) {
+      options = options || {};
+      if (!options.silent) {
+        this.$el.append($('<div>').addClass('load-mask'));
+      }
     },
 
     addAll: function() {
@@ -39,6 +54,8 @@ define(['backbone'], function(Backbone) {
       this.collection.each(function(model) {
         this.addSingleItem(model);
       }, this);
+
+      this.checkIfListEmpty();
     },
 
     addSingleItem: function(model) {
@@ -50,12 +67,14 @@ define(['backbone'], function(Backbone) {
 
       viewItem.render();
       this.$el.append(viewItem.el);
+      this.checkIfListEmpty();
       return viewItem;
     },
 
     removeSingleItem: function(model) {
       var view = this.getViewByModel(model);
       this.removeSingleView(view);
+      this.checkIfListEmpty();
     },
 
     removeSingleView: function(view) {
@@ -69,6 +88,14 @@ define(['backbone'], function(Backbone) {
         index = this.items.indexOf(view);
         //remove view from items
         this.items.splice(index, 1);
+      }
+    },
+
+    checkIfListEmpty: function() {
+      if (this.collection.length === 0) {
+        this.$emptyListEl.removeClass('hide');
+      } else {
+        this.$emptyListEl.addClass('hide');
       }
     },
 
@@ -101,6 +128,7 @@ define(['backbone'], function(Backbone) {
         item.remove();
       }, this);
       this.item = [];
+      this.checkIfListEmpty();
     },
 
     remove: function() {

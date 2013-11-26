@@ -17,11 +17,12 @@ define([
 
     render: function() {
       this.$el.html(this.template(this.model.toJSON()));
+      this.$el.attr('data-uri', this.model.get('uri'));
       this.$el.draggable({
-        snap: true,
+        snap: false,
         containment: 'document',
         scroll: false,
-        opacity: 0.8,
+        opacity: 0.9,
         revert: true,
         revertDuration: 10,
         zIndex: 100

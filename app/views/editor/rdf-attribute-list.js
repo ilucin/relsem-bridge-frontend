@@ -12,6 +12,7 @@ define([
   var RdfAttributeListView = ListView.extend({
     className: 'list rdf-attribute-list',
     itemView: RdfAttributeListItemView,
+    $emptyListEl: $('<div>').addClass('empty-list-el').html('There are no rdf attributes here.'),
 
     setupListView: function(options) {
       ListView.prototype.setupListView.call(this, options);

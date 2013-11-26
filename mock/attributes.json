@@ -1,19 +1,21 @@
-[{
-  "label": "Attribute 1",
-  "uri": "http://dbpedia.org/ontology/Place"
-}, {
-  "label": "Attribute 2",
-  "uri": "http://schema.org/Organization"
-}, {
-  "label": "Bla bla",
-  "uri": "http://dbpedia.org/ontology/Person"
-}, {
-  "label": "Something",
-  "uri": "http://www.w3.org/2002/07/owl#Thing"
-}, {
-  "label": "Somenottthing",
-  "uri": "http://dbpedia.org/ontology/President"
-}, {
-  "label": "Other",
-  "uri": "http://dbpedia.org/ontology/Other"
-}]
+{
+  "attributes": [{
+    "label": "Attribute 1",
+    "uri": "http://dbpedia.org/ontology/Place"
+  }, {
+    "label": "Attribute 2",
+    "uri": "http://schema.org/Organization"
+  }, {
+    "label": "Bla bla",
+    "uri": "http://dbpedia.org/ontology/Person"
+  }, {
+    "label": "Something",
+    "uri": "http://www.w3.org/2002/07/owl#Thing"
+  }, {
+    "label": "Somenottthing",
+    "uri": "http://dbpedia.org/ontology/President"
+  }, {
+    "label": "Other",
+    "uri": "http://dbpedia.org/ontology/Other"
+  }]
+}

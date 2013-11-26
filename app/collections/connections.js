@@ -12,12 +12,8 @@ define([
   var ConnectionsCollection = BaseCollection.extend({
     model: ConnectionModel,
 
-    initialize: function() {
-      app.connections = this;
-    },
-
     url: function() {
-      return app.localMode ? 'mock/connections.json' : (app.apiRoot + 'endpoints');
+      return app.localMode ? 'mock/connections.json' : (app.apiRoot + 'semantic/endpoints');
     }
 
   });

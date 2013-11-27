@@ -141,6 +141,10 @@ module.exports = function(grunt) {
           expand: false,
           src: ['index-release.html'],
           dest: 'deploy/release/index.html'
+        }, {
+          expand: true,
+          src: ['assets/css/*'],
+          dest: 'deploy/release'
         }]
       }
     },

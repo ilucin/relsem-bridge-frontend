@@ -88,27 +88,63 @@ define([
         return this.validationError;
       }
 
-      var url = app.apiRoot + 'schema/' + this.get('name');
+      if (app.localMode) {
+        this.trigger('save:succes', this);
+      } else {
+        $.ajax(app.apiRoot + 'schema/' + this.get('name'), {
+          method: 'POST',
+          context: this,
+          data: {
+            table: this.get('name'),
+            entity: this.get('rdfUri'),
+            attributes: this.getAttributesJson()
+          },
+          complete: function() {
+            this.trigger('save:complete', this);
+          },
+          success: function(response) {
+            if (_.isString(response)) {
+              response = JSON.parse(response);
+            }
 
+            if (response.status === 'OK') {
+              this.trigger('save:success', this);
+            } else {
+              this.trigger('save:error', this);
+            }
+          }
+        });
+      }
+    },
+
+    load: function() {
+      var url = app.localMode ? 'mock/table.json' : app.apiRoot + 'schema/' + this.get('name');
+
+      this.trigger('load:start');
       $.ajax(url, {
-        method: 'POST',
         context: this,
-        data: {
-          table: this.get('name'),
-          entity: this.get('rdfUri'),
-          attributes: this.getAttributesJson()
+        complete: function() {
+          this.trigger('load:complete');
         },
         success: function(response) {
-          if (response.status === 'OK') {
-            this.trigger('save:success', this);
+          if (_.isString(response)) {
+            response = JSON.parse(response);
+          }
+
+          if (response.name) {
+            this.set({
+              name: response.name
+            });
+            this.get('attributes').reset(response.attributes);
+            this.trigger('load:success');
           } else {
-            this.trigger('save:error', this);
+            this.trigger('load:error');
           }
         }
       });
     },
 
-    loadData: function() {
+    data: function() {
       var url = app.apiRoot + 'schema/data/' + this.get('name');
       $.ajax(url, {
         context: this,

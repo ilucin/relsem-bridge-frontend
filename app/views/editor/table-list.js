@@ -16,7 +16,7 @@ define([
     setupListView: function(options) {
       ListView.prototype.setupListView.call(this, options);
       this.itemView = TableListItemView;
-      this.on('item:active', this.onItemActive, this);
+      this.listenTo(this, 'item:active', this.onItemActive, this);
     },
 
     onItemActive: function(listItem) {

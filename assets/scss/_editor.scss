@@ -141,7 +141,7 @@
 
   }
   .table-entity {
-    margin-bottom: 5px;
+    padding: 5px 10px;
     font-weight: bold;
   }
   .table-name {
@@ -178,7 +178,7 @@
   @include box-pack(center);
   @include box-align(center);
   @include border-radius(4px);
-  background-color: rgba(0,0,0,0.2);
+  background-color: rgba(0,0,0,0.4);
   .drop-message {
     text-transform: uppercase;
     color: #fff;

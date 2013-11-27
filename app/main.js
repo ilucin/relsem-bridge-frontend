@@ -4,19 +4,13 @@ require([
   // Routers, Views, Models, Collections
   'router',
   'views/shared/message-dialog',
-  'models/connection',
   'models/user',
-
-  'collections/connections'
 ], function(
   app,
 
   Router,
   MessageDialogView,
-  ConnectionModel,
-  UserModel,
-
-  ConnectionsCollection
+  UserModel
 ) {
   'use strict';
 

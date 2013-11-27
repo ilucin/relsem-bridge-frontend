@@ -42,7 +42,7 @@ define([
       $(document).ajaxComplete(app.onAjaxComplete);
 
       Backbone.on('navigate', function(route) {
-        this.router.navigate(route, {
+        app.router.navigate(route, {
           trigger: true
         });
       });

@@ -21,9 +21,9 @@ define([
     },
 
     onBtnLoginClick: function() {
-      var username = this.$('.in-login-username').val();
-      var password = this.$('.in-login-password').val();
-      app.user.login(username, password);
+      // var username = this.$('.in-login-username').val();
+      // var password = this.$('.in-login-password').val();
+      // app.user.login(username, password);
       Backbone.trigger('navigate', 'editor');
     }
 

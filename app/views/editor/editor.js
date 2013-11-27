@@ -123,7 +123,9 @@ define([
         this.$('.editor-connection').toggle('blind');
       }, this));
       this.$('.editor-rdf-title').on('click', _.bind(function() {
-        this.$('.editor-rdf').toggle('blind');
+        if (this.conn.get('connected')) {
+          this.$('.editor-rdf').toggle('blind');
+        }
       }, this));
       this.$('.editor-relational-title').on('click', _.bind(function() {
         this.$('.editor-relational').toggle('blind');
@@ -143,8 +145,9 @@ define([
     },
 
     onTableListItemSelect: function(tableListItem, tableModel) {
-      this.table = this.tableModel;
+      this.table = tableModel;
       this.tableView.setModel(tableModel);
+      this.table.load();
     },
 
     onTableError: function(error) {
@@ -155,8 +158,9 @@ define([
       (new MessageDialogView()).showMessage('Validation error');
     },
 
-    onTableSaveSuccess: function() {
+    onTableSaveSuccess: function(model) {
       (new MessageDialogView()).showSuccessMessage('Your relational table has been saved');
+      this.tables.add(model);
     }
 
   });

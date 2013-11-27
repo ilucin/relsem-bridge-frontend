@@ -22,7 +22,7 @@ define([
       'name': '',
       'uri': ''
     },
-    Types: ['string', 'int', 'real'],
+    Types: ['STRING', 'INT', 'REAL'],
 
     validate: function(attrs, options) {
       var errors = [];

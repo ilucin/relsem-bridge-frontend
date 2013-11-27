@@ -16,14 +16,17 @@ define([
     selected: false,
 
     render: function() {
-      this.$el.html(this.template(this.model.toJSON()));
+      this.$el.html(this.template({
+        label: this.model.getUnnumberedLabel(),
+        uri: this.model.get('uri')
+      }));
       this.$el.attr('data-uri', this.model.get('uri'));
       this.$el.draggable({
         snap: false,
         appendTo: 'body',
         containment: 'window',
-        scroll: false,
         helper: 'clone',
+        scroll: false,
         disable: true,
         handle: '.rdf-entity-handle',
         opacity: 0.9,

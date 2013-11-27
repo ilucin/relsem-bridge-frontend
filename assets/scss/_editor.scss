@@ -6,14 +6,14 @@
   }
   
   .editor-rdf {
+    padding: 10px 0;
     height: 250px;
     margin-bottom: 20px;
     border-bottom: 1px solid #ccc;
 
-    .editor-rdf-entity-list {
+    .editor-rdf-entity-list, .editor-rdf-attribute-list {
       height: 100%;
       overflow: auto;
-      .editor-rdf-entity-list-container {}
     }
   }
 
@@ -55,7 +55,7 @@
   cursor: pointer;
   font-weight: bold;
   &.ui-draggable-dragging {
-    @include transform(rotate(8deg));
+    @include transform(rotate(5deg));
     border: 1px solid #ccc;
   }
   &:first-child {
@@ -70,13 +70,15 @@
   }
   .rdf-entity-label {
     display: inline-block;
+    word-break: break-all;
   }
   .rdf-entity-uri {
-    display: inline-block;
+    display: none;
     font-size: 10px;
     color: #55c;
     text-decoration: underline;
     cursor: default;
+    word-break: break-all;
   }
   &:hover {
     background-color: #f1f1f1;
@@ -85,6 +87,9 @@
     background-color: #f1f1f1;
     .rdf-entity-handle {
       display: inline-block;
+    }
+    .rdf-entity-uri {
+      display: block;
     }
   }
 }
@@ -95,20 +100,22 @@
   border: 1px solid #ccc;
   background-color: #f1f1f1;
   padding: 5px;
-  .rdf-attribute-list-item {
-    display: inline-block;
-    border-radius: 4px;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    margin: 5px;
-    padding: 3px 5px;
-    @include box-shadow(0 0 6px 0 #ccc);
-    cursor: move;
-    &.ui-draggable-dragging {
-      @include transform(rotate(8deg));
-    }
+}
+.rdf-attribute-list-item {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  margin: 5px;
+  padding: 3px 5px;
+  text-transform: capitalize;
+  @include box-shadow(0 0 6px 0 #ccc);
+  cursor: move;
+  &.ui-draggable-dragging {
+    @include transform(rotate(5deg));
   }
 }
+
 
 .table-list {
   .table-list-item {
@@ -129,25 +136,37 @@
 }
 
 .relational-table {
-  &.accept-rdf-element-drop {
-    .drop-mask {
-    }
-  }
-
+  position: relative;
   .table-top {
     margin-bottom: 10px;
-  }
-  .table-bottom {
-
+    .table-top-upper {
+      @include display-box();
+    }
+    .table-entity {
+      @include box-flex(1);
+    }
+    .table-buttons {
+      padding: 5px 0;
+      @include box-flex(1);
+      .btn {
+        margin-left: 5px;
+        float: right;
+      }
+    }
   }
   .table-entity {
     padding: 5px 10px;
-    font-weight: bold;
+    .table-entity-name {
+      font-weight: bold;
+    }
+    .table-entity-uri {
+      font-size: 10px;
+      color: #55c;
+    }
   }
   .table-name {
     .in-table-name {
       font-weight: bold;
-
     }
   }
   .table-attributes {
@@ -158,6 +177,13 @@
   .btn-table-save {
     float: right;
   }
+
+  .table-drag-and-drop-label {
+    color: #999;
+    text-align: center;
+    padding: 4px;
+    font-size: 12px;
+  }
 }
 
 .droppable {
@@ -167,8 +193,15 @@
   }
   &.accept-drop {
     .drop-mask{
-      @include display-box;
+      @include display-box();
     }
+  }
+}
+
+.input {
+  color: #000;
+  &[disabled]{
+    color: #666;
   }
 }
 

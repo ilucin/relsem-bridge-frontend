@@ -76,6 +76,7 @@ define([
       this.tables.fetch({
         reset: true
       });
+      window.tables = this.tables;
     },
 
     setListeners: function() {
@@ -85,8 +86,10 @@ define([
       this.listenTo(this.rdfEntityListView, 'selected-item:change', this.onRdfEntityListSelectedItemChange, this);
       this.listenTo(this.tableListView, 'item:select', this.onTableListItemSelect, this);
       this.listenTo(this.table, 'save:success', this.onTableSaveSuccess, this);
-      this.listenTo(this.table, 'save:error', this.onTableError, this);
+      this.listenTo(this.table, 'save:error', this.defaultActionErrorHandler, this);
       this.listenTo(this.table, 'save:validationError', this.onTableValidationError, this);
+      this.listenTo(this.table, 'delete:success', this.onTableDeleteSuccess, this);
+      this.listenTo(this.table, 'delete:error', this.defaultActionErrorHandler, this);
     },
 
     onConnect: function() {
@@ -147,11 +150,12 @@ define([
     onTableListItemSelect: function(tableListItem, tableModel) {
       this.table = tableModel;
       this.tableView.setModel(tableModel);
-      this.table.load();
+      tableModel.set('locked', true);
+      this.table.loadTableDefinition();
     },
 
-    onTableError: function(error) {
-      (new MessageDialogView()).showMessage('An error occurred', error || 'Your relational table has not been saved');
+    onTableDeleteSuccess: function(model) {
+      this.tables.remove(model);
     },
 
     onTableValidationError: function(error) {

@@ -23,6 +23,11 @@ define([
     devMode: true,
     localMode: true,
     helpers: helpers,
+    attributeOffset: 0,
+    attributeLimit: 200,
+    entityOffset: 0,
+    entityLimit: 200,
+    limit: 200,
     ajaxSetup: {}
   };
 
@@ -33,6 +38,10 @@ define([
 
       var server = this.helpers.getUrlParameterByName('server');
       this.serverIp = server || this.serverIp;
+      this.entityOffset = this.helpers.getUrlParameterByName('entityOffset') || this.entityOffset;
+      this.entityLimit = this.helpers.getUrlParameterByName('entityLimit') || this.entityLimit;
+      this.attributeOffset = this.helpers.getUrlParameterByName('attributeOffset') || this.attributeOffset;
+      this.attributeLimit = this.helpers.getUrlParameterByName('attributeLimit') || this.attributeLimit;
       this.apiRoot = this.serverIp + this.apiRoot;
 
       $.ajaxSetup(app.ajaxSetup);

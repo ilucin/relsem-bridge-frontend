@@ -1,6 +1,8 @@
 define([
+  'app',
   'models/base'
 ], function(
+  app,
   BaseModel
 ) {
   'use strict';
@@ -10,6 +12,14 @@ define([
     definition: {
       'label': 'string',
       'uri': 'string'
+    },
+
+    getUnnumberedLabel: function() {
+      return app.helpers.removeNumbersFromEnd(this.get('label'));
+    },
+
+    getKilledCamelLabel: function() {
+      return app.helpers.killTheCamel(this.get('label'));
     }
 
   });

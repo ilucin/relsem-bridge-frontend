@@ -11,8 +11,13 @@ define([
 
   var MessageDialogView = DialogView.extend({
 
-    initialize: function() {
-      this.className += ' message-dialog';
+    initialize: function(options) {
+      options = options || {};
+      this.$el.addClass('message-dialog');
+      if (options.cssClass) {
+        this.$el.addClass(options.cssClass);
+      }
+      this.events['click'] = 'onClick';
     },
 
     showMessage: function(title, message, callback, context, rightCallback, leftText, rightText) {
@@ -36,6 +41,12 @@ define([
       }
 
       this.show(dialogConfig);
+    },
+
+    onClick: function(event) {
+      if ($(event.target).hasClass('message-dialog')) {
+        this.hide();
+      }
     },
 
     showConfirmationDialog: function(message, leftCallback, rightCallback, context, leftText, rightText) {

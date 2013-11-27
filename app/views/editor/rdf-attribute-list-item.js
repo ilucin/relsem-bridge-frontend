@@ -16,11 +16,15 @@ define([
     selected: false,
 
     render: function() {
-      this.$el.html(this.template(this.model.toJSON()));
+      this.$el.html(this.template({
+        label: this.model.getKilledCamelLabel()
+      }));
       this.$el.attr('data-uri', this.model.get('uri'));
       this.$el.draggable({
         snap: false,
-        containment: 'document',
+        appendTo: 'body',
+        containment: 'window',
+        helper: 'clone',
         scroll: false,
         opacity: 0.9,
         revert: true,

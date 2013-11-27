@@ -37,4 +37,14 @@
       text-align: right;
     }
   }
+
+  &.message-dialog {
+    &.table-data {
+      .dialog {
+        max-width: 85%;
+        max-height: 85%;
+        overflow: scroll;
+      }
+    }
+  }
 }

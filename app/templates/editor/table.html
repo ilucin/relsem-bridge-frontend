@@ -1,5 +1,16 @@
 <div class="table-top rdf-entity-droppable droppable">
-  <div class="table-entity">
+  <div class="table-top-upper">
+    <div class="table-entity">
+      <div class="table-entity-name"></div>
+      <div class="table-entity-uri"></div>
+    </div>
+    <div class="table-buttons"> 
+      <button class="btn btn-sm btn-default btn-table-save"> <span class="glyphicon glyphicon-floppy-disk"></span></button> 
+      <button class="btn btn-sm btn-default btn-table-delete"> <span class="glyphicon glyphicon-trash"></span></button>
+      <button class="btn btn-sm btn-default btn-table-data"> <span class="glyphicon glyphicon-list"></span></button>
+      <button class="btn btn-sm btn-default btn-table-add"> <span class="glyphicon glyphicon-plus"></span> </button>
+      <!-- <button class="btn btn-sm btn-default btn-table-lock"> <span class="glyphicon glyphicon-lock"></span> </button>  -->
+    </div>
   </div>
   <div class="input table-name">
     <input type="text" class="form-control in-table-name" value="<%= name %>" placeholder="Table Name"/>  
@@ -22,7 +33,7 @@
           <th> Default </th>
         </tr>
         <tr class="row-new-attribute">
-          <td colspan="5">
+          <td colspan="5" class="table-drag-and-drop-label">
             ... drag and drop rdf attributes here ...
           </td>
         </tr>
@@ -34,5 +45,4 @@
       </div>
     </div>
   </div>
-  <button class="btn btn-primary btn-table-save"> Save Changes </div>
 </div>

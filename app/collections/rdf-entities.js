@@ -11,15 +11,13 @@ define([
 
   var RdfEntitiesCollection = BaseCollection.extend({
     model: RdfEntityModel,
-    limit: 20,
-    offset: 0,
 
     setEndpoint: function(endpoint) {
       this.endpoint = endpoint;
     },
 
     url: function() {
-      return app.localMode ? 'mock/entities.json' : (app.apiRoot + 'semantic/entities?limit=' + this.limit + '&offset=' + this.offset + '&endpoint=' + this.endpoint);
+      return app.localMode ? 'mock/entities.json' : (app.apiRoot + 'semantic/entities?limit=' + app.entityLimit + '&offset=' + app.entityOffset + '&endpoint=' + this.endpoint);
     },
 
     fetch: function() {

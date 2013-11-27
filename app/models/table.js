@@ -14,8 +14,12 @@ define([
     definition: {
       'name': 'string',
       'attributes': 'array<AttributeModel>',
-      'rdfUri': 'string',
-      'rdfName': 'string'
+      'entityUri': 'string',
+      'entityLabel': 'string'
+    },
+
+    defaults: {
+      'locked': false,
     },
 
     initialize: function(attributes, options) {
@@ -72,17 +76,44 @@ define([
     },
 
     setRdfEntity: function(rdfEntity) {
-      if (this.has('rdfUri') && this.get('rdfUri') !== rdfEntity.get('uri')) {
+      if (this.has('entityUri') && this.get('entityUri') !== rdfEntity.get('uri')) {
         this.get('attributes').reset();
       }
-      this.set('rdfUri', rdfEntity.get('uri'));
-      this.set('rdfName', rdfEntity.get('label'));
+      this.set('entityUri', rdfEntity.get('uri'));
+      this.set('entityLabel', rdfEntity.get('label'));
       if (!this.has('name')) {
         this.set('name', rdfEntity.get('label'));
       }
     },
 
-    save: function() {
+    deleteTable: function() {
+      var url = app.localMode ? 'mock/table.json' : app.apiRoot + 'schema/' + this.get('name');
+
+      if (app.localMode) {
+        this.trigger('delete:complete');
+      } else {
+        this.trigger('ajax:start');
+        $.ajax(url, {
+          method: 'DELETE',
+          context: this,
+          complete: function() {
+            this.trigger('ajax:complete');
+          },
+          success: function(response) {
+            if (_.isString(response)) {
+              response = JSON.parse(response);
+            }
+            if (response.status === 'OK') {
+              this.trigger('delete:success', this);
+            } else {
+              this.trigger('delete:error', 'Table has not been deleted');
+            }
+          }
+        });
+      }
+    },
+
+    saveTable: function() {
       if (!this.isValid()) {
         this.trigger('save:validationError', this.validationError);
         return this.validationError;
@@ -91,16 +122,18 @@ define([
       if (app.localMode) {
         this.trigger('save:succes', this);
       } else {
+        this.trigger('ajax:start');
         $.ajax(app.apiRoot + 'schema/' + this.get('name'), {
           method: 'POST',
           context: this,
           data: {
             table: this.get('name'),
-            entity: this.get('rdfUri'),
+            entityUri: this.get('entityUri'),
+            entityLabel: this.get('entityLabel'),
             attributes: this.getAttributesJson()
           },
           complete: function() {
-            this.trigger('save:complete', this);
+            this.trigger('ajax:complete', this);
           },
           success: function(response) {
             if (_.isString(response)) {
@@ -117,14 +150,14 @@ define([
       }
     },
 
-    load: function() {
+    loadTableDefinition: function() {
       var url = app.localMode ? 'mock/table.json' : app.apiRoot + 'schema/' + this.get('name');
 
-      this.trigger('load:start');
+      this.trigger('ajax:start');
       $.ajax(url, {
         context: this,
         complete: function() {
-          this.trigger('load:complete');
+          this.trigger('ajax:complete');
         },
         success: function(response) {
           if (_.isString(response)) {
@@ -133,7 +166,9 @@ define([
 
           if (response.name) {
             this.set({
-              name: response.name
+              name: response.name,
+              entityLabel: response.entityLabel,
+              entityUri: response.entityUri
             });
             this.get('attributes').reset(response.attributes);
             this.trigger('load:success');
@@ -144,12 +179,12 @@ define([
       });
     },
 
-    data: function() {
+    getTableData: function() {
       var url = app.apiRoot + 'schema/data/' + this.get('name');
       $.ajax(url, {
         context: this,
         success: function(response) {
-          this.triggger('data:success', response);
+          this.trigger('data:success', response);
         }
       });
     }

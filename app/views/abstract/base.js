@@ -1,9 +1,11 @@
 define([
   'backbone',
-  'app'
+  'app',
+  'views/shared/message-dialog'
 ], function(
   Backbone,
-  app
+  app,
+  MessageDialogView
 ) {
   'use strict';
 
@@ -23,7 +25,11 @@ define([
     cleanup: function() {
       this.clearListeners();
       this.$el.html('');
-    }
+    },
+
+    defaultActionErrorHandler: function(error) {
+      (new MessageDialogView()).showMessage('An error occured', error);
+    },
 
   });
 

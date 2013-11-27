@@ -17,7 +17,7 @@ define([
       if (options.cssClass) {
         this.$el.addClass(options.cssClass);
       }
-      this.events['click'] = 'onClick';
+      this.events.click = 'onClick';
     },
 
     showMessage: function(title, message, callback, context, rightCallback, leftText, rightText) {

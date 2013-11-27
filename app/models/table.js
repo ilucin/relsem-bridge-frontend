@@ -104,7 +104,7 @@ define([
               response = JSON.parse(response);
             }
             if (response.status === 'OK') {
-              this.trigger('delete:success');
+              this.trigger('delete:success', this);
             } else {
               this.trigger('delete:error', 'Table has not been deleted');
             }

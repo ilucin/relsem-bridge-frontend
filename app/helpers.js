@@ -29,25 +29,44 @@ define([], function() {
       return string.replace(/([a-z](?=[A-Z]))/g, '$1 ').toLowerCase();
     },
 
+    jennaSux: function(string) {
+      var res;
+      var index = string.indexOf('^^');
+      if (index >= 0) {
+        res = string.slice(0, index);
+      } else if (string.indexOf('@') >= 0) {
+        res = string.slice(0, string.indexOf('@'));
+      } else {
+        var parts = string.split('/');
+        res = parts[parts.length - 1];
+      }
+      return res.replace(/_/g, ' ');
+    },
+
     getHtmlTableFromJson: function(data) {
-      var result = '<div class="table-responsive"> <table class="table table-bordered"><tr>';
+      var result = '<div class="table-responsive"> <table class="table table-bordered"><tr><th>ID</th>';
 
       _.forOwn(data[0], function(value, key) {
-        if (key.indexOf('http://dbpedia.org/property/') === 0) {
-          key = key.replace('http://dbpedia.org/property/', '');
+        if (key !== 'id') {
+          if (key.indexOf('http://dbpedia.org/property/') === 0) {
+            key = key.replace('http://dbpedia.org/property/', '');
+          }
+          result += ('<th>' + key + '</th>');
         }
-        result += ('<th>' + key + '</th>');
       });
-
       result += '</tr>';
 
+
       _.forEach(data, function(item) {
-        result += '<tr>';
-        _.forOwn(item, function(value) {
-          result += ('<td>' + value + '</td>');
+        result += ('<tr><td>' + this.jennaSux(item.id) + '</td>');
+        _.forOwn(item, function(value, key) {
+          if (key !== 'id') {
+            result += ('<td>' + this.jennaSux(value) + '</td>');
+          }
         }, this);
         result += '</tr>';
       }, this);
+
 
       result += '</table><div>';
       return result;

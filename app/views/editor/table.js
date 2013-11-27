@@ -164,6 +164,7 @@ define([
 
     onDeleteSuccess: function(model) {
       this.setModel(new TableModel());
+      this.onAjaxComplete();
     },
 
     onAttributeRemove: function(model) {
@@ -202,7 +203,6 @@ define([
     },
 
     onButtonTableDeleteClick: function() {
-      console.log('asd');
       (new MessageDialogView()).showConfirmationDialog('Are you sure you want to delete this table', function() {
         this.model.deleteTable();
       }, null, this, 'Yes', 'No');

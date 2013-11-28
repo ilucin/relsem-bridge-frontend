@@ -90,6 +90,13 @@ define([
       }
     },
 
+    setFromModel: function(table) {
+      this.set('name', table.get('name'));
+      this.set('entityUri', table.get('entityUri'));
+      this.set('entityLabel', table.get('entityLabel'));
+      this.get('attributes').reset(table.get('attributes').toJSON());
+    },
+
     deleteTable: function() {
       var url = app.localMode ? 'mock/table.json' : app.apiRoot + 'schema/' + this.get('name');
 

@@ -85,9 +85,7 @@ define([
     },
 
     setModel: function(table) {
-      this.clearListeners(this.model);
-      this.model = table;
-      this.setTableListeners();
+      this.model.setFromModel(table);
       this.refresh();
       this.resetRows();
     },

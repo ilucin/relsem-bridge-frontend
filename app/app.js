@@ -27,6 +27,7 @@ define([
     attributeLimit: 200,
     entityOffset: 1000,
     entityLimit: 200,
+    autoConnect: false,
     limit: 200,
     ajaxSetup: {}
   };
@@ -42,6 +43,7 @@ define([
       this.entityLimit = this.helpers.getUrlParameterByName('entityLimit') || this.entityLimit;
       this.attributeOffset = this.helpers.getUrlParameterByName('attributeOffset') || this.attributeOffset;
       this.attributeLimit = this.helpers.getUrlParameterByName('attributeLimit') || this.attributeLimit;
+      this.autoConnect = this.helpers.getUrlParameterByName('autoConnect') || this.autoConnect;
       this.apiRoot = this.serverIp + this.apiRoot;
 
       $.ajaxSetup(app.ajaxSetup);

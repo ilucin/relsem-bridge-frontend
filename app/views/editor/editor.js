@@ -132,10 +132,13 @@ define([
       }, this));
 
       this.setListeners();
-      // this.conn.set({
-      //   endpoint: 'http://dbpedia.org/sparql'
-      // });
-      // this.conn.connect();
+
+      if (app.autoConnect) {
+        this.conn.set({
+          endpoint: 'http://dbpedia.org/sparql'
+        });
+        this.conn.connect();
+      }
       return this;
     },
 
@@ -147,22 +150,21 @@ define([
     onTableListItemSelect: function(tableListItem, tableModel) {
       this.table = tableModel;
       this.tableView.setModel(tableModel);
-      tableModel.set('locked', true);
       this.table.loadTableDefinition();
     },
 
     onTableDelete: function(model) {
-      (new MessageDialogView()).showMessage('Your relational table has been removed');
-      this.tables.remove(model);
-    },
-
-    onTableValidationError: function(error) {
-      (new MessageDialogView()).showMessage('Validation error');
+      (new MessageDialogView()).showMessage('', 'Your relational table has been removed');
+      this.tables.remove(this.tables.findWhere({
+        name: model.get('name')
+      }));
     },
 
     onTableSave: function(model) {
-      (new MessageDialogView()).showSuccessMessage('Your relational table has been saved');
-      this.tables.add(model);
+      var table = new TableModel();
+      table.setFromModel(model);
+      this.tables.add(table);
+      (new MessageDialogView()).showMessage('', 'Your relational table has been saved');
     }
 
   });

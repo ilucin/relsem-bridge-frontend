@@ -109,6 +109,7 @@
   margin: 5px;
   padding: 3px 5px;
   text-transform: capitalize;
+  word-break: break-all;
   @include box-shadow(0 0 6px 0 #ccc);
   cursor: move;
   &.ui-draggable-dragging {
@@ -123,6 +124,7 @@
     padding: 6px;
     font-weight: bold;
     cursor: pointer;
+    word-break: break-all;
     &:first-child {
       border-top: 1px solid #ccc;
     }

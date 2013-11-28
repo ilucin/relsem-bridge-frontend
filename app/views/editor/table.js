@@ -49,6 +49,10 @@ define([
       this.listenTo(this.model, 'ajax:complete', this.onAjaxComplete, this);
       this.listenTo(this.model, 'data:success', this.onDataSuccess, this);
       this.listenTo(this.model, 'delete:success', this.onDeleteSuccess, this);
+      this.listenTo(this.model, 'delete:error', this.defaultActionErrorHandler, this);
+      this.listenTo(this.model, 'save:success', this.onSaveSuccess, this);
+      this.listenTo(this.model, 'save:error', this.defaultActionErrorHandler, this);
+      this.listenTo(this.model, 'save:validationError', this.onTableValidationError, this);
     },
 
     render: function() {
@@ -166,6 +170,12 @@ define([
     onDeleteSuccess: function(model) {
       this.setModel(new TableModel());
       this.onAjaxComplete();
+      this.trigger('model:delete', model);
+    },
+
+    onSaveSuccess: function(model) {
+      debugger
+      this.trigger('model:save', model);
     },
 
     onAttributeRemove: function(model) {

@@ -85,11 +85,8 @@ define([
       this.listenTo(this.conn, 'disconnect', this.onDisconnect, this);
       this.listenTo(this.rdfEntityListView, 'selected-item:change', this.onRdfEntityListSelectedItemChange, this);
       this.listenTo(this.tableListView, 'item:select', this.onTableListItemSelect, this);
-      this.listenTo(this.table, 'save:success', this.onTableSaveSuccess, this);
-      this.listenTo(this.table, 'save:error', this.defaultActionErrorHandler, this);
-      this.listenTo(this.table, 'save:validationError', this.onTableValidationError, this);
-      this.listenTo(this.table, 'delete:success', this.onTableDeleteSuccess, this);
-      this.listenTo(this.table, 'delete:error', this.defaultActionErrorHandler, this);
+      this.listenTo(this.tableView, 'model:save', this.onTableSave, this);
+      this.listenTo(this.tableView, 'model:delete', this.onTableDelete, this);
     },
 
     onConnect: function() {
@@ -154,7 +151,8 @@ define([
       this.table.loadTableDefinition();
     },
 
-    onTableDeleteSuccess: function(model) {
+    onTableDelete: function(model) {
+      (new MessageDialogView()).showSuccessMessage('Your relational table has been removed');
       this.tables.remove(model);
     },
 
@@ -162,7 +160,7 @@ define([
       (new MessageDialogView()).showMessage('Validation error');
     },
 
-    onTableSaveSuccess: function(model) {
+    onTableSave: function(model) {
       (new MessageDialogView()).showSuccessMessage('Your relational table has been saved');
       this.tables.add(model);
     }

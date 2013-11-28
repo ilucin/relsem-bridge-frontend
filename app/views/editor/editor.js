@@ -85,8 +85,8 @@ define([
       this.listenTo(this.conn, 'disconnect', this.onDisconnect, this);
       this.listenTo(this.rdfEntityListView, 'selected-item:change', this.onRdfEntityListSelectedItemChange, this);
       this.listenTo(this.tableListView, 'item:select', this.onTableListItemSelect, this);
-      this.listenTo(this.tableView, 'model:save', this.onTableSave, this);
-      this.listenTo(this.tableView, 'model:delete', this.onTableDelete, this);
+      this.listenTo(this.tableView, 'table:save', this.onTableSave, this);
+      this.listenTo(this.tableView, 'table:delete', this.onTableDelete, this);
     },
 
     onConnect: function() {
@@ -152,7 +152,7 @@ define([
     },
 
     onTableDelete: function(model) {
-      (new MessageDialogView()).showSuccessMessage('Your relational table has been removed');
+      (new MessageDialogView()).showMessage('Your relational table has been removed');
       this.tables.remove(model);
     },
 

@@ -21,7 +21,6 @@ define([
       'click .btn-table-save': 'onButtonTableSaveClick',
       'click .btn-table-delete': 'onButtonTableDeleteClick',
       'click .btn-table-data': 'onButtonTableDataClick',
-      'click .btn-table-lock': 'onButtonTableLockClick',
       'click .btn-table-add': 'onButtonTableAddClick'
     },
     rows: [],
@@ -41,18 +40,18 @@ define([
     },
 
     setTableListeners: function() {
-      this.listenTo(this.model, 'change', this.refresh, this);
-      this.listenTo(this.model, 'attributes:add', this.onAttributeAdd, this);
-      this.listenTo(this.model, 'attributes:remove', this.onAttributeRemove, this);
-      this.listenTo(this.model, 'attributes:reset', this.onAttributesReset, this);
-      this.listenTo(this.model, 'ajax:start', this.onAjaxStart, this);
-      this.listenTo(this.model, 'ajax:complete', this.onAjaxComplete, this);
-      this.listenTo(this.model, 'data:success', this.onDataSuccess, this);
-      this.listenTo(this.model, 'delete:success', this.onDeleteSuccess, this);
+      this.listenTo(this.model, 'change', this.onModelChange, this);
+      this.listenTo(this.model, 'attributes:add', this.onModelAttributesAdd, this);
+      this.listenTo(this.model, 'attributes:remove', this.onModelAttributesRemove, this);
+      this.listenTo(this.model, 'attributes:reset', this.onModelAttributesReset, this);
+      this.listenTo(this.model, 'ajax:start', this.onModelAjaxStart, this);
+      this.listenTo(this.model, 'ajax:complete', this.onModelAjaxComplete, this);
+      this.listenTo(this.model, 'data:success', this.onModelDataSuccess, this);
+      this.listenTo(this.model, 'delete:success', this.onModelDeleteSuccess, this);
       this.listenTo(this.model, 'delete:error', this.defaultActionErrorHandler, this);
-      this.listenTo(this.model, 'save:success', this.onSaveSuccess, this);
+      this.listenTo(this.model, 'save:success', this.onModelSaveSuccess, this);
       this.listenTo(this.model, 'save:error', this.defaultActionErrorHandler, this);
-      this.listenTo(this.model, 'save:validationError', this.onTableValidationError, this);
+      this.listenTo(this.model, 'save:validationError', this.onModelSaveValidationError, this);
     },
 
     render: function() {
@@ -84,6 +83,68 @@ define([
         this.$('.table-entity-uri').html('');
       }
     },
+
+    setModel: function(table) {
+      this.clearListeners(this.model);
+      this.model = table;
+      this.setTableListeners();
+      this.refresh();
+      this.resetRows();
+    },
+
+    resetModel: function() {
+      this.setModel(new TableModel());
+    },
+
+    addRow: function(model) {
+      var rowView = new TableRowView({
+        model: model
+      });
+      this.listenTo(rowView, 'delete', this.onRowDelete, this);
+      this.rows.push(rowView);
+      this.$('.row-new-attribute').before(rowView.render().$el);
+    },
+
+    removeRow: function(model) {
+      var i;
+      for (i = 0; i < this.rows.length; i++) {
+        if (this.rows[i].model === model) {
+          break;
+        }
+      }
+      this.rows[i].remove();
+      this.stopListening(this.rows[i]);
+      this.rows.splice(i, 1);
+    },
+
+    resetRows: function() {
+      for (var i = 0; i < this.rows.length; i++) {
+        this.rows[i].remove();
+        this.stopListening(this.rows[i]);
+      }
+      this.rows = [];
+
+      if (this.model.get('attributes').length > 0) {
+        this.model.get('attributes').each(function(model) {
+          this.addRow(model);
+        }, this);
+      }
+    },
+
+    showLoadMask: function() {
+      if (!this.$loadMask) {
+        this.$loadMask = $('<div>').addClass('load-mask');
+        this.$el.append(this.$loadMask);
+      }
+    },
+
+    hideLoadMask: function() {
+      if (this.$loadMask) {
+        this.$loadMask.remove();
+        this.$loadMask = null;
+      }
+    },
+
 
     onTableNameChange: function(event) {
       this.model.set('name', $(event.target).val());
@@ -149,56 +210,6 @@ define([
       }
     },
 
-    onAjaxStart: function() {
-      if (!this.$loadMask) {
-        this.$loadMask = $('<div>').addClass('load-mask');
-        this.$el.append(this.$loadMask);
-      }
-    },
-
-    onAjaxComplete: function() {
-      if (this.$loadMask) {
-        this.$loadMask.remove();
-        this.$loadMask = null;
-      }
-    },
-
-    onAttributeAdd: function(model) {
-      this.addRowView(model);
-    },
-
-    onDeleteSuccess: function(model) {
-      this.setModel(new TableModel());
-      this.onAjaxComplete();
-      this.trigger('model:delete', model);
-    },
-
-    onSaveSuccess: function(model) {
-      debugger
-      this.trigger('model:save', model);
-    },
-
-    onAttributeRemove: function(model) {
-      var i;
-      for (i = 0; i < this.rows.length; i++) {
-        if (this.rows[i].model === model) {
-          break;
-        }
-      }
-      this.rows[i].remove();
-      this.stopListening(this.rows[i]);
-      this.rows.splice(i, 1);
-    },
-
-    addRowView: function(model) {
-      var rowView = new TableRowView({
-        model: model
-      });
-      this.listenTo(rowView, 'delete', this.onRowDelete, this);
-      this.rows.push(rowView);
-      this.$('.row-new-attribute').before(rowView.render().$el);
-    },
-
     onRowDelete: function(model) {
       this.model.removeAttribute(model);
     },
@@ -210,7 +221,7 @@ define([
     },
 
     onButtonTableAddClick: function() {
-      this.setModel(new TableModel());
+      this.resetModel();
     },
 
     onButtonTableDataClick: function() {
@@ -225,7 +236,32 @@ define([
       }, null, this, 'Yes', 'No');
     },
 
-    onDataSuccess: function(response) {
+
+    onModelChange: function() {
+      this.refresh();
+    },
+
+    onModelAttributesAdd: function(model) {
+      this.addRow(model);
+    },
+
+    onModelAttributesReset: function(collection) {
+      this.resetRows(collection);
+    },
+
+    onModelAttributesRemove: function(model) {
+      this.removeRow(model);
+    },
+
+    onModelAjaxStart: function() {
+      this.showLoadMask();
+    },
+
+    onModelAjaxComplete: function() {
+      this.hideLoadMask();
+    },
+
+    onModelDataSuccess: function(response) {
       var result = 'There is no data for this table';
       if (response && response.rows && _.isArray(response.rows) && response.rows.length > 0) {
         result = app.helpers.getHtmlTableFromJson(response.rows);
@@ -235,26 +271,14 @@ define([
       })).showMessage('Sample Data', result);
     },
 
-    onAttributesReset: function(collection) {
-      for (var i = 0; i < this.rows.length; i++) {
-        this.rows[i].remove();
-        this.stopListening(this.rows[i]);
-      }
-      this.rows = [];
-
-      if (this.model.get('attributes').length > 0) {
-        this.model.get('attributes').each(function(model) {
-          this.addRowView(model);
-        }, this);
-      }
+    onModelDeleteSuccess: function(model) {
+      this.trigger('table:delete', model);
+      this.resetModel();
+      this.hideLoadMask();
     },
 
-    setModel: function(table) {
-      this.clearListeners(this.model);
-      this.model = table;
-      this.setTableListeners();
-      this.refresh();
-      this.onAttributesReset();
+    onModelSaveSuccess: function(model) {
+      this.trigger('table:save', model);
     }
 
   });

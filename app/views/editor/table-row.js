@@ -14,7 +14,8 @@ define([
     className: 'table-row',
     template: app.fetchTemplate('editor/table-row'),
     events: {
-      'change .input': 'onInputChange'
+      'change .input': 'onInputChange',
+      'click .btn-table-row-delete': 'onBtnTableRowDelete'
     },
 
     initialize: function(options) {
@@ -32,8 +33,13 @@ define([
         $inType.append($('<option>').attr('value', this.model.Types[i]).html(this.model.Types[i]));
       }
       $inType.val(this.model.get('type'));
+      this.$('td:last-child').append($('<div>').addClass('btn-table-row-delete').html($('<span>').addClass('glyphicon glyphicon-remove-circle')));
 
       return this;
+    },
+
+    onBtnTableRowDelete: function() {
+      this.trigger('delete', this.model);
     },
 
     onInputChange: function(event) {

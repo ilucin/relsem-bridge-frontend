@@ -172,8 +172,27 @@
   .table-attributes {
     table {
       width: 100%;
+      tr{
+        &:hover {
+          td {
+            .btn-table-row-delete{
+              display: block;
+            }
+          }
+        }
+        td {
+          position:relative;
+          .btn-table-row-delete {
+            display: none;
+            position: absolute;
+            top: -9px;
+            right: -8px;
+          }
+        } 
+      }
     }
   }
+
   .btn-table-save {
     float: right;
   }

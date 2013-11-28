@@ -65,6 +65,10 @@ define([
       }
     },
 
+    removeAttribute: function(attribute) {
+      this.get('attributes').remove(attribute);
+    },
+
     hasAttribute: function(rdfAttribute) {
       return this.get('attributes').findWhere({
         uri: rdfAttribute.get('uri')

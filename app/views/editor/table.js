@@ -43,6 +43,7 @@ define([
     setTableListeners: function() {
       this.listenTo(this.model, 'change', this.refresh, this);
       this.listenTo(this.model, 'attributes:add', this.onAttributeAdd, this);
+      this.listenTo(this.model, 'attributes:remove', this.onAttributeRemove, this);
       this.listenTo(this.model, 'attributes:reset', this.onAttributesReset, this);
       this.listenTo(this.model, 'ajax:start', this.onAjaxStart, this);
       this.listenTo(this.model, 'ajax:complete', this.onAjaxComplete, this);
@@ -175,6 +176,7 @@ define([
         }
       }
       this.rows[i].remove();
+      this.stopListening(this.rows[i]);
       this.rows.splice(i, 1);
     },
 
@@ -182,8 +184,13 @@ define([
       var rowView = new TableRowView({
         model: model
       });
+      this.listenTo(rowView, 'delete', this.onRowDelete, this);
       this.rows.push(rowView);
       this.$('.row-new-attribute').before(rowView.render().$el);
+    },
+
+    onRowDelete: function(model) {
+      this.model.removeAttribute(model);
     },
 
     onButtonTableSaveClick: function() {
@@ -221,6 +228,7 @@ define([
     onAttributesReset: function(collection) {
       for (var i = 0; i < this.rows.length; i++) {
         this.rows[i].remove();
+        this.stopListening(this.rows[i]);
       }
       this.rows = [];
 

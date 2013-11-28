@@ -25,7 +25,7 @@ define([
     helpers: helpers,
     attributeOffset: 0,
     attributeLimit: 200,
-    entityOffset: 0,
+    entityOffset: 1000,
     entityLimit: 200,
     limit: 200,
     ajaxSetup: {}

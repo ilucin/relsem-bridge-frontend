@@ -93,16 +93,24 @@ define([
     },
 
     onConnect: function() {
-      this.$('.editor-rdf').show('blind');
-      this.$('.editor-connection').hide('blind');
+      this.$('.editor-rdf').slideDown().addClass('collapsed');
+      this.$('.editor-rdf-title .collapse-arrow').addClass('collapsed');
+
+      this.$('.editor-connection').slideUp().removeClass('collapsed');
+      this.$('.editor-connection-title .collapse-arrow').removeClass('collapsed');
+
       this.rdfEntities.setEndpoint(this.conn.get('endpoint'));
       this.rdfAttributes.setEndpoint(this.conn.get('endpoint'));
       this.rdfEntities.fetch();
     },
 
     onDisconnect: function() {
-      this.$('.editor-rdf').hide('blind');
-      this.$('.editor-connection').show('blind');
+      this.$('.editor-rdf').slideUp().removeClass('collapsed');
+      this.$('.editor-rdf-title .collapse-arrow').removeClass('collapsed');
+
+      this.$('.editor-connection').slideDown().addClass('collapsed');
+      this.$('.editor-connection-title .collapse-arrow').addClass('collapsed');
+
       this.rdfEntities.reset();
       this.rdfAttributes.reset();
     },
@@ -123,22 +131,35 @@ define([
       });
 
       this.$('.editor-connection-title').on('click', _.bind(function() {
-        this.$('.editor-connection').toggle('blind');
+        if (this.$('.editor-connection').hasClass('collapsed')) {
+          this.$('.editor-connection').slideUp().removeClass('collapsed');
+        } else {
+          this.$('.editor-connection').slideDown().addClass('collapsed');
+        }
+        this.$('.editor-connection-title .collapse-arrow').toggleClass('collapsed');
       }, this));
+
       this.$('.editor-rdf-title').on('click', _.bind(function() {
         if (this.conn.get('connected')) {
-          this.$('.editor-rdf').toggle('blind');
+          if (this.$('.editor-rdf').hasClass('collapsed')) {
+            this.$('.editor-rdf').slideUp().removeClass('collapsed');
+          } else {
+            this.$('.editor-rdf').slideDown().addClass('collapsed');
+          }
+          this.$('.editor-rdf-title .collapse-arrow').toggleClass('collapsed');
         }
       }, this));
+
       this.$('.editor-relational-title').on('click', _.bind(function() {
-        this.$('.editor-relational').toggle('blind');
+        if (this.$('.editor-relational').hasClass('collapsed')) {
+          this.$('.editor-relational').slideUp().removeClass('collapsed');
+        } else {
+          this.$('.editor-relational').slideDown().addClass('collapsed');
+        }
+        this.$('.editor-relational-title .collapse-arrow').toggleClass('collapsed');
       }, this));
 
       this.setListeners();
-      // this.conn.set({
-      //   endpoint: 'http://dbpedia.org/sparql'
-      // });
-      // this.conn.connect();
       return this;
     },
 

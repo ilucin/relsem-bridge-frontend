@@ -3,8 +3,9 @@
     margin-bottom: 10px;
     border-bottom: 1px solid #ccc;
     cursor: pointer;
+    position: relative;
   }
-  
+
   .editor-rdf {
     padding: 10px 0;
     height: 250px;
@@ -41,8 +42,17 @@
     margin-bottom: 20px;
     border-bottom: 1px solid #ccc;
   }
-  .editor-relational {
-    min-height: 150px;
+
+  .collapse-arrow {
+    position: absolute;
+    width: 12px;
+    top: 25px;
+    right: 5px;
+    @include transform(rotate(-90deg));
+    @include transition(all 400ms);
+    &.collapsed {
+      @include transform(rotate(0deg));
+    }
   }
 }
 
@@ -188,7 +198,7 @@
             top: -9px;
             right: -8px;
           }
-        } 
+        }
       }
     }
   }

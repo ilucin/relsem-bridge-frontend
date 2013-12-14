@@ -184,9 +184,11 @@
       width: 100%;
       tr{
         &:hover {
-          td {
-            .btn-table-row-delete{
-              display: block;
+          &.removable {
+            td {
+              .btn-table-row-delete{
+                display: block;
+              }
             }
           }
         }

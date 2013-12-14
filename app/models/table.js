@@ -29,6 +29,7 @@ define([
       this.listenTo(this.get('attributes'), 'remove', this.onAttributesRemove, this);
       this.listenTo(this.get('attributes'), 'change', this.onAttributesChange, this);
       this.listenTo(this.get('attributes'), 'reset', this.onAttributesReset, this);
+      this.get('attributes').addId();
     },
 
     onAttributesAdd: function(model, collections, options) {

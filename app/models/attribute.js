@@ -22,6 +22,7 @@ define([
       'name': '',
       'uri': ''
     },
+    removable: true,
     Types: ['STRING', 'INT', 'REAL'],
 
     validate: function(attrs, options) {

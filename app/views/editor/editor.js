@@ -42,6 +42,9 @@ define([
   var EditorView = BaseView.extend({
     className: 'editor container',
     template: app.fetchTemplate('editor/editor'),
+    events: {
+      'click .entity-breadcrumb': 'onEntityBreadcrumbClick'
+    },
 
     initialize: function(options) {
       options = options || {};
@@ -90,6 +93,7 @@ define([
       this.listenTo(this.table, 'save:validationError', this.onTableValidationError, this);
       this.listenTo(this.table, 'delete:success', this.onTableDeleteSuccess, this);
       this.listenTo(this.table, 'delete:error', this.defaultActionErrorHandler, this);
+      this.listenTo(this.rdfEntities, 'change:parents', this.onRdfEntitiesParentsChange, this);
     },
 
     onConnect: function() {
@@ -163,8 +167,22 @@ define([
       return this;
     },
 
+    onRdfEntitiesParentsChange: function() {
+      var parents = this.rdfEntities.getParentLabels();
+      var $breadcrumbs = this.$('.entity-breadcrumbs').html('Entities: ');
+      for (var i = 0; i < this.rdfEntities.parents.length; i++) {
+        if (i > 0) {
+          $breadcrumbs.append('<img class="breadcrumb-divider" src="assets/images/arrow_right.png"></img>');
+        }
+        var en = this.rdfEntities.parents[i];
+        var $en = $('<li>').addClass('entity-breadcrumb').attr('data-uri', en.get('uri')).html(en.get('label'));
+        $breadcrumbs.append($en);
+      }
+    },
+
     onRdfEntityListSelectedItemChange: function(rdfEntity) {
       this.rdfAttributes.setRdfEntity(rdfEntity);
+      this.rdfEntities.setParentEntity(rdfEntity);
       this.rdfAttributes.fetch();
     },
 
@@ -186,6 +204,11 @@ define([
     onTableSaveSuccess: function(model) {
       (new MessageDialogView()).showSuccessMessage('Your relational table has been saved');
       this.tables.add(model);
+    },
+
+    onEntityBreadcrumbClick: function(e) {
+      var uri = $(e.target).attr('data-uri');
+      this.rdfEntities.setParentEntityUri(uri);
     }
 
   });

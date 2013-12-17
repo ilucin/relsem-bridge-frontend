@@ -160,9 +160,9 @@ module.exports = function(grunt) {
     },
 
     exec: {
-      deploy_to_server: {
+      deployToServer: {
         cmd: function() {
-          // return 'scp -r deploy/release/* ';
+          return 'scp -ri /Users/ivan/.ssh/kljuc.pem deploy/release/* ubuntu@54.194.77.228:/home/ubuntu/apache-tomcat-7.0.47/webapps/relsem';
         }
       }
     },
@@ -186,19 +186,6 @@ module.exports = function(grunt) {
         options: {
           hostname: '*'
         }
-      }
-    },
-
-    'ftp-deploy': {
-      build: {
-        auth: {
-          host: 'some_host',
-          port: 21,
-          authKey: 'ftp_authentication'
-        },
-        src: 'deploy/release',
-        dest: '/some_destination/' + ((new Date()).getTime()),
-        exclusions: ['deploy/release/**/.DS_Store', 'deploy/release/**/Thumbs.db', 'dist/tmp']
       }
     }
 
@@ -225,7 +212,6 @@ module.exports = function(grunt) {
   grunt.registerTask('zip', ['release', 'compress']);
   grunt.registerTask('deploy', ['release', 'exec']);
   grunt.registerTask('default', ['jshint', 'sass', 'connect', 'watch']);
-  grunt.registerTask('ftpdeploy', ['release', 'ftp-deploy']);
-  grunt.registerTask('ftpdeployonly', ['ftp-deploy']);
+  grunt.registerTask('scpToServer', ['exec:deployToServer']);
 
 };

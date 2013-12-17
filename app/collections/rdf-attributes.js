@@ -13,6 +13,14 @@ define([
     model: RdfEntityModel,
     limit: app.attributesLimit,
     offset: app.attributesOffset,
+    sorting: app.attributesSort,
+
+    initialize: function(values, options) {
+      this.limit = app.attributesLimit;
+      this.offset = app.attributesOffset;
+      this.sorting = app.attributesSort;
+      BaseCollection.prototype.initialize.call(values, options);
+    },
 
     setRdfEntity: function(rdfEntity) {
       this.rdfEntity = rdfEntity;
@@ -20,6 +28,14 @@ define([
 
     setEndpoint: function(endpoint) {
       this.endpoint = endpoint;
+    },
+
+    setSort: function(sort) {
+      this.sorting = sort;
+      window.localStorage.setItem('attributesSort', this.sorting);
+      this.fetch({
+        reset: true
+      });
     },
 
     setLimit: function(limit) {
@@ -39,14 +55,13 @@ define([
     },
 
     fetch: function() {
-      if (!this.rdfEntity || !this.endpoint) {
-        throw 'RdfAttributesCollection must have its RdfEntityModel set before it can be fetched';
+      if (this.rdfEntity && this.endpoint) {
+        BaseCollection.prototype.fetch.call(this);
       }
-      BaseCollection.prototype.fetch.call(this);
     },
 
     url: function() {
-      return app.localMode ? 'mock/attributes.json' : (app.apiRoot + 'semantic/attributes?limit=' + this.limit + '&offset=' + this.offset + '&endpoint=' + this.endpoint + '&entity=' + this.rdfEntity.get('uri'));
+      return app.localMode ? 'mock/attributes.json' : (app.apiRoot + 'semantic/attributes?limit=' + this.limit + '&offset=' + this.offset + '&entity=' + this.rdfEntity.get('uri') + '&sort=' + this.sorting);
     },
 
     parse: function(response) {

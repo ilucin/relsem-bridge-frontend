@@ -17,6 +17,8 @@ define([
 
     initialize: function() {
       window.entities = this;
+      this.limit = app.entitiesLimit;
+      this.offset = app.entitiesOffset;
     },
 
     setEndpoint: function(endpoint) {

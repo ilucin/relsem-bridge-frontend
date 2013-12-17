@@ -24,10 +24,10 @@ define([
     localMode: true,
     helpers: helpers,
     attributesOffset: 0,
-    attributesLimit: 200,
-    entitiesOffset: 1000,
-    entitiesLimit: 200,
-    limit: 200,
+    attributesLimit: 100,
+    attributesSort: false,
+    entitiesOffset: 0,
+    entitiesLimit: 100,
     ajaxSetup: {}
   };
 
@@ -38,15 +38,12 @@ define([
 
       app.attributesOffset = window.localStorage.getItem('attributesOffset') || app.attributesOffset;
       app.attributesLimit = window.localStorage.getItem('attributesLimit') || app.attributesLimit;
+      app.attributesSort = window.localStorage.getItem('attributesSort') !== undefined ? (window.localStorage.getItem('attributesSort') === 'true') : app.attributesSort;
       app.entitiesOffset = window.localStorage.getItem('entitiesOffset') || app.entitiesOffset;
       app.entitiesLimit = window.localStorage.getItem('entitiesLimit') || app.entitiesLimit;
 
       var server = this.helpers.getUrlParameterByName('server');
       this.serverIp = server || this.serverIp;
-      this.entityOffset = this.helpers.getUrlParameterByName('entityOffset') || this.entityOffset;
-      this.entityLimit = this.helpers.getUrlParameterByName('entityLimit') || this.entityLimit;
-      this.attributeOffset = this.helpers.getUrlParameterByName('attributeOffset') || this.attributeOffset;
-      this.attributeLimit = this.helpers.getUrlParameterByName('attributeLimit') || this.attributeLimit;
       this.apiRoot = this.serverIp + this.apiRoot;
 
       $.ajaxSetup(app.ajaxSetup);

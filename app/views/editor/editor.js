@@ -133,6 +133,7 @@ define([
       this.$el.html(this.template({
         attributesLimit: this.rdfAttributes.limit,
         attributesOffset: this.rdfAttributes.offset,
+        attributesSort: this.rdfAttributes.sorting,
         entitiesLimit: this.rdfEntities.limit,
         entitiesOffset: this.rdfEntities.offset
       }));
@@ -250,6 +251,8 @@ define([
       } else {
         if ($input.attr('data-property') === 'limit') {
           this.rdfAttributes.setLimit(parseInt($input.val(), 10));
+        } else if ($input.attr('data-property') === 'sort') {
+          this.rdfAttributes.setSort($input.prop('checked'));
         } else {
           this.rdfAttributes.setOffset(parseInt($input.val(), 10));
         }

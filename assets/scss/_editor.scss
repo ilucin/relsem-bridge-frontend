@@ -1,15 +1,28 @@
 .editor {
   .editor-title {
     margin-bottom: 10px;
-    border-bottom: 1px solid #ccc;
+    border: 1px solid #ccc;
     cursor: pointer;
     position: relative;
+    @include box-shadow(0 0 6px 0 #ddd);
+    @include border-radius(4px);
+    background-color: #f1f1f1;
+    @include transition(all 200ms);
+    &:hover {
+      @include box-shadow(0 0 8px 1px #ddd);
+      .collapse-arrow {
+        @include transform(rotate(-120deg) scale(1.2));
+        &.collapsed {
+          @include transform(rotate(30deg) scale(1.2));
+        }
+      }
+    }
   }
 
   .editor-rdf {
     padding: 0 0 10px 0;
-    height: 250px;
-    margin-bottom: 20px;
+    height: 400px;
+    margin: 20px 0;
     border-bottom: 1px solid #ccc;
     overflow: hidden;
 
@@ -27,10 +40,11 @@
 
       .rdf-entities-settings, .rdf-attributes-settings{
         display: none;
-        padding: 5px;
+        padding: 0 0 5px 0;
         position: absolute;
-        background-color: #fff;
+        background-color: #fafafa;
         border: 1px solid #aaa;
+        cursor: auto;
         @include box-shadow(0 0 10px 1px #ccc);
         @include border-radius(4px);
         .key {
@@ -68,6 +82,10 @@
       }
     }
 
+    .editor-rdf-col-title, .editor-rdf {
+      padding: 0 0 10px 0;
+    }
+
     .editor-rdf-entity-list, .editor-rdf-attribute-list {
       height: 90%;
       overflow: auto;
@@ -75,7 +93,7 @@
   }
 
   .editor-connection {
-    margin-bottom: 10px;
+    margin: 30px 0;
     .connection-form {
       .loading-box {
         >.img-loader {
@@ -102,7 +120,7 @@
   .collapse-arrow {
     position: absolute;
     width: 12px;
-    top: 20px;
+    top: 17px;
     right: 10px;
     @include transform(rotate(-90deg));
     @include transition(all 400ms);
@@ -120,6 +138,9 @@
   border-bottom: 1px solid #ccc;
   cursor: pointer;
   font-weight: bold;
+  position: relative;
+  @include transition(background-color 200ms);
+
   &.ui-draggable-dragging {
     @include transform(rotate(5deg));
     border: 1px solid #ccc;
@@ -146,6 +167,20 @@
     cursor: default;
     word-break: break-all;
   }
+  .rdf-entity-arrow {
+    display: none;
+    position: absolute;
+    top: 10px;
+    right: 4px;
+    width: 24px;
+    padding: 8px;
+    cursor: pointer;
+    background-color: rgba(255,255,255,0.6);
+    @include border-radius(50%);
+    &:hover {
+      background-color: rgba(255,255,255,0.9);
+    }
+  }
   &:hover {
     background-color: #f1f1f1;
   }
@@ -157,6 +192,9 @@
     .rdf-entity-uri {
       display: block;
     }
+    .rdf-entity-arrow {
+      display: block;
+    }
   }
 }
 
@@ -164,8 +202,9 @@
 .rdf-attribute-list {
   position: relative;
   border: 1px solid #ccc;
-  background-color: #f1f1f1;
+  background-color: #fafafa;
   padding: 5px;
+  @include border-radius(4px);
 }
 .rdf-attribute-list-item {
   display: inline-block;
@@ -176,9 +215,14 @@
   padding: 3px 5px;
   text-transform: capitalize;
   @include box-shadow(0 0 6px 0 #ccc);
+  @include transition(box-shadow 200ms);
   cursor: move;
   &.ui-draggable-dragging {
     @include transform(rotate(5deg));
+  }
+  &:hover {
+    border-color: #999;
+    @include box-shadow(0 0 8px 1px #ccc);
   }
 }
 
@@ -189,6 +233,7 @@
     padding: 6px;
     font-weight: bold;
     cursor: pointer;
+    @include transition(all 200ms);
     &:first-child {
       border-top: 1px solid #ccc;
     }

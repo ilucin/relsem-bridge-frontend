@@ -12,6 +12,8 @@ define([
   var RdfEntitiesCollection = BaseCollection.extend({
     model: RdfEntityModel,
     parents: [],
+    limit: app.entitiesLimit,
+    offset: app.entitiesOffset,
 
     initialize: function() {
       window.entities = this;
@@ -25,6 +27,22 @@ define([
         uri: endpoint
       });
       this.setParentEntity(this.rootParentEntity);
+    },
+
+    setLimit: function(limit) {
+      this.limit = limit;
+      window.localStorage.setItem('entitiesLimit', limit);
+      this.fetch({
+        reset: true
+      });
+    },
+
+    setOffset: function(offset) {
+      this.offset = offset;
+      window.localStorage.setItem('entitiesOffset', offset);
+      this.fetch({
+        reset: true
+      });
     },
 
     addTestParentEntity: function() {
@@ -50,14 +68,26 @@ define([
     },
 
     setParentEntity: function(entity) {
-      var index = this.parents.indexOf(entity);
-      if (index >= 0 && index < this.parents.length - 1) {
-        this.parents = this.parents.slice(0, index + 1);
-      } else if (index < 0) {
-        this.parents.push(entity);
+      var index = -1; //this.parents.indexOf(entity);
+
+      for (var i = 0; i < this.parents.length; i++) {
+        if (this.parents[i].get('uri') === entity.get('uri')) {
+          index = i;
+          break;
+        }
       }
-      this.trigger('change:parents');
-      // console.log(this.parents);
+
+      if (index <= this.parents.length) {
+        if (index >= 0 && index < this.parents.length - 1) {
+          this.parents = this.parents.slice(0, index + 1);
+        } else if (index < 0) {
+          this.parents.push(entity);
+        }
+        this.trigger('change:parents');
+        this.fetch({
+          reset: true
+        });
+      }
     },
 
     getParentLabels: function() {
@@ -72,8 +102,12 @@ define([
       return this.parents[this.parents.length - 1].get('label');
     },
 
+    getParentEntityUri: function() {
+      return this.parents.length > 1 ? this.parents[this.parents.length - 1].get('uri') : '';
+    },
+
     url: function() {
-      return app.localMode ? 'mock/entities.json' : (app.apiRoot + 'semantic/entities?limit=' + app.entityLimit + '&offset=' + app.entityOffset + '&endpoint=' + this.endpoint);
+      return app.localMode ? 'mock/entities.json' : (app.apiRoot + 'semantic/entities?limit=' + this.limit + '&offset=' + this.offset + '&parentEntity=' + this.getParentEntityUri());
     },
 
     fetch: function() {

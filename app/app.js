@@ -23,10 +23,10 @@ define([
     devMode: true,
     localMode: true,
     helpers: helpers,
-    attributeOffset: 0,
-    attributeLimit: 200,
-    entityOffset: 1000,
-    entityLimit: 200,
+    attributesOffset: 0,
+    attributesLimit: 200,
+    entitiesOffset: 1000,
+    entitiesLimit: 200,
     limit: 200,
     ajaxSetup: {}
   };
@@ -35,6 +35,11 @@ define([
 
     init: function() {
       this.initAppMode();
+
+      app.attributesOffset = window.localStorage.getItem('attributesOffset') || app.attributesOffset;
+      app.attributesLimit = window.localStorage.getItem('attributesLimit') || app.attributesLimit;
+      app.entitiesOffset = window.localStorage.getItem('entitiesOffset') || app.entitiesOffset;
+      app.entitiesLimit = window.localStorage.getItem('entitiesLimit') || app.entitiesLimit;
 
       var server = this.helpers.getUrlParameterByName('server');
       this.serverIp = server || this.serverIp;

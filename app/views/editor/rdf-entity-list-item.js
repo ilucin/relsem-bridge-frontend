@@ -11,7 +11,8 @@ define([
     className: 'list-item rdf-entity-list-item',
     template: app.fetchTemplate('editor/rdf-entity-list-item'),
     events: {
-      'click': 'onClick'
+      'click': 'onClick',
+      'click .rdf-entity-arrow': 'onArrowClick'
     },
     selected: false,
 
@@ -56,6 +57,10 @@ define([
 
     onClick: function() {
       this.trigger('active');
+    },
+
+    onArrowClick: function() {
+      this.trigger('branch', this.model);
     },
 
     getModel: function() {

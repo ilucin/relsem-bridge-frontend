@@ -45,8 +45,9 @@ define([
     events: {
       'click .entity-breadcrumb': 'onEntityBreadcrumbClick',
       'click .rdf-settings-icon': 'onRdfSettingsIconClick',
-      'click': 'onClick'
+      'change .rdf-settings input': 'onRdfSettingsInputChange'
     },
+    settingsSlideSpeed: 150,
 
     initialize: function(options) {
       options = options || {};
@@ -85,7 +86,7 @@ define([
 
       $(document).on('click', _.bind(function(e) {
         if (!$(e.target).hasClass('rdf-settings')) {
-          this.$('.rdf-settings').hide();
+          this.$('.rdf-settings').slideUp(this.settingsSlideSpeed);
         }
       }, this));
     },
@@ -96,6 +97,7 @@ define([
       this.listenTo(this.conn, 'disconnect', this.onDisconnect, this);
       this.listenTo(this.rdfEntityListView, 'selected-item:change', this.onRdfEntityListSelectedItemChange, this);
       this.listenTo(this.tableListView, 'item:select', this.onTableListItemSelect, this);
+      this.listenTo(this.rdfEntityListView, 'item:branch', this.onRdfEntityListItemBranch, this);
       this.listenTo(this.table, 'save:success', this.onTableSaveSuccess, this);
       this.listenTo(this.table, 'save:error', this.defaultActionErrorHandler, this);
       this.listenTo(this.table, 'save:validationError', this.onTableValidationError, this);
@@ -128,7 +130,12 @@ define([
     },
 
     render: function() {
-      this.$el.html(this.template());
+      this.$el.html(this.template({
+        attributesLimit: this.rdfAttributes.limit,
+        attributesOffset: this.rdfAttributes.offset,
+        entitiesLimit: this.rdfEntities.limit,
+        entitiesOffset: this.rdfEntities.offset
+      }));
 
       this.$('.editor-connection-form').html(this.connectionForm.render().$el);
       this.$('.editor-rdf-entity-list-container').html(this.rdfEntityListView.render().$el);
@@ -190,7 +197,6 @@ define([
 
     onRdfEntityListSelectedItemChange: function(rdfEntity) {
       this.rdfAttributes.setRdfEntity(rdfEntity);
-      this.rdfEntities.setParentEntity(rdfEntity);
       this.rdfAttributes.fetch();
     },
 
@@ -220,12 +226,35 @@ define([
     },
 
     onRdfSettingsIconClick: function(e) {
-      $(e.target).find('.rdf-settings').show();
+      var $sett = $(e.target).find('.rdf-settings');
+      if ($sett.css('display') === 'block') {
+        $sett.slideUp(this.settingsSlideSpeed);
+      } else {
+        $sett.slideDown(this.settingsSlideSpeed);
+      }
       e.stopPropagation();
     },
 
-    onClick: function(e) {
+    onRdfEntityListItemBranch: function(itemView, rdfEntity) {
+      this.rdfEntities.setParentEntity(rdfEntity);
+    },
 
+    onRdfSettingsInputChange: function(e) {
+      var $input = $(e.target);
+      if ($input.attr('data-type') === 'entities') {
+        if ($input.attr('data-property') === 'limit') {
+          this.rdfEntities.setLimit(parseInt($input.val(), 10));
+        } else {
+          this.rdfEntities.setOffset(parseInt($input.val(), 10));
+        }
+      } else {
+        if ($input.attr('data-property') === 'limit') {
+          this.rdfAttributes.setLimit(parseInt($input.val(), 10));
+        } else {
+          this.rdfAttributes.setOffset(parseInt($input.val(), 10));
+        }
+      }
+      this.$('.rdf-settings').slideUp(this.settingsSlideSpeed);
     }
 
   });

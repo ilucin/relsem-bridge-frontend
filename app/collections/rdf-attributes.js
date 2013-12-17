@@ -11,8 +11,8 @@ define([
 
   var RdfAttributesCollection = BaseCollection.extend({
     model: RdfEntityModel,
-    limit: app.attributeLimit,
-    offset: app.attributeOffset,
+    limit: app.attributesLimit,
+    offset: app.attributesOffset,
 
     setRdfEntity: function(rdfEntity) {
       this.rdfEntity = rdfEntity;
@@ -20,6 +20,22 @@ define([
 
     setEndpoint: function(endpoint) {
       this.endpoint = endpoint;
+    },
+
+    setLimit: function(limit) {
+      this.limit = limit;
+      window.localStorage.setItem('attributesLimit', limit);
+      this.fetch({
+        reset: true
+      });
+    },
+
+    setOffset: function(offset) {
+      this.offset = offset;
+      window.localStorage.setItem('attributesOffset', offset);
+      this.fetch({
+        reset: true
+      });
     },
 
     fetch: function() {
@@ -30,7 +46,7 @@ define([
     },
 
     url: function() {
-      return app.localMode ? 'mock/attributes.json' : (app.apiRoot + 'semantic/attributes?limit=' + app.attributeLimit + '&offset=' + app.attributeLimit + '&endpoint=' + this.endpoint + '&entity=' + this.rdfEntity.get('uri'));
+      return app.localMode ? 'mock/attributes.json' : (app.apiRoot + 'semantic/attributes?limit=' + this.limit + '&offset=' + this.offset + '&endpoint=' + this.endpoint + '&entity=' + this.rdfEntity.get('uri'));
     },
 
     parse: function(response) {

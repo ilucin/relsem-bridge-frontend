@@ -21,8 +21,8 @@
     <span class="rdf-settings-icon rdf-entities-settings-icon glyphicon glyphicon-cog">
       <div class="rdf-settings rdf-entities-settings">
         <table>
-          <tr> <td class="key"> Limit </td> <td class="value"><input type="text" class="form-control in-rdf-entities-limit" value="200" placeholder="Limit"/></td></tr>
-          <tr> <td class="key"> Offset </td> <td class="value"><input type="text" class="form-control in-rdf-entities-offset" value="1000" placeholder="Offset"/></td></tr>
+          <tr> <td class="key"> Limit </td> <td class="value"><input type="text" class="form-control in-rdf-entities-limit" data-type="entities" data-property="limit" value="<%= entitiesLimit %>" placeholder="Limit"/></td></tr>
+          <tr> <td class="key"> Offset </td> <td class="value"><input type="text" class="form-control in-rdf-entities-offset" data-type="entities" data-property="offset" value="<%= entitiesOffset %>" placeholder="Offset"/></td></tr>
         </table>
       </div>
     </span>
@@ -32,8 +32,8 @@
     <span class="rdf-settings-icon rdf-attributes-settings-icon glyphicon glyphicon-cog">
       <div class="rdf-settings rdf-attributes-settings">
         <table>
-          <tr> <td class="key"> Limit </td> <td class="value"><input type="text" class="form-control in-rdf-attributes-limit" value="200" placeholder="Limit"/></td></tr>
-          <tr> <td class="key"> Offset </td> <td class="value"><input type="text" class="form-control in-rdf-attributes-offset" value="1000" placeholder="Offset"/></td></tr>
+          <tr> <td class="key"> Limit </td> <td class="value"><input type="text" class="form-control in-rdf-attributes-limit" data-type="attributes" data-property="limit" value="<%= attributesLimit %>" placeholder="Limit"/></td></tr>
+          <tr> <td class="key"> Offset </td> <td class="value"><input type="text" class="form-control in-rdf-attributes-offset" data-type="attributes" data-property="offset" value="<%= attributesOffset %>" placeholder="Offset"/></td></tr>
         </table>
       </div>
     </span>

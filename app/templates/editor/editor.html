@@ -17,11 +17,27 @@
 </div>
 
 <div class="row editor-rdf" style="display:none">
-  <div class="col-xs-5 editor-rdf-col-title editor-rdf-entity-list-header">
-    <!-- <div class="rdf-entity-parent"> List of rdf entities </div> -->
+  <div class="col-xs-11 editor-rdf-col-title editor-rdf-entity-list-header">
+    <span class="rdf-settings-icon rdf-entities-settings-icon glyphicon glyphicon-cog">
+      <div class="rdf-settings rdf-entities-settings">
+        <table>
+          <tr> <td class="key"> Limit </td> <td class="value"><input type="text" class="form-control in-rdf-entities-limit" value="200" placeholder="Limit"/></td></tr>
+          <tr> <td class="key"> Offset </td> <td class="value"><input type="text" class="form-control in-rdf-entities-offset" value="1000" placeholder="Offset"/></td></tr>
+        </table>
+      </div>
+    </span>
     <ul class="entity-breadcrumbs"> </ul>
   </div>
-  <div class="col-xs-7 editor-rdf-col-title editor-rdf-attribute-list-header"> List of rdf attributes </div>
+  <div class="col-xs-1 editor-rdf-col-title editor-rdf-attribute-list-header">
+    <span class="rdf-settings-icon rdf-attributes-settings-icon glyphicon glyphicon-cog">
+      <div class="rdf-settings rdf-attributes-settings">
+        <table>
+          <tr> <td class="key"> Limit </td> <td class="value"><input type="text" class="form-control in-rdf-attributes-limit" value="200" placeholder="Limit"/></td></tr>
+          <tr> <td class="key"> Offset </td> <td class="value"><input type="text" class="form-control in-rdf-attributes-offset" value="1000" placeholder="Offset"/></td></tr>
+        </table>
+      </div>
+    </span>
+  </div>
   <div class="col-xs-5 editor-rdf-col editor-rdf-entity-list">
     <div class="editor-rdf-entity-list-container"></div>
   </div>

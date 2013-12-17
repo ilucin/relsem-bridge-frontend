@@ -13,10 +13,46 @@
     border-bottom: 1px solid #ccc;
     overflow: hidden;
 
+    .rdf-attributes-settings-icon {
+      float: right;
+      .rdf-attributes-settings {
+        right: 0;
+      }
+    }
+
+    .rdf-entities-settings-icon, .rdf-attributes-settings-icon {
+      position: relative;
+      z-index: 1000;
+      cursor: pointer;
+
+      .rdf-entities-settings, .rdf-attributes-settings{
+        display: none;
+        padding: 5px;
+        position: absolute;
+        background-color: #fff;
+        border: 1px solid #aaa;
+        @include box-shadow(0 0 10px 1px #ccc);
+        @include border-radius(4px);
+        .key {
+          padding: 10px;
+          font-weight: bold;
+        }
+        .value {
+          .form-control {
+            width: 70px;
+          }
+        }
+      }
+    }
+
     .entity-breadcrumbs {
       padding: 0;
       margin: 0;
       list-style: none;
+      display: inline-block;
+      margin-left: 5px;
+      padding-bottom: 5px;
+
       .entity-breadcrumb {
         display: inline-block;
         margin: 0 4px;
@@ -30,10 +66,6 @@
         width: 5px;
         margin-bottom: 2px;
       }
-    }
-
-    .editor-rdf-col-title {
-      height: 40px;
     }
 
     .editor-rdf-entity-list, .editor-rdf-attribute-list {

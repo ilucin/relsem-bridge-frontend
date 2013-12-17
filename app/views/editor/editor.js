@@ -43,7 +43,9 @@ define([
     className: 'editor container',
     template: app.fetchTemplate('editor/editor'),
     events: {
-      'click .entity-breadcrumb': 'onEntityBreadcrumbClick'
+      'click .entity-breadcrumb': 'onEntityBreadcrumbClick',
+      'click .rdf-settings-icon': 'onRdfSettingsIconClick',
+      'click': 'onClick'
     },
 
     initialize: function(options) {
@@ -80,6 +82,12 @@ define([
         reset: true
       });
       window.tables = this.tables;
+
+      $(document).on('click', _.bind(function(e) {
+        if (!$(e.target).hasClass('rdf-settings')) {
+          this.$('.rdf-settings').hide();
+        }
+      }, this));
     },
 
     setListeners: function() {
@@ -209,6 +217,15 @@ define([
     onEntityBreadcrumbClick: function(e) {
       var uri = $(e.target).attr('data-uri');
       this.rdfEntities.setParentEntityUri(uri);
+    },
+
+    onRdfSettingsIconClick: function(e) {
+      $(e.target).find('.rdf-settings').show();
+      e.stopPropagation();
+    },
+
+    onClick: function(e) {
+
     }
 
   });

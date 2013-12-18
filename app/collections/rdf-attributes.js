@@ -61,7 +61,7 @@ define([
     },
 
     url: function() {
-      return app.localMode ? 'mock/attributes.json' : (app.apiRoot + 'semantic/attributes?limit=' + this.limit + '&offset=' + this.offset + '&entity=' + this.rdfEntity.get('uri') + '&sort=' + this.sorting);
+      return app.localMode ? 'mock/attributes.json' : (app.apiRoot + 'semantic/attributes?limit=' + this.limit + '&offset=' + this.offset + '&entity=' + encodeURIComponent(this.rdfEntity.get('uri')) + '&sort=' + this.sorting);
     },
 
     parse: function(response) {

@@ -119,7 +119,7 @@ define([
     },
 
     url: function() {
-      return app.localMode ? 'mock/entities.json' : (app.apiRoot + 'semantic/entities?limit=' + this.limit + '&offset=' + this.offset + '&parentEntity=' + this.getParentEntityUri());
+      return app.localMode ? 'mock/entities.json' : (app.apiRoot + 'semantic/entities?limit=' + this.limit + '&offset=' + this.offset + '&parentEntity=' + encodeURIComponent(this.getParentEntityUri()));
     },
 
     fetch: function() {

@@ -248,7 +248,7 @@ define([
       if ($input.attr('data-type') === 'entities') {
         if ($input.attr('data-property') === 'limit') {
           this.rdfEntities.setLimit(parseInt($input.val(), 10));
-        } else if ($input.attr('data-type') === 'offset') {
+        } else if ($input.attr('data-property') === 'offset') {
           this.rdfEntities.setOffset(parseInt($input.val(), 10));
         } else {
           this.rdfEntities.setLoadRootAttributes($input.prop('checked'));

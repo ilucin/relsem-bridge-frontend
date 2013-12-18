@@ -42,7 +42,9 @@ define([
       app.attributesSort = window.localStorage.getItem('attributesSort') !== undefined ? (window.localStorage.getItem('attributesSort') === 'true') : app.attributesSort;
       app.entitiesOffset = window.localStorage.getItem('entitiesOffset') || app.entitiesOffset;
       app.entitiesLimit = window.localStorage.getItem('entitiesLimit') || app.entitiesLimit;
-      app.entitiesLoadRootAttributes = window.localStorage.getItem('entitiesLoadRootAttributes') || app.entitiesLoadRootAttributes;
+
+      var elra = window.localStorage.getItem('entitiesLoadRootAttributes');
+      app.entitiesLoadRootAttributes = elra !== undefined ? (elra === 'true') : app.entitiesLoadRootAttributes;
 
       var server = this.helpers.getUrlParameterByName('server');
       this.serverIp = server || this.serverIp;

@@ -11,8 +11,16 @@ define([
 
   var RdfAttributesCollection = BaseCollection.extend({
     model: RdfEntityModel,
-    limit: app.attributeLimit,
-    offset: app.attributeOffset,
+    limit: app.attributesLimit,
+    offset: app.attributesOffset,
+    sorting: app.attributesSort,
+
+    initialize: function(values, options) {
+      this.limit = app.attributesLimit;
+      this.offset = app.attributesOffset;
+      this.sorting = app.attributesSort;
+      BaseCollection.prototype.initialize.call(values, options);
+    },
 
     setRdfEntity: function(rdfEntity) {
       this.rdfEntity = rdfEntity;
@@ -22,15 +30,38 @@ define([
       this.endpoint = endpoint;
     },
 
+    setSort: function(sort) {
+      this.sorting = sort;
+      window.localStorage.setItem('attributesSort', this.sorting);
+      this.fetch({
+        reset: true
+      });
+    },
+
+    setLimit: function(limit) {
+      this.limit = limit;
+      window.localStorage.setItem('attributesLimit', limit);
+      this.fetch({
+        reset: true
+      });
+    },
+
+    setOffset: function(offset) {
+      this.offset = offset;
+      window.localStorage.setItem('attributesOffset', offset);
+      this.fetch({
+        reset: true
+      });
+    },
+
     fetch: function() {
-      if (!this.rdfEntity || !this.endpoint) {
-        throw 'RdfAttributesCollection must have its RdfEntityModel set before it can be fetched';
+      if (this.rdfEntity && this.endpoint) {
+        BaseCollection.prototype.fetch.call(this);
       }
-      BaseCollection.prototype.fetch.call(this);
     },
 
     url: function() {
-      return app.localMode ? 'mock/attributes.json' : (app.apiRoot + 'semantic/attributes?limit=' + app.attributeLimit + '&offset=' + app.attributeLimit + '&endpoint=' + this.endpoint + '&entity=' + this.rdfEntity.get('uri'));
+      return app.localMode ? 'mock/attributes.json' : (app.apiRoot + 'semantic/attributes?limit=' + this.limit + '&offset=' + this.offset + '&entity=' + encodeURIComponent(this.rdfEntity.get('uri')) + '&sort=' + this.sorting);
     },
 
     parse: function(response) {

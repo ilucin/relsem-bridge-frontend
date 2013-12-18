@@ -25,9 +25,15 @@ define([
     },
 
     render: function() {
+      var data = this.model.toJSON();
+      data.editable = this.model.editable;
+
       this.$el.html(this.template({
-        attribute: this.model.toJSON()
+        attribute: data
       }));
+      if (this.model.removable) {
+        this.$el.addClass('removable');
+      }
       var $inType = this.$('.in-type');
       for (var i = 0; i < this.model.Types.length; i++) {
         $inType.append($('<option>').attr('value', this.model.Types[i]).html(this.model.Types[i]));

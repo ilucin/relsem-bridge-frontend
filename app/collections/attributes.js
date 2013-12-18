@@ -16,6 +16,17 @@ define([
       return attribute;
     },
 
+    addId: function() {
+      var attribute = new AttributeModel({
+        name: 'ID',
+        notnull: true,
+        length: 255
+      });
+      attribute.removable = false;
+      this.add(attribute);
+      return attribute;
+    },
+
     addAttribute: function(rdfAttribute) {
       var attribute = new AttributeModel({
         id: rdfAttribute.get('uri'),

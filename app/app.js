@@ -23,12 +23,12 @@ define([
     devMode: true,
     localMode: true,
     helpers: helpers,
-    attributeOffset: 0,
-    attributeLimit: 200,
-    entityOffset: 1000,
-    entityLimit: 200,
-    autoConnect: false,
-    limit: 200,
+    attributesOffset: 0,
+    attributesLimit: 100,
+    attributesSort: false,
+    entitiesLoadRootAttributes: false,
+    entitiesOffset: 0,
+    entitiesLimit: 100,
     ajaxSetup: {}
   };
 
@@ -37,13 +37,17 @@ define([
     init: function() {
       this.initAppMode();
 
+      app.attributesOffset = window.localStorage.getItem('attributesOffset') || app.attributesOffset;
+      app.attributesLimit = window.localStorage.getItem('attributesLimit') || app.attributesLimit;
+      app.attributesSort = window.localStorage.getItem('attributesSort') !== undefined ? (window.localStorage.getItem('attributesSort') === 'true') : app.attributesSort;
+      app.entitiesOffset = window.localStorage.getItem('entitiesOffset') || app.entitiesOffset;
+      app.entitiesLimit = window.localStorage.getItem('entitiesLimit') || app.entitiesLimit;
+
+      var elra = window.localStorage.getItem('entitiesLoadRootAttributes');
+      app.entitiesLoadRootAttributes = elra !== undefined ? (elra === 'true') : app.entitiesLoadRootAttributes;
+
       var server = this.helpers.getUrlParameterByName('server');
       this.serverIp = server || this.serverIp;
-      this.entityOffset = this.helpers.getUrlParameterByName('entityOffset') || this.entityOffset;
-      this.entityLimit = this.helpers.getUrlParameterByName('entityLimit') || this.entityLimit;
-      this.attributeOffset = this.helpers.getUrlParameterByName('attributeOffset') || this.attributeOffset;
-      this.attributeLimit = this.helpers.getUrlParameterByName('attributeLimit') || this.attributeLimit;
-      this.autoConnect = this.helpers.getUrlParameterByName('autoConnect') || this.autoConnect;
       this.apiRoot = this.serverIp + this.apiRoot;
 
       $.ajaxSetup(app.ajaxSetup);

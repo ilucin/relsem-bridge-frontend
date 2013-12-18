@@ -11,7 +11,8 @@ define([
     className: 'list-item rdf-entity-list-item',
     template: app.fetchTemplate('editor/rdf-entity-list-item'),
     events: {
-      'click': 'onClick'
+      'click': 'onClick',
+      'click .rdf-entity-arrow': 'onArrowClick'
     },
     selected: false,
 
@@ -21,6 +22,11 @@ define([
         uri: this.model.get('uri')
       }));
       this.$el.attr('data-uri', this.model.get('uri'));
+      this.initDraggable();
+      return this;
+    },
+
+    initDraggable: function() {
       this.$el.draggable({
         snap: false,
         appendTo: 'body',
@@ -34,12 +40,12 @@ define([
         revertDuration: 10,
         zIndex: 100
       });
-      return this;
     },
 
     toggleSelected: function() {
       this.selected = !this.selected;
       this.$el.toggleClass('selected');
+      this.initDraggable();
       if (this.selected) {
         this.trigger('select', this.model);
         this.$el.draggable('enable');
@@ -51,6 +57,10 @@ define([
 
     onClick: function() {
       this.trigger('active');
+    },
+
+    onArrowClick: function() {
+      this.trigger('branch', this.model);
     },
 
     getModel: function() {

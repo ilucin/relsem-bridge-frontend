@@ -1,24 +1,107 @@
 .editor {
   .editor-title {
     margin-bottom: 10px;
-    border-bottom: 1px solid #ccc;
+    border: 1px solid #ccc;
     cursor: pointer;
+    position: relative;
+    @include border-radius(4px);
+    background-color: #f6f6f6;
+    // @include transition(all 100ms);
+
+    h4 {
+      font-family: Etk;
+      color: #036;
+      font-weight: bold;
+    }
+
+    &:hover {
+      @include box-shadow(0 0 5px 0 #ddd);
+      .collapse-arrow {
+        @include transform(rotate(-120deg));
+        &.collapsed {
+          @include transform(rotate(30deg));
+        }
+      }
+    }
   }
-  
+
   .editor-rdf {
-    padding: 10px 0;
-    height: 250px;
-    margin-bottom: 20px;
+    padding: 0 0 10px 0;
+    height: 400px;
+    margin: 20px 0;
     border-bottom: 1px solid #ccc;
+    overflow: hidden;
+
+    .rdf-attributes-settings-icon {
+      float: right;
+      .rdf-attributes-settings {
+        right: 0;
+      }
+    }
+
+    .rdf-entities-settings-icon, .rdf-attributes-settings-icon {
+      position: relative;
+      z-index: 1000;
+      cursor: pointer;
+
+      .rdf-entities-settings, .rdf-attributes-settings{
+        display: none;
+        padding: 0 0 5px 0;
+        position: absolute;
+        background-color: #fafafa;
+        border: 1px solid #aaa;
+        cursor: auto;
+        @include box-shadow(0 0 10px 1px #ccc);
+        @include border-radius(4px);
+        .key {
+          padding: 10px;
+          font-weight: bold;
+          word-spacing: -10px;
+        }
+        .form-control {
+          width: 130px;
+        }
+        input[type="checkbox"] {
+          margin-right: 5px;
+        }
+      }
+    }
+
+    .entity-breadcrumbs {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      display: inline-block;
+      margin-left: 5px;
+      padding-bottom: 5px;
+
+      .entity-breadcrumb {
+        display: inline-block;
+        margin: 0 4px;
+        cursor: pointer;
+        color: #55c;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+      .breadcrumb-divider {
+        width: 5px;
+        margin-bottom: 2px;
+      }
+    }
+
+    .editor-rdf-col-title, .editor-rdf {
+      padding: 0 0 10px 0;
+    }
 
     .editor-rdf-entity-list, .editor-rdf-attribute-list {
-      height: 100%;
+      height: 90%;
       overflow: auto;
     }
   }
 
   .editor-connection {
-    margin-bottom: 10px;
+    margin: 30px 0;
     .connection-form {
       .loading-box {
         >.img-loader {
@@ -41,8 +124,17 @@
     margin-bottom: 20px;
     border-bottom: 1px solid #ccc;
   }
-  .editor-relational {
-    min-height: 150px;
+
+  .collapse-arrow {
+    position: absolute;
+    width: 12px;
+    top: 17px;
+    right: 10px;
+    @include transform(rotate(-90deg));
+    @include transition(all 300ms);
+    &.collapsed {
+      @include transform(rotate(0deg));
+    }
   }
 }
 
@@ -54,6 +146,8 @@
   border-bottom: 1px solid #ccc;
   cursor: pointer;
   font-weight: bold;
+  position: relative;
+
   &.ui-draggable-dragging {
     @include transform(rotate(5deg));
     border: 1px solid #ccc;
@@ -80,15 +174,32 @@
     cursor: default;
     word-break: break-all;
   }
+  .rdf-entity-arrow {
+    display: none;
+    position: absolute;
+    top: 10px;
+    right: 4px;
+    width: 24px;
+    padding: 8px;
+    cursor: pointer;
+    background-color: rgba(255,255,255,0.6);
+    @include border-radius(50%);
+    &:hover {
+      background-color: rgba(255,255,255,0.9);
+    }
+  }
   &:hover {
-    background-color: #f1f1f1;
+    background-color: #f6f6f6;
   }
   &.selected {
-    background-color: #f1f1f1;
+    background-color: #f6f6f6;
     .rdf-entity-handle {
       display: inline-block;
     }
     .rdf-entity-uri {
+      display: block;
+    }
+    .rdf-entity-arrow {
       display: block;
     }
   }
@@ -98,8 +209,9 @@
 .rdf-attribute-list {
   position: relative;
   border: 1px solid #ccc;
-  background-color: #f1f1f1;
+  background-color: #fafafa;
   padding: 5px;
+  @include border-radius(4px);
 }
 .rdf-attribute-list-item {
   display: inline-block;
@@ -115,6 +227,10 @@
   &.ui-draggable-dragging {
     @include transform(rotate(5deg));
   }
+  &:hover {
+    border-color: #999;
+    @include box-shadow(0 0 8px 1px #ccc);
+  }
 }
 
 
@@ -129,10 +245,10 @@
       border-top: 1px solid #ccc;
     }
     &:hover {
-      background-color: #f1f1f1;
+      background-color: #f6f6f6;
     }
     &.selected {
-      background-color: #f1f1f1;
+      background-color: #f6f6f6;
     }
   }
 }
@@ -176,9 +292,11 @@
       width: 100%;
       tr{
         &:hover {
-          td {
-            .btn-table-row-delete{
-              display: block;
+          &.removable {
+            td {
+              .btn-table-row-delete{
+                display: block;
+              }
             }
           }
         }
@@ -190,7 +308,7 @@
             top: -9px;
             right: -8px;
           }
-        } 
+        }
       }
     }
   }

@@ -50,11 +50,13 @@
         .key {
           padding: 10px;
           font-weight: bold;
+          word-spacing: -10px;
         }
-        .value {
-          .form-control {
-            width: 70px;
-          }
+        .form-control {
+          width: 130px;
+        }
+        input[type="checkbox"] {
+          margin-right: 5px;
         }
       }
     }
@@ -139,7 +141,6 @@
   cursor: pointer;
   font-weight: bold;
   position: relative;
-  @include transition(background-color 200ms);
 
   &.ui-draggable-dragging {
     @include transform(rotate(5deg));
@@ -215,7 +216,6 @@
   padding: 3px 5px;
   text-transform: capitalize;
   @include box-shadow(0 0 6px 0 #ccc);
-  @include transition(box-shadow 200ms);
   cursor: move;
   &.ui-draggable-dragging {
     @include transform(rotate(5deg));
@@ -233,7 +233,6 @@
     padding: 6px;
     font-weight: bold;
     cursor: pointer;
-    @include transition(all 200ms);
     &:first-child {
       border-top: 1px solid #ccc;
     }

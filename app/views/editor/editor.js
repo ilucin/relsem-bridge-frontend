@@ -135,7 +135,8 @@ define([
         attributesOffset: this.rdfAttributes.offset,
         attributesSort: this.rdfAttributes.sorting,
         entitiesLimit: this.rdfEntities.limit,
-        entitiesOffset: this.rdfEntities.offset
+        entitiesOffset: this.rdfEntities.offset,
+        entitiesLoadRootAttributes: this.rdfEntities.loadRootAttributes
       }));
 
       this.$('.editor-connection-form').html(this.connectionForm.render().$el);
@@ -198,7 +199,9 @@ define([
 
     onRdfEntityListSelectedItemChange: function(rdfEntity) {
       this.rdfAttributes.setRdfEntity(rdfEntity);
-      this.rdfAttributes.fetch();
+      if (this.rdfEntities.shouldLoadAttributes()) {
+        this.rdfAttributes.fetch();
+      }
     },
 
     onTableListItemSelect: function(tableListItem, tableModel) {
@@ -245,8 +248,10 @@ define([
       if ($input.attr('data-type') === 'entities') {
         if ($input.attr('data-property') === 'limit') {
           this.rdfEntities.setLimit(parseInt($input.val(), 10));
-        } else {
+        } else if ($input.attr('data-type') === 'offset') {
           this.rdfEntities.setOffset(parseInt($input.val(), 10));
+        } else {
+          this.rdfEntities.setLoadRootAttributes($input.prop('checked'));
         }
       } else {
         if ($input.attr('data-property') === 'limit') {

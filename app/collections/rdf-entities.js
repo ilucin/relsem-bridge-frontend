@@ -14,11 +14,17 @@ define([
     parents: [],
     limit: app.entitiesLimit,
     offset: app.entitiesOffset,
+    loadRootAttributes: app.entitiesLoadRootAttributes,
 
     initialize: function() {
       window.entities = this;
       this.limit = app.entitiesLimit;
       this.offset = app.entitiesOffset;
+      this.loadRootAttributes = app.entitiesLoadRootAttributes;
+    },
+
+    shouldLoadAttributes: function() {
+      return this.parents.length > 1 || this.loadRootAttributes === true;
     },
 
     setEndpoint: function(endpoint) {
@@ -47,6 +53,11 @@ define([
       });
     },
 
+    setLoadRootAttributes: function(loadRootAttributes) {
+      this.loadRootAttributes = loadRootAttributes;
+      window.localStorage.setItem('entitiesLoadRootAttributes', loadRootAttributes);
+    },
+
     addTestParentEntity: function() {
       var en = new RdfEntityModel({
         label: (Math.random().toString()),
@@ -57,20 +68,19 @@ define([
     },
 
     setParentEntityUri: function(uri) {
-      var entity = this.findWhere({
-        uri: uri
-      });
-      if (entity) {
-        this.setParentEntity(entity);
+      if (uri === this.endpoint) {
+        this.setParentEntity(this.rootParentEntity);
       } else {
-        if (uri === this.endpoint) {
-          this.setParentEntity(this.rootParentEntity);
+        for (var i = 0; i < this.parents.length; i++) {
+          if (this.parents[i].get('uri') === uri) {
+            return this.setParentEntity(this.parents[i]);
+          }
         }
       }
     },
 
     setParentEntity: function(entity) {
-      var index = -1; //this.parents.indexOf(entity);
+      var index = -1;
 
       for (var i = 0; i < this.parents.length; i++) {
         if (this.parents[i].get('uri') === entity.get('uri')) {

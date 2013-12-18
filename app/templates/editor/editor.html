@@ -21,8 +21,20 @@
     <span class="rdf-settings-icon rdf-entities-settings-icon glyphicon glyphicon-cog">
       <div class="rdf-settings rdf-entities-settings">
         <table>
-          <tr> <td class="key"> Limit </td> <td class="value"><input type="text" class="form-control in-rdf-entities-limit" data-type="entities" data-property="limit" value="<%= entitiesLimit %>" placeholder="Limit"/></td></tr>
-          <tr> <td class="key"> Offset </td> <td class="value"><input type="text" class="form-control in-rdf-entities-offset" data-type="entities" data-property="offset" value="<%= entitiesOffset %>" placeholder="Offset"/></td></tr>
+          <tr>
+            <td class="key"> Limit </td>
+            <td class="value"><input type="text" class="form-control" data-type="entities" data-property="limit" value="<%= entitiesLimit %>" placeholder="Limit"/></td>
+          </tr>
+          <tr>
+            <td class="key"> Offset </td>
+            <td class="value"><input type="text" class="form-control" data-type="entities" data-property="offset" value="<%= entitiesOffset %>" placeholder="Offset"/></td>
+          </tr>
+          <tr>
+            <td class="key" colspan="2">
+              <input type="checkbox" data-type="entities" data-property="loadRootAttributes" <%= entitiesLoadRootAttributes ? 'checked' : '' %>/>
+              Load root attribtues
+            </td>
+          </tr>
         </table>
       </div>
     </span>
@@ -32,9 +44,27 @@
     <span class="rdf-settings-icon rdf-attributes-settings-icon glyphicon glyphicon-cog">
       <div class="rdf-settings rdf-attributes-settings">
         <table>
-          <tr> <td class="key"> Limit </td> <td class="value"><input type="text" class="form-control in-rdf-attributes-limit" data-type="attributes" data-property="limit" value="<%= attributesLimit %>" placeholder="Limit"/></td></tr>
-          <tr> <td class="key"> Offset </td> <td class="value"><input type="text" class="form-control in-rdf-attributes-offset" data-type="attributes" data-property="offset" value="<%= attributesOffset %>" placeholder="Offset"/></td></tr>
-          <tr> <td class="key"> Sort </td> <td class="value"> <input type="checkbox" class="in-rdf-attributes-sort" data-type="attributes" data-property="sort" <%= attributesSort ? 'checked' : '' %>/> </td> </tr>
+          <tr>
+            <td class="key"> Limit </td>
+            <td class="value">
+              <input type="text" class="form-control in-rdf-attributes-limit" data-type="attributes" data-property="limit" value="<%= attributesLimit %>" placeholder="Limit"/>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="key"> Offset </td>
+            <td class="value">
+              <input type="text" class="form-control in-rdf-attributes-offset" data-type="attributes" data-property="offset" value="<%= attributesOffset %>" placeholder="Offset"/>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="key" colspan="2">
+              <input type="checkbox" class="in-rdf-attributes-sort" data-type="attributes" data-property="sort" <%= attributesSort ? 'checked' : '' %>/>
+              Sort by revelance
+            </td>
+          </tr>
+
         </table>
       </div>
     </span>

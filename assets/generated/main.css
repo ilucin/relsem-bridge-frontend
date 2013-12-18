@@ -1,0 +1,878 @@
+/*! normalize.css v2.1.2 | MIT License | git.io/normalize */
+/* ==========================================================================
+   HTML5 display definitions
+   ========================================================================== */
+/**
+ * Correct `block` display not defined in IE 8/9.
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_normalize\.scss}line{font-family:\0000322}}
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section,
+summary {
+  display: block; }
+
+/**
+ * Correct `inline-block` display not defined in IE 8/9.
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_normalize\.scss}line{font-family:\0000332}}
+audio,
+canvas,
+video {
+  display: inline-block; }
+
+/**
+ * Prevent modern browsers from displaying `audio` without controls.
+ * Remove excess height in iOS 5 devices.
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_normalize\.scss}line{font-family:\0000341}}
+audio:not([controls]) {
+  display: none;
+  height: 0; }
+
+/**
+ * Address styling not present in IE 8/9.
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_normalize\.scss}line{font-family:\0000350}}
+[hidden] {
+  display: none; }
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+/**
+ * 1. Set default font family to sans-serif.
+ * 2. Prevent iOS text size adjust after orientation change, without disabling
+ *    user zoom.
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_normalize\.scss}line{font-family:\0000364}}
+html {
+  font-family: sans-serif;
+  /* 1 */
+  -ms-text-size-adjust: 100%;
+  /* 2 */
+  -webkit-text-size-adjust: 100%;
+  /* 2 */ }
+
+/**
+ * Remove default margin.
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_normalize\.scss}line{font-family:\0000374}}
+body {
+  margin: 0; }
+
+/* ==========================================================================
+   Links
+   ========================================================================== */
+/**
+ * Address `outline` inconsistency between Chrome and other browsers.
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_normalize\.scss}line{font-family:\0000386}}
+a:focus {
+  outline: thin dotted; }
+
+/**
+ * Improve readability when focused and also mouse hovered in all browsers.
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_normalize\.scss}line{font-family:\0000395}}
+a:active,
+a:hover {
+  outline: 0; }
+
+/* ==========================================================================
+   Typography
+   ========================================================================== */
+/**
+ * Address variable `h1` font-size and margin within `section` and `article`
+ * contexts in Firefox 4+, Safari 5, and Chrome.
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_normalize\.scss}line{font-family:\00003108}}
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0; }
+
+/**
+ * Address styling not present in IE 8/9, Safari 5, and Chrome.
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_normalize\.scss}line{font-family:\00003117}}
+abbr[title] {
+  border-bottom: 1px dotted; }
+
+/**
+ * Address style set to `bolder` in Firefox 4+, Safari 5, and Chrome.
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_normalize\.scss}line{font-family:\00003126}}
+b,
+strong {
+  font-weight: bold; }
+
+/**
+ * Address styling not present in Safari 5 and Chrome.
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_normalize\.scss}line{font-family:\00003134}}
+dfn {
+  font-style: italic; }
+
+/**
+ * Address differences between Firefox and other browsers.
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_normalize\.scss}line{font-family:\00003142}}
+hr {
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 0; }
+
+/**
+ * Address styling not present in IE 8/9.
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_normalize\.scss}line{font-family:\00003152}}
+mark {
+  background: #ff0;
+  color: #000; }
+
+/**
+ * Correct font family set oddly in Safari 5 and Chrome.
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_normalize\.scss}line{font-family:\00003164}}
+code,
+kbd,
+pre,
+samp {
+  font-family: monospace, serif;
+  font-size: 1em; }
+
+/**
+ * Improve readability of pre-formatted text in all browsers.
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_normalize\.scss}line{font-family:\00003173}}
+pre {
+  white-space: pre-wrap; }
+
+/**
+ * Set consistent quote types.
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_normalize\.scss}line{font-family:\00003181}}
+q {
+  quotes: "\201C" "\201D" "\2018" "\2019"; }
+
+/**
+ * Address inconsistent and variable font size in all browsers.
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_normalize\.scss}line{font-family:\00003189}}
+small {
+  font-size: 80%; }
+
+/**
+ * Prevent `sub` and `sup` affecting `line-height` in all browsers.
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_normalize\.scss}line{font-family:\00003198}}
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_normalize\.scss}line{font-family:\00003205}}
+sup {
+  top: -0.5em; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_normalize\.scss}line{font-family:\00003209}}
+sub {
+  bottom: -0.25em; }
+
+/* ==========================================================================
+   Embedded content
+   ========================================================================== */
+/**
+ * Remove border when inside `a` element in IE 8/9.
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_normalize\.scss}line{font-family:\00003221}}
+img {
+  border: 0; }
+
+/**
+ * Correct overflow displayed oddly in IE 9.
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_normalize\.scss}line{font-family:\00003229}}
+svg:not(:root) {
+  overflow: hidden; }
+
+/* ==========================================================================
+   Figures
+   ========================================================================== */
+/**
+ * Address margin not present in IE 8/9 and Safari 5.
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_normalize\.scss}line{font-family:\00003241}}
+figure {
+  margin: 0; }
+
+/* ==========================================================================
+   Forms
+   ========================================================================== */
+/**
+ * Define consistent border, margin, and padding.
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_normalize\.scss}line{font-family:\00003253}}
+fieldset {
+  border: 1px solid #c0c0c0;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em; }
+
+/**
+ * 1. Correct `color` not being inherited in IE 8/9.
+ * 2. Remove padding so people aren't caught out if they zero out fieldsets.
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_normalize\.scss}line{font-family:\00003264}}
+legend {
+  border: 0;
+  /* 1 */
+  padding: 0;
+  /* 2 */ }
+
+/**
+ * 1. Correct font family not being inherited in all browsers.
+ * 2. Correct font size not being inherited in all browsers.
+ * 3. Address margins set differently in Firefox 4+, Safari 5, and Chrome.
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_normalize\.scss}line{font-family:\00003278}}
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  /* 1 */
+  font-size: 100%;
+  /* 2 */
+  margin: 0;
+  /* 3 */ }
+
+/**
+ * Address Firefox 4+ setting `line-height` on `input` using `!important` in
+ * the UA stylesheet.
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_normalize\.scss}line{font-family:\00003290}}
+button,
+input {
+  line-height: normal; }
+
+/**
+ * Address inconsistent `text-transform` inheritance for `button` and `select`.
+ * All other form control elements do not inherit `text-transform` values.
+ * Correct `button` style inheritance in Chrome, Safari 5+, and IE 8+.
+ * Correct `select` style inheritance in Firefox 4+ and Opera.
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_normalize\.scss}line{font-family:\00003302}}
+button,
+select {
+  text-transform: none; }
+
+/**
+ * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`
+ *    and `video` controls.
+ * 2. Correct inability to style clickable `input` types in iOS.
+ * 3. Improve usability and consistency of cursor style between image-type
+ *    `input` and others.
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_normalize\.scss}line{font-family:\00003317}}
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  -webkit-appearance: button;
+  /* 2 */
+  cursor: pointer;
+  /* 3 */ }
+
+/**
+ * Re-set default cursor for disabled elements.
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_normalize\.scss}line{font-family:\00003327}}
+button[disabled],
+html input[disabled] {
+  cursor: default; }
+
+/**
+ * 1. Address box sizing set to `content-box` in IE 8/9.
+ * 2. Remove excess padding in IE 8/9.
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_normalize\.scss}line{font-family:\00003337}}
+input[type="checkbox"],
+input[type="radio"] {
+  box-sizing: border-box;
+  /* 1 */
+  padding: 0;
+  /* 2 */ }
+
+/**
+ * 1. Address `appearance` set to `searchfield` in Safari 5 and Chrome.
+ * 2. Address `box-sizing` set to `border-box` in Safari 5 and Chrome
+ *    (include `-moz` to future-proof).
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_normalize\.scss}line{font-family:\00003348}}
+input[type="search"] {
+  -webkit-appearance: textfield;
+  /* 1 */
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  /* 2 */
+  box-sizing: content-box; }
+
+/**
+ * Remove inner padding and search cancel button in Safari 5 and Chrome
+ * on OS X.
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_normalize\.scss}line{font-family:\00003361}}
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none; }
+
+/**
+ * Remove inner padding and border in Firefox 4+.
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_normalize\.scss}line{font-family:\00003370}}
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0; }
+
+/**
+ * 1. Remove default vertical scrollbar in IE 8/9.
+ * 2. Improve readability and alignment in all browsers.
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_normalize\.scss}line{font-family:\00003380}}
+textarea {
+  overflow: auto;
+  /* 1 */
+  vertical-align: top;
+  /* 2 */ }
+
+/* ==========================================================================
+   Tables
+   ========================================================================== */
+/**
+ * Remove most spacing between table cells.
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_normalize\.scss}line{font-family:\00003393}}
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+@font-face {
+  font-family: Etk;
+  src: local("Ericsson Capital"), local("EricssonC"), url("../fonts/ERICSSONCAPITALTT.TTF") format("truetype"); }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_core\.scss}line{font-family:\000036}}
+.navbar.navbar-inverse {
+  background-color: #036;
+  color: #ccc; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_core\.scss}line{font-family:\000039}}
+  .navbar.navbar-inverse .btn-logout {
+    margin-top: 8px; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_core\.scss}line{font-family:\0000312}}
+  .navbar.navbar-inverse .navbar-brand {
+    color: #fff;
+    font-weight: bold;
+    font-family: Etk;
+    font-size: 20px; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_core\.scss}line{font-family:\0000320}}
+  .navbar.navbar-inverse .navbar-nav > li > a {
+    color: #eee; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_core\.scss}line{font-family:\0000327}}
+.main-container {
+  margin-top: 80px; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_core\.scss}line{font-family:\0000331}}
+.footer-container {
+  margin-top: 20px; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_core\.scss}line{font-family:\0000333}}
+  .footer-container .footer {
+    border-top: 1px solid #ccc;
+    padding: 20px; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_core\.scss}line{font-family:\0000340}}
+.container .jumbotron {
+  color: #036;
+  border: 1px solid #ccc;
+  text-align: center;
+  padding-left: 50px;
+  padding-right: 50px;
+  background-color: #f6f6f6; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_core\.scss}line{font-family:\0000347}}
+  .container .jumbotron h1 {
+    font-family: Etk;
+    font-size: 55px; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_core\.scss}line{font-family:\0000354}}
+.load-mask {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  min-height: 32px;
+  background-color: rgba(255, 255, 255, 0.5);
+  background-image: url(../images/loader.gif);
+  background-size: 22px;
+  background-position: 50% 5px;
+  background-repeat: no-repeat; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_modules\.scss}line{font-family:\000032}}
+.input-container input {
+  border-color: transparent;
+  box-shadow: none; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_modules\.scss}line{font-family:\000035}}
+  .input-container input:focus {
+    border-color: auto;
+    font-width: auto;
+    font-size: auto;
+    color: auto; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_modules\.scss}line{font-family:\0000314}}
+.hide {
+  display: none; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_modules\.scss}line{font-family:\0000318}}
+.dialog-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 1031;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-box;
+  display: box;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -ms-box-align: center;
+  box-align: center;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -ms-box-pack: center;
+  box-pack: center; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_modules\.scss}line{font-family:\0000330}}
+  .dialog-mask .dialog {
+    max-width: 50%;
+    max-height: 50%; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_modules\.scss}line{font-family:\0000333}}
+    .dialog-mask .dialog .dialog-body {
+      overflow: auto; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_modules\.scss}line{font-family:\0000336}}
+    .dialog-mask .dialog .dialog-footer {
+      text-align: right; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_modules\.scss}line{font-family:\0000343}}
+  .dialog-mask.message-dialog.table-data .dialog {
+    max-width: 85%;
+    max-height: 85%;
+    overflow: scroll; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_editor\.scss}line{font-family:\000032}}
+.editor .editor-title {
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  position: relative;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+  background-color: #f6f6f6; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_editor\.scss}line{font-family:\0000311}}
+  .editor .editor-title h4 {
+    font-family: Etk;
+    color: #036;
+    font-weight: bold; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_editor\.scss}line{font-family:\0000317}}
+  .editor .editor-title:hover {
+    -webkit-box-shadow: 0 0 5px 0 #dddddd;
+    -moz-box-shadow: 0 0 5px 0 #dddddd;
+    box-shadow: 0 0 5px 0 #dddddd; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_editor\.scss}line{font-family:\0000319}}
+    .editor .editor-title:hover .collapse-arrow {
+      -webkit-transform: rotate(-120deg);
+      -moz-transform: rotate(-120deg);
+      -ms-transform: rotate(-120deg);
+      -o-transform: rotate(-120deg);
+      transform: rotate(-120deg); }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_editor\.scss}line{font-family:\0000321}}
+      .editor .editor-title:hover .collapse-arrow.collapsed {
+        -webkit-transform: rotate(30deg);
+        -moz-transform: rotate(30deg);
+        -ms-transform: rotate(30deg);
+        -o-transform: rotate(30deg);
+        transform: rotate(30deg); }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_editor\.scss}line{font-family:\0000328}}
+.editor .editor-rdf {
+  padding: 0 0 10px 0;
+  height: 400px;
+  margin: 20px 0;
+  border-bottom: 1px solid #ccc;
+  overflow: hidden; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_editor\.scss}line{font-family:\0000335}}
+  .editor .editor-rdf .rdf-attributes-settings-icon {
+    float: right; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_editor\.scss}line{font-family:\0000337}}
+    .editor .editor-rdf .rdf-attributes-settings-icon .rdf-attributes-settings {
+      right: 0; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_editor\.scss}line{font-family:\0000342}}
+  .editor .editor-rdf .rdf-entities-settings-icon, .editor .editor-rdf .rdf-attributes-settings-icon {
+    position: relative;
+    z-index: 1000;
+    cursor: pointer; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_editor\.scss}line{font-family:\0000347}}
+    .editor .editor-rdf .rdf-entities-settings-icon .rdf-entities-settings, .editor .editor-rdf .rdf-entities-settings-icon .rdf-attributes-settings, .editor .editor-rdf .rdf-attributes-settings-icon .rdf-entities-settings, .editor .editor-rdf .rdf-attributes-settings-icon .rdf-attributes-settings {
+      display: none;
+      padding: 0 0 5px 0;
+      position: absolute;
+      background-color: #fafafa;
+      border: 1px solid #aaa;
+      cursor: auto;
+      -webkit-box-shadow: 0 0 10px 1px #cccccc;
+      -moz-box-shadow: 0 0 10px 1px #cccccc;
+      box-shadow: 0 0 10px 1px #cccccc;
+      -webkit-border-radius: 4px;
+      -moz-border-radius: 4px;
+      -ms-border-radius: 4px;
+      -o-border-radius: 4px;
+      border-radius: 4px; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_editor\.scss}line{font-family:\0000356}}
+      .editor .editor-rdf .rdf-entities-settings-icon .rdf-entities-settings .key, .editor .editor-rdf .rdf-entities-settings-icon .rdf-attributes-settings .key, .editor .editor-rdf .rdf-attributes-settings-icon .rdf-entities-settings .key, .editor .editor-rdf .rdf-attributes-settings-icon .rdf-attributes-settings .key {
+        padding: 10px;
+        font-weight: bold;
+        word-spacing: -10px; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_editor\.scss}line{font-family:\0000361}}
+      .editor .editor-rdf .rdf-entities-settings-icon .rdf-entities-settings .form-control, .editor .editor-rdf .rdf-entities-settings-icon .rdf-attributes-settings .form-control, .editor .editor-rdf .rdf-attributes-settings-icon .rdf-entities-settings .form-control, .editor .editor-rdf .rdf-attributes-settings-icon .rdf-attributes-settings .form-control {
+        width: 130px; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_editor\.scss}line{font-family:\0000364}}
+      .editor .editor-rdf .rdf-entities-settings-icon .rdf-entities-settings input[type="checkbox"], .editor .editor-rdf .rdf-entities-settings-icon .rdf-attributes-settings input[type="checkbox"], .editor .editor-rdf .rdf-attributes-settings-icon .rdf-entities-settings input[type="checkbox"], .editor .editor-rdf .rdf-attributes-settings-icon .rdf-attributes-settings input[type="checkbox"] {
+        margin-right: 5px; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_editor\.scss}line{font-family:\0000370}}
+  .editor .editor-rdf .entity-breadcrumbs {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: inline-block;
+    margin-left: 5px;
+    padding-bottom: 5px; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_editor\.scss}line{font-family:\0000378}}
+    .editor .editor-rdf .entity-breadcrumbs .entity-breadcrumb {
+      display: inline-block;
+      margin: 0 4px;
+      cursor: pointer;
+      color: #55c; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_editor\.scss}line{font-family:\0000383}}
+      .editor .editor-rdf .entity-breadcrumbs .entity-breadcrumb:hover {
+        text-decoration: underline; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_editor\.scss}line{font-family:\0000387}}
+    .editor .editor-rdf .entity-breadcrumbs .breadcrumb-divider {
+      width: 5px;
+      margin-bottom: 2px; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_editor\.scss}line{font-family:\0000393}}
+  .editor .editor-rdf .editor-rdf-col-title, .editor .editor-rdf .editor-rdf {
+    padding: 0 0 10px 0; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_editor\.scss}line{font-family:\0000397}}
+  .editor .editor-rdf .editor-rdf-entity-list, .editor .editor-rdf .editor-rdf-attribute-list {
+    height: 90%;
+    overflow: auto; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_editor\.scss}line{font-family:\00003103}}
+.editor .editor-connection {
+  margin: 30px 0; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_editor\.scss}line{font-family:\00003107}}
+  .editor .editor-connection .connection-form .loading-box > .img-loader {
+    height: 34px; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_editor\.scss}line{font-family:\00003112}}
+  .editor .editor-connection .connection-form .btn-connect > img {
+    height: 18px;
+    margin-right: 8px; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_editor\.scss}line{font-family:\00003117}}
+  .editor .editor-connection .connection-form .connection-select {
+    width: 100%; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_editor\.scss}line{font-family:\00003123}}
+.editor .editor-relational-title {
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ccc; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_editor\.scss}line{font-family:\00003128}}
+.editor .collapse-arrow {
+  position: absolute;
+  width: 12px;
+  top: 17px;
+  right: 10px;
+  -webkit-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  -o-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+  -webkit-transition: all 300ms;
+  -moz-transition: all 300ms;
+  -o-transition: all 300ms;
+  transition: all 300ms; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_editor\.scss}line{font-family:\00003135}}
+  .editor .collapse-arrow.collapsed {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg); }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_editor\.scss}line{font-family:\00003141}}
+.rdf-entity-list {
+  position: relative; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_editor\.scss}line{font-family:\00003144}}
+.rdf-entity-list-item {
+  padding: 6px;
+  border-bottom: 1px solid #ccc;
+  cursor: pointer;
+  font-weight: bold;
+  position: relative; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_editor\.scss}line{font-family:\00003151}}
+  .rdf-entity-list-item.ui-draggable-dragging {
+    -webkit-transform: rotate(5deg);
+    -moz-transform: rotate(5deg);
+    -ms-transform: rotate(5deg);
+    -o-transform: rotate(5deg);
+    transform: rotate(5deg);
+    border: 1px solid #ccc; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_editor\.scss}line{font-family:\00003155}}
+  .rdf-entity-list-item:first-child {
+    border-top: 1px solid #ccc; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_editor\.scss}line{font-family:\00003158}}
+  .rdf-entity-list-item .rdf-entity-handle {
+    width: 10px;
+    height: 20px;
+    margin: 0 5px;
+    cursor: move;
+    display: none; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_editor\.scss}line{font-family:\00003165}}
+  .rdf-entity-list-item .rdf-entity-label {
+    display: inline-block;
+    word-break: break-all; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_editor\.scss}line{font-family:\00003169}}
+  .rdf-entity-list-item .rdf-entity-uri {
+    display: none;
+    font-size: 10px;
+    color: #55c;
+    text-decoration: underline;
+    cursor: default;
+    word-break: break-all; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_editor\.scss}line{font-family:\00003177}}
+  .rdf-entity-list-item .rdf-entity-arrow {
+    display: none;
+    position: absolute;
+    top: 10px;
+    right: 4px;
+    width: 24px;
+    padding: 8px;
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.6);
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_editor\.scss}line{font-family:\00003187}}
+    .rdf-entity-list-item .rdf-entity-arrow:hover {
+      background-color: rgba(255, 255, 255, 0.9); }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_editor\.scss}line{font-family:\00003191}}
+  .rdf-entity-list-item:hover {
+    background-color: #f6f6f6; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_editor\.scss}line{font-family:\00003194}}
+  .rdf-entity-list-item.selected {
+    background-color: #f6f6f6; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_editor\.scss}line{font-family:\00003196}}
+    .rdf-entity-list-item.selected .rdf-entity-handle {
+      display: inline-block; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_editor\.scss}line{font-family:\00003199}}
+    .rdf-entity-list-item.selected .rdf-entity-uri {
+      display: block; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_editor\.scss}line{font-family:\00003202}}
+    .rdf-entity-list-item.selected .rdf-entity-arrow {
+      display: block; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_editor\.scss}line{font-family:\00003209}}
+.rdf-attribute-list {
+  position: relative;
+  border: 1px solid #ccc;
+  background-color: #fafafa;
+  padding: 5px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_editor\.scss}line{font-family:\00003216}}
+.rdf-attribute-list-item {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  margin: 5px;
+  padding: 3px 5px;
+  text-transform: capitalize;
+  -webkit-box-shadow: 0 0 6px 0 #cccccc;
+  -moz-box-shadow: 0 0 6px 0 #cccccc;
+  box-shadow: 0 0 6px 0 #cccccc;
+  cursor: move; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_editor\.scss}line{font-family:\00003226}}
+  .rdf-attribute-list-item.ui-draggable-dragging {
+    -webkit-transform: rotate(5deg);
+    -moz-transform: rotate(5deg);
+    -ms-transform: rotate(5deg);
+    -o-transform: rotate(5deg);
+    transform: rotate(5deg); }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_editor\.scss}line{font-family:\00003229}}
+  .rdf-attribute-list-item:hover {
+    border-color: #999;
+    -webkit-box-shadow: 0 0 8px 1px #cccccc;
+    -moz-box-shadow: 0 0 8px 1px #cccccc;
+    box-shadow: 0 0 8px 1px #cccccc; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_editor\.scss}line{font-family:\00003237}}
+.table-list .table-list-item {
+  border-bottom: 1px solid #ccc;
+  padding: 6px;
+  font-weight: bold;
+  cursor: pointer; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_editor\.scss}line{font-family:\00003242}}
+  .table-list .table-list-item:first-child {
+    border-top: 1px solid #ccc; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_editor\.scss}line{font-family:\00003245}}
+  .table-list .table-list-item:hover {
+    background-color: #f6f6f6; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_editor\.scss}line{font-family:\00003248}}
+  .table-list .table-list-item.selected {
+    background-color: #f6f6f6; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_editor\.scss}line{font-family:\00003254}}
+.relational-table {
+  position: relative; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_editor\.scss}line{font-family:\00003256}}
+  .relational-table .table-top {
+    margin-bottom: 10px; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_editor\.scss}line{font-family:\00003258}}
+    .relational-table .table-top .table-top-upper {
+      display: -webkit-box;
+      display: -moz-box;
+      display: -ms-box;
+      display: box; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_editor\.scss}line{font-family:\00003261}}
+    .relational-table .table-top .table-entity {
+      -webkit-box-flex: 1;
+      -moz-box-flex: 1;
+      -ms-box-flex: 1;
+      box-flex: 1; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_editor\.scss}line{font-family:\00003264}}
+    .relational-table .table-top .table-buttons {
+      padding: 5px 0;
+      -webkit-box-flex: 1;
+      -moz-box-flex: 1;
+      -ms-box-flex: 1;
+      box-flex: 1; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_editor\.scss}line{font-family:\00003267}}
+      .relational-table .table-top .table-buttons .btn {
+        margin-left: 5px;
+        float: right; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_editor\.scss}line{font-family:\00003273}}
+  .relational-table .table-entity {
+    padding: 5px 10px; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_editor\.scss}line{font-family:\00003275}}
+    .relational-table .table-entity .table-entity-name {
+      font-weight: bold; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_editor\.scss}line{font-family:\00003278}}
+    .relational-table .table-entity .table-entity-uri {
+      font-size: 10px;
+      color: #55c; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_editor\.scss}line{font-family:\00003284}}
+  .relational-table .table-name .in-table-name {
+    font-weight: bold; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_editor\.scss}line{font-family:\00003289}}
+  .relational-table .table-attributes table {
+    width: 100%; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_editor\.scss}line{font-family:\00003295}}
+    .relational-table .table-attributes table tr:hover.removable td .btn-table-row-delete {
+      display: block; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_editor\.scss}line{font-family:\00003301}}
+    .relational-table .table-attributes table tr td {
+      position: relative; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_editor\.scss}line{font-family:\00003303}}
+      .relational-table .table-attributes table tr td .btn-table-row-delete {
+        display: none;
+        position: absolute;
+        top: -9px;
+        right: -8px; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_editor\.scss}line{font-family:\00003314}}
+  .relational-table .btn-table-save {
+    float: right; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_editor\.scss}line{font-family:\00003318}}
+  .relational-table .table-drag-and-drop-label {
+    color: #999;
+    text-align: center;
+    padding: 4px;
+    font-size: 12px; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_editor\.scss}line{font-family:\00003326}}
+.droppable {
+  position: relative; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_editor\.scss}line{font-family:\00003328}}
+  .droppable .drop-mask {
+    display: none; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_editor\.scss}line{font-family:\00003332}}
+  .droppable.accept-drop .drop-mask {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-box;
+    display: box; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_editor\.scss}line{font-family:\00003338}}
+.input {
+  color: #000; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_editor\.scss}line{font-family:\00003340}}
+  .input[disabled] {
+    color: #666; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_editor\.scss}line{font-family:\00003345}}
+.drop-mask {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-box;
+  display: box;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -ms-box-pack: center;
+  box-pack: center;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -ms-box-align: center;
+  box-align: center;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0.4); }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/Projects\/relsem-bridge-frontend\/assets\/scss\/_editor\.scss}line{font-family:\00003352}}
+  .drop-mask .drop-message {
+    text-transform: uppercase;
+    color: #fff;
+    font-size: 22px;
+    text-shadow: 0 0 2px black; }

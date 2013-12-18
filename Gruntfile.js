@@ -72,7 +72,7 @@ module.exports = function(grunt) {
       },
       deploy: {
         files: {
-          'assets/css/main.css': 'assets/scss/main.scss'
+          'assets/generated/main.css': 'assets/scss/main.scss'
         }
       }
     },
@@ -81,9 +81,9 @@ module.exports = function(grunt) {
       deploy: {
         src: [
           'assets/vendor/css/normalize.css',
-          'assets/css/main.css'
+          'assets/generated/main.css'
         ],
-        dest: 'deploy/release/assets/css/main.css'
+        dest: 'deploy/release/assets/generated/main.css'
       }
     },
 

@@ -4,6 +4,6 @@
 *.swp
 *.out
 deploy/*
-assets/css/*
+assets/generated/*
 .sass-cache/*
 node_modules/*

@@ -3,6 +3,12 @@ Relsem Bridge Manager
 
 Relsem bridge frontend web application
 
+## About relsem bridge
+
+[Project website](http://www.fer.unizg.hr/rasip/dsd/projects/relsem_bridge)
+
+RelSem Bridge allows to use relational databases tools to access semantic data from multiple heterogenous data sources. Bridge provides a relational adapter to semantic data. Through its administration panel it enables viewing the data available in multiple semantic endpoints (DBPedia) and construction of relational schema from available data. Bridge implements PostgreSQL database protocol which in return enables users to connect to bridge using Postgres JDBC type 4 protocol and query semantic data sources utilizing existing relational tools.
+
 ## Instructions for running the application
 
 To start the development you need:
